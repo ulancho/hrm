@@ -1,8 +1,14 @@
+import React from 'react';
+import "normalize.css";
+import {BrowserRouter, Routes, Route} from "react-router-dom";
+
+
 function App() {
   return (
-    <div className="App">
- 1
-    </div>
+      <BrowserRouter>
+        <Routes>
+        </Routes>
+      </BrowserRouter>
   );
 }
 
