@@ -10,10 +10,17 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d2210a2a-6e0d-45b1-878c-a6df90cc0f60" name="Default Changelist" comment="init:start hrm">
+    <list default="true" id="d2210a2a-6e0d-45b1-878c-a6df90cc0f60" name="Default Changelist" comment="refactor: cleared">
+      <change afterPath="$PROJECT_DIR$/src/components/header/Header.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/header/Header.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/media/fonts/Nunito-Bold.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/media/fonts/Nunito-Light.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/media/fonts/Nunito-Regular.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/media/fonts/Nunito-SemiBold.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/media/icons/logo.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/media/icons/profile.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/MainChart/MainChart.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
     </list>
@@ -42,6 +49,9 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Users\uzhumabaev\Desktop\projects\hrm\src\media\fonts" />
+      <recent name="D:\Users\uzhumabaev\Desktop\projects\hrm\src\media\font" />
+      <recent name="D:\Users\uzhumabaev\Desktop\projects\hrm\src\media\icons" />
       <recent name="D:\Users\uzhumabaev\Desktop\projects\hrm\public" />
     </key>
   </component>
@@ -58,7 +68,7 @@
       <workItem from="1645000937659" duration="58000" />
       <workItem from="1645002617832" duration="1730000" />
       <workItem from="1645175391755" duration="230000" />
-      <workItem from="1645176874657" duration="8272000" />
+      <workItem from="1645176874657" duration="13553000" />
     </task>
     <task id="LOCAL-00001" summary="init:start hrm">
       <created>1645180109766</created>
@@ -67,7 +77,21 @@
       <option name="project" value="LOCAL" />
       <updated>1645180109766</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="feat: added react-router-dom and normalize css">
+      <created>1645269414809</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1645269414809</updated>
+    </task>
+    <task id="LOCAL-00003" summary="refactor: cleared">
+      <created>1645269456194</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1645269456194</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -87,13 +111,19 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="init:start hrm" />
-    <option name="LAST_COMMIT_MESSAGE" value="init:start hrm" />
+    <MESSAGE value="feat: added react-router-dom and normalize css" />
+    <MESSAGE value="refactor: cleared" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: cleared" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1645179893738">
+    <state x="702" y="322" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1645272997106">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1645179893738" />
+    <state x="702" y="322" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1645272997106" />
+    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1645273940475">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1645273940475" />
     <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1645188874612">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -102,9 +132,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="165" key="SettingsEditor/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1645175620332" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1645180128869">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="-1368" y="253" key="Vcs.Push.Dialog.v2" timestamp="1645269480676">
+      <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
+    <state x="-1368" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1645269480676" />
     <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1645180128869" />
     <state x="616" y="240" key="run.anything.popup" timestamp="1645188670139">
       <screen x="0" y="0" width="1920" height="1040" />

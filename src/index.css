@@ -1,0 +1,21 @@
+@font-face {
+    font-family: 'Nunito';
+    src: url('./media/fonts/Nunito-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Nunito';
+    src: url('./media/fonts/Nunito-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+
+body{
+    font-family: Nunito, sans-serif;
+}
+
+.container{
+    margin: 0 56px;
+}
