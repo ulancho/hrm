@@ -17,5 +17,13 @@ body{
 }
 
 .container{
-    margin: 0 56px;
+    padding: 0 56px;
+}
+
+.d-flex{
+    display: flex;
+}
+
+a{
+    text-decoration: none;
 }
