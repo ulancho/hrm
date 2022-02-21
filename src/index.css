@@ -27,3 +27,28 @@ body{
 a{
     text-decoration: none;
 }
+
+/*************  основная кнопка ************/
+.btn{
+    height: 48px;
+    width: 100%;
+    border: 0;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    line-height: 22px;
+    color: #FFFFFF;
+}
+
+/*************  кнопка-1 ************/
+.btn-main{
+    background: #71BF44;
+
+}
+
+/*************  кнопка-2 ************/
+.btn-secondary{
+    background: #472F91;
+}
