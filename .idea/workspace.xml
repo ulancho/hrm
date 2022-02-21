@@ -10,10 +10,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d2210a2a-6e0d-45b1-878c-a6df90cc0f60" name="Default Changelist" comment="feat: added menu icons, stylized menu">
-      <change afterPath="$PROJECT_DIR$/src/pages/MainChart/MainChart.module.css" afterDir="false" />
+    <list default="true" id="d2210a2a-6e0d-45b1-878c-a6df90cc0f60" name="Default Changelist" comment="feat: added search bar for the main chart page">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/MainChart/MainChart.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/MainChart/MainChart.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -60,7 +58,7 @@
       <workItem from="1645000937659" duration="58000" />
       <workItem from="1645002617832" duration="1730000" />
       <workItem from="1645175391755" duration="230000" />
-      <workItem from="1645176874657" duration="30169000" />
+      <workItem from="1645176874657" duration="30383000" />
     </task>
     <task id="LOCAL-00001" summary="init:start hrm">
       <created>1645180109766</created>
@@ -125,7 +123,21 @@
       <option name="project" value="LOCAL" />
       <updated>1645420695110</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="feat: added styles for main buttons">
+      <created>1645444989131</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1645444989131</updated>
+    </task>
+    <task id="LOCAL-00011" summary="feat: added search bar for the main chart page">
+      <created>1645445050352</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1645445050352</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -153,7 +165,9 @@
     <MESSAGE value="feat: added profile" />
     <MESSAGE value="feat: added global css" />
     <MESSAGE value="feat: added menu icons, stylized menu" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: added menu icons, stylized menu" />
+    <MESSAGE value="feat: added styles for main buttons" />
+    <MESSAGE value="feat: added search bar for the main chart page" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: added search bar for the main chart page" />
   </component>
   <component name="WindowStateProjectService">
     <state x="702" y="322" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1645276283769">

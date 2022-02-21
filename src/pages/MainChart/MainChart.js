@@ -8,7 +8,7 @@ export const MainChart = () => {
                 <div className={styles.dateFieldBlock}>
                     <fieldset>
                         <legend>Дата</legend>
-                        <input type="date"/>
+                        <input type="month"/>
                     </fieldset>
                 </div>
                 <div className={styles.searchFieldBlock}>
