@@ -14,7 +14,7 @@ function App() {
               <MainContent>
                   <Profile/>
                   <Routes>
-                      <Route path="/main_chart" element={<MainChart/>}/> /*стр. основной график*/
+                      <Route path="main_chart" element={<MainChart/>}/> /*стр. основной график*/
                   </Routes>
               </MainContent>
           </div>

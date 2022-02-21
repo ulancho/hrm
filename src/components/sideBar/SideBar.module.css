@@ -18,12 +18,12 @@
     align-items: center;
 }
 
-.sidebarMenu .active{
+.active{
     background: #472F91;
     border-radius: 0 8px 8px 0;
 }
 
-.sidebarMenu .active span{
+.active span{
     color: #FFFFFF!important;
 }
 
@@ -33,5 +33,17 @@
     font-size: 16px;
     line-height: 22px;
     margin-left: 10px;
+}
+
+.lightIcon{
+    display: none;
+}
+
+.active .lightIcon{
+    display: block;
+}
+
+.active .darkIcon{
+    display: none;
 }
 

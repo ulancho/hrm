@@ -1,12 +1,22 @@
 import React from "react";
+import {NavLink} from "react-router-dom";
 import styles from "./SideBar.module.css";
 import {ReactComponent as Logo} from "./../../media/icons/logo.svg";
-import {ReactComponent as MainChartIcon} from "./../../media/icons/main_chart.svg";
-import {ReactComponent as UdalenkaIcon} from "./../../media/icons/udalenka.svg";
-import {ReactComponent as ProcessingIcon} from "./../../media/icons/processing.svg";
-import {ReactComponent as FormKeIcon} from "./../../media/icons/ke.svg";
-import {ReactComponent as StaffIcon} from "./../../media/icons/staff.svg";
-import {Link} from "react-router-dom";
+
+import {ReactComponent as MainChartLightIcon} from "../../media/icons/main-chart-light.svg";
+import {ReactComponent as MainChartDarkIcon} from "../../media/icons/main-chart-dark.svg";
+
+import {ReactComponent as RemoteLightIcon} from "../../media/icons/remote-light.svg";
+import {ReactComponent as RemoteDarkIcon} from "../../media/icons/remote-dark.svg";
+
+import {ReactComponent as ProcessingDarkIcon} from "../../media/icons/processing-dark.svg";
+import {ReactComponent as ProcessingLightIcon} from "../../media/icons/processing-light.svg";
+
+import {ReactComponent as FormKeLightIcon} from "../../media/icons/form-ke-light.svg";
+import {ReactComponent as FormKeDarkIcon} from "../../media/icons/form-ke-dark.svg";
+
+import {ReactComponent as StaffLightIcon} from "../../media/icons/staff-light.svg";
+import {ReactComponent as StaffDarkIcon} from "../../media/icons/staff-dark.svg";
 
 export const SideBar = () => {
     return (
@@ -15,35 +25,46 @@ export const SideBar = () => {
                 <Logo/>
             </div>
             <ul className={styles.sidebarMenu}>
-                <li className={styles.active}>
-                    <Link to="asd">
-                        <MainChartIcon/>
+                <li className={styles.menuList}>
+                    <NavLink to="main_chart"
+                             className={({isActive}) => (isActive ? styles.active : '')}
+                    >
+                        <MainChartLightIcon className={styles.lightIcon}/>
+                        <MainChartDarkIcon className={styles.darkIcon}/>
                         <span>Основной график</span>
-                    </Link>
+                    </NavLink>
                 </li>
                 <li>
-                    <Link to="asd">
-                        <UdalenkaIcon/>
+                    <NavLink to="remote"
+                             className={({isActive}) => (isActive ? styles.active : '')}>
+                        <RemoteLightIcon className={styles.lightIcon}/>
+                        <RemoteDarkIcon className={styles.darkIcon}/>
                         <span>Удаленка</span>
-                    </Link>
+                    </NavLink>
                 </li>
                 <li>
-                    <Link to="asd">
-                        <ProcessingIcon/>
+                    <NavLink to="processing"
+                             className={({ isActive }) => (isActive ? styles.active : '')}>
+                        <ProcessingLightIcon className={styles.lightIcon}/>
+                        <ProcessingDarkIcon className={styles.darkIcon}/>
                         <span>Переработки и ночные работы</span>
-                    </Link>
+                    </NavLink>
                 </li>
                 <li>
-                    <Link to="asd">
-                        <FormKeIcon/>
+                    <NavLink to="form_ke"
+                             className={({ isActive }) => (isActive ? styles.active : '')}>
+                        <FormKeLightIcon className={styles.lightIcon}/>
+                        <FormKeDarkIcon  className={styles.darkIcon}/>
                         <span>Форма КЭ</span>
-                    </Link>
+                    </NavLink>
                 </li>
                 <li>
-                    <Link to="asd">
-                        <StaffIcon/>
+                    <NavLink to="employees"
+                             className={({ isActive }) => (isActive ? styles.active : '')}>
+                        <StaffLightIcon className={styles.lightIcon}/>
+                        <StaffDarkIcon  className={styles.darkIcon}/>
                         <span>Список сотрудников</span>
-                    </Link>
+                    </NavLink>
                 </li>
             </ul>
         </nav>
