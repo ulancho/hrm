@@ -1,0 +1,61 @@
+.mainChart{
+    /*border: 1px solid red;*/
+}
+
+.searchBar{
+    margin: 10px 0 16px;
+    display: flex;
+}
+
+.searchBar div:not(.searchBar div:last-child){
+    height: 56px;
+    margin-right: 16px;
+}
+
+
+.dateFieldBlock{
+    width: 20%;
+}
+
+.searchBar fieldset{
+    border: 0.5px solid #1E1E1E;
+    border-radius: 8px;
+    padding: 0 16px 0;
+    height: 55px;
+    margin: 0;
+}
+
+.searchBar legend{
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 19px;
+    color: #CCCCCC;
+    padding: 0 5px;
+}
+
+.searchBar input{
+    width: 100%;
+    border: 0;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 19px;
+    color: #000000;
+    padding: 5px 0;
+}
+
+.searchBar input:focus-visible{
+    border: 0;
+    outline: 0;
+}
+
+.searchFieldBlock{
+    width: 38%;
+}
+
+.buttonBlock{
+    width: 21%;
+}
+
+.buttonBlock button {
+    margin-top: 8px;
+}
