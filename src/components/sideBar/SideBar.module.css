@@ -24,9 +24,14 @@
 }
 
 .sidebarMenu .active span{
-    color: #FFFFFF;
+    color: #FFFFFF!important;
+}
+
+.sidebarMenu li span{
+    color: #1E1E1E;
     font-weight: 600;
     font-size: 16px;
     line-height: 22px;
     margin-left: 10px;
 }
+
