@@ -28,6 +28,14 @@ a{
     text-decoration: none;
 }
 
+ul{
+    padding: 0;
+}
+
+ul li{
+    list-style: none;
+}
+
 /*************  основная кнопка ************/
 .btn{
     height: 48px;

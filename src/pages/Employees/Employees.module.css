@@ -64,5 +64,51 @@
     top: 7px;
 }
 
+/****************** кнопка добавить сотрудника *******************/
+.buttonBlock button {
+    margin-top: 8px;
+}
+
 /****************** карточоки сотрудников *******************/
+.tableBar{
+    width: 100%;
+    margin-top: 32px;
+}
+
+.emplCard{
+    display: flex;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.emplCard div:not(.emplCard div:last-child){
+    margin-right: 16px;
+}
+
+.photo img{
+    width: 136px;
+    height: 144px;
+}
+
+.labels{
+    width: 10%;
+}
+
+.labels ul li{
+    font-size: 15px;
+    line-height: 21px;
+    color: rgba(30, 30, 30, 0.5);
+}
+
+.data{
+    width: 30%;
+}
+
+.data ul li{
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 21px;
+    color: #1E1E1E;
+}
+
 

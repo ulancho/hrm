@@ -10,14 +10,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d2210a2a-6e0d-45b1-878c-a6df90cc0f60" name="Default Changelist" comment="feat: added changing icons for active links">
-      <change afterPath="$PROJECT_DIR$/src/media/icons/search.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/Employees/Employees.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/Employees/Employees.module.css" afterDir="false" />
+    <list default="true" id="d2210a2a-6e0d-45b1-878c-a6df90cc0f60" name="Default Changelist" comment="feat: added fieldset">
+      <change afterPath="$PROJECT_DIR$/src/pages/Employees/user.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/MainChart/MainChart.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/MainChart/MainChart.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Employees/Employees.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Employees/Employees.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Employees/Employees.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Employees/Employees.module.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +42,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Users\uzhumabaev\Desktop\projects\hrm\src\pages\Employees" />
       <recent name="D:\Users\uzhumabaev\Desktop\projects\hrm\src\media\icons" />
       <recent name="D:\Users\uzhumabaev\Desktop\projects\hrm\src\media\fonts" />
       <recent name="D:\Users\uzhumabaev\Desktop\projects\hrm\src\media\font" />
@@ -63,7 +62,7 @@
       <workItem from="1645000937659" duration="58000" />
       <workItem from="1645002617832" duration="1730000" />
       <workItem from="1645175391755" duration="230000" />
-      <workItem from="1645176874657" duration="42085000" />
+      <workItem from="1645176874657" duration="46480000" />
     </task>
     <task id="LOCAL-00001" summary="init:start hrm">
       <created>1645180109766</created>
@@ -163,7 +162,28 @@
       <option name="project" value="LOCAL" />
       <updated>1645447715604</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="fix: removed some css classes">
+      <created>1645523071205</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1645523071205</updated>
+    </task>
+    <task id="LOCAL-00016" summary="feat: added new page">
+      <created>1645523097414</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1645523097414</updated>
+    </task>
+    <task id="LOCAL-00017" summary="feat: added fieldset">
+      <created>1645523116081</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1645523116081</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -196,7 +216,10 @@
     <MESSAGE value="fix: changed input type" />
     <MESSAGE value="feat: added menu icons" />
     <MESSAGE value="feat: added changing icons for active links" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: added changing icons for active links" />
+    <MESSAGE value="fix: removed some css classes" />
+    <MESSAGE value="feat: added new page" />
+    <MESSAGE value="feat: added fieldset" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: added fieldset" />
   </component>
   <component name="WindowStateProjectService">
     <state x="702" y="322" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1645276283769">
