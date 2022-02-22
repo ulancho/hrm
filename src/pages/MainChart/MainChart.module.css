@@ -1,5 +1,5 @@
 .mainChart{
-    /*border: 1px solid red;*/
+
 }
 
 .searchBar{
@@ -12,25 +12,8 @@
     margin-right: 16px;
 }
 
-
 .dateFieldBlock{
     width: 20%;
-}
-
-.searchBar fieldset{
-    border: 0.5px solid #1E1E1E;
-    border-radius: 8px;
-    padding: 0 16px 0;
-    height: 55px;
-    margin: 0;
-}
-
-.searchBar legend{
-    font-weight: 600;
-    font-size: 15px;
-    line-height: 19px;
-    color: #CCCCCC;
-    padding: 0 5px;
 }
 
 .searchBar input{

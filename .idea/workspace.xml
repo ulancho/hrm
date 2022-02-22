@@ -10,21 +10,14 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d2210a2a-6e0d-45b1-878c-a6df90cc0f60" name="Default Changelist" comment="fix: changed input type">
-      <change afterPath="$PROJECT_DIR$/src/media/icons/form-ke-light.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/media/icons/main-chart-dark.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/media/icons/processing-light.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/media/icons/remote-light.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/media/icons/staff-light.svg" afterDir="false" />
+    <list default="true" id="d2210a2a-6e0d-45b1-878c-a6df90cc0f60" name="Default Changelist" comment="feat: added changing icons for active links">
+      <change afterPath="$PROJECT_DIR$/src/media/icons/search.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/Employees/Employees.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/Employees/Employees.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/sideBar/SideBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/sideBar/SideBar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/sideBar/SideBar.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/sideBar/SideBar.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/media/icons/ke.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/media/icons/form-ke-dark.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/media/icons/main_chart.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/media/icons/main-chart-light.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/media/icons/processing.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/media/icons/processing-dark.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/media/icons/staff.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/media/icons/staff-dark.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/media/icons/udalenka.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/media/icons/remote-dark.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/MainChart/MainChart.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/MainChart/MainChart.module.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +63,7 @@
       <workItem from="1645000937659" duration="58000" />
       <workItem from="1645002617832" duration="1730000" />
       <workItem from="1645175391755" duration="230000" />
-      <workItem from="1645176874657" duration="32807000" />
+      <workItem from="1645176874657" duration="42085000" />
     </task>
     <task id="LOCAL-00001" summary="init:start hrm">
       <created>1645180109766</created>
@@ -156,7 +149,21 @@
       <option name="project" value="LOCAL" />
       <updated>1645445183772</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="feat: added menu icons">
+      <created>1645447646370</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1645447646370</updated>
+    </task>
+    <task id="LOCAL-00014" summary="feat: added changing icons for active links">
+      <created>1645447715604</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1645447715604</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -187,7 +194,9 @@
     <MESSAGE value="feat: added styles for main buttons" />
     <MESSAGE value="feat: added search bar for the main chart page" />
     <MESSAGE value="fix: changed input type" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: changed input type" />
+    <MESSAGE value="feat: added menu icons" />
+    <MESSAGE value="feat: added changing icons for active links" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: added changing icons for active links" />
   </component>
   <component name="WindowStateProjectService">
     <state x="702" y="322" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1645276283769">
