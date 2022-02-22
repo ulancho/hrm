@@ -1,0 +1,68 @@
+/****************** поисковая панель *******************/
+.searchBar{
+    margin: 10px 0 16px;
+    display: flex;
+}
+
+.searchBar div:not(.searchBar div:last-child){
+    height: 56px;
+    margin-right: 16px;
+}
+
+.fieldBlock{
+    width: 35%;
+}
+
+.buttonBlock{
+    width: 30%;
+}
+
+
+/****************** выпдающий список отделов *******************/
+.fieldBlock select{
+    width: 100%;
+    border: 0;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 19px;
+    color: #000000;
+    padding: 5px 0;
+}
+
+.searchBar select:focus-visible, .searchBar input:focus-visible{
+    border: 0;
+    outline: 0;
+}
+
+
+/****************** текстовое поле для поиска по ФИО... *******************/
+.iconInside{
+    position:relative;
+}
+
+.input{
+    width: 100%;
+    border: 0;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 19px;
+    color: #000000;
+    padding: 5px 0;
+    box-sizing: border-box;
+}
+
+.input::placeholder {
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 19px;
+    color: #000000;
+}
+
+.icon{
+    position: absolute;
+    right: 0;
+    top: 7px;
+}
+
+/****************** карточоки сотрудников *******************/
+
