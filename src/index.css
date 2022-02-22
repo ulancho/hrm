@@ -52,3 +52,21 @@ a{
 .btn-secondary{
     background: #472F91;
 }
+
+/*************  fieldset ************/
+
+fieldset{
+    border: 0.5px solid #908e8e!important;
+    border-radius: 8px!important;
+    padding: 0 16px 0!important;
+    height: 55px!important;
+    margin: 0!important;
+}
+
+legend{
+    font-weight: 600!important;
+    font-size: 15px!important;
+    line-height: 19px!important;
+    color: #CCCCCC!important;
+    padding: 0 5px!important;
+}
