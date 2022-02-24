@@ -10,8 +10,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d2210a2a-6e0d-45b1-878c-a6df90cc0f60" name="Default Changelist" comment="feat: added modal window for adding an employee">
+    <list default="true" id="d2210a2a-6e0d-45b1-878c-a6df90cc0f60" name="Default Changelist" comment="refactor: added comment">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Employees/Employees.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Employees/Employees.module.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +64,7 @@
       <workItem from="1645002617832" duration="1730000" />
       <workItem from="1645175391755" duration="230000" />
       <workItem from="1645176874657" duration="48059000" />
-      <workItem from="1645677444227" duration="12620000" />
+      <workItem from="1645677444227" duration="13570000" />
     </task>
     <task id="LOCAL-00001" summary="init:start hrm">
       <created>1645180109766</created>
@@ -218,7 +220,14 @@
       <option name="project" value="LOCAL" />
       <updated>1645699323781</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="refactor: added comment">
+      <created>1645699645446</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1645699645446</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -258,7 +267,8 @@
     <MESSAGE value="feat: Added hover effect to button" />
     <MESSAGE value="feat: added react-redux, redux-thunk, redux-tools" />
     <MESSAGE value="feat: added modal window for adding an employee" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: added modal window for adding an employee" />
+    <MESSAGE value="refactor: added comment" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: added comment" />
   </component>
   <component name="WindowStateProjectService">
     <state x="702" y="322" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1645276283769">

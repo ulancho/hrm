@@ -114,6 +114,7 @@
 /****************** добавление сотрудника *******************/
 .addUserBar{
     display: flex;
+    margin: 0 24px 55px 24px;
 }
 
 .addUserBar input{
