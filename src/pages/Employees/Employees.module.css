@@ -111,4 +111,31 @@
     color: #1E1E1E;
 }
 
+/****************** добавление сотрудника *******************/
+.addUserBar{
+    display: flex;
+}
 
+.addUserBar input{
+    width: 65%;
+    margin-right: 16px;
+    border: 0.5px solid rgba(0, 0, 0, 0.5);
+    box-sizing: border-box;
+    border-radius: 8px;
+    height: 48px;
+    padding-left: 16px;
+    font-size: 15px;
+    line-height: 19px;
+}
+
+.addUserBar input::placeholder{
+    font-size: 15px;
+    line-height: 19px;
+    display: flex;
+    align-items: center;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.addUserBar button{
+    width: 35%;
+}

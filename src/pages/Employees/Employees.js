@@ -2,6 +2,25 @@ import React from "react";
 import styles from "./Employees.module.css";
 import {ReactComponent as SearchIcon} from "./../../media/icons/search.svg";
 import userImg from "./user.png";
+import Popup from "reactjs-popup";
+
+const AddUserModal = ({close}) => {
+    return (
+        <div className="modal">
+            <div className="close-bar">
+                <span className="close" onClick={close}>
+                    &times;
+                </span>
+            </div>
+            <div className="content">
+                <div className={styles.addUserBar}>
+                    <input type="text" placeholder="Введите идентификатор 1С:"/>
+                    <button className="btn btn-main" disabled={true}>Поиск</button>
+                </div>
+            </div>
+        </div>
+    )
+}
 
 export const Employees = () => {
     return (
@@ -26,12 +45,17 @@ export const Employees = () => {
                     </fieldset>
                 </div>
                 <div className={styles.buttonBlock}>
-                    <button className="btn btn-main">Добавить сотрудника</button>
+                    <Popup
+                        trigger={<button className="btn btn-main">Добавить сотрудника</button>}
+                        modal
+                        nested
+                    >
+                        {close => (<AddUserModal close={close}/>)}
+                    </Popup>
                 </div>
             </div>
             <div className={styles.tableBar}>
                 <div className={styles.emplsList}>
-
                     <div className={styles.emplCard}>
                         <div className={styles.photo}>
                             <img src={userImg} alt=""/>
@@ -65,7 +89,6 @@ export const Employees = () => {
                             </ul>
                         </div>
                     </div>
-
                     <div className={styles.emplCard}>
                         <div className={styles.photo}>
                             <img src={userImg} alt=""/>
@@ -99,7 +122,6 @@ export const Employees = () => {
                             </ul>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>

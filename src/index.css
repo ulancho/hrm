@@ -36,10 +36,9 @@ ul li{
     list-style: none;
 }
 
-button:hover{
-    cursor:pointer;
-    box-shadow: rgba(50, 50, 93, 0.25) 0 30px 60px -12px inset,
-    rgba(0, 0, 0, 0.3) 0 18px 36px -18px inset;
+input:focus-visible{
+    border: 0;
+    outline: 0;
 }
 
 /*************  основная кнопка ************/
@@ -56,6 +55,18 @@ button:hover{
     color: #FFFFFF;
 }
 
+.btn:hover{
+    cursor:pointer;
+    box-shadow: rgba(50, 50, 93, 0.25) 0 30px 60px -12px inset,
+    rgba(0, 0, 0, 0.3) 0 18px 36px -18px inset;
+}
+
+.btn:disabled{
+    opacity: 0.5;
+    cursor: auto;
+    box-shadow:none;
+}
+
 /*************  кнопка-1 ************/
 .btn-main{
     background: #71BF44;
@@ -68,7 +79,6 @@ button:hover{
 }
 
 /*************  fieldset ************/
-
 fieldset{
     border: 0.5px solid #908e8e!important;
     border-radius: 8px!important;
@@ -83,4 +93,82 @@ legend{
     line-height: 19px!important;
     color: #CCCCCC!important;
     padding: 0 5px!important;
+}
+
+/*************  Модальное окошко ************/
+.modal {
+   padding: 0 24px 55px 24px;
+}
+
+.modal .close-bar{
+    display: flex;
+    justify-content: right;
+}
+
+.modal .close {
+    display: inline-block;
+    cursor: pointer;
+    font-size: 26px;
+    padding: 17px 17px 25px 0;
+}
+
+.modal > .content {
+    width: 100%;
+}
+
+.popup-content {
+    margin: auto;
+    background: #FFFFFF;
+    width: 40%;
+    border-radius: 16px
+}
+
+[role=tooltip].popup-content {
+    width: 200px;
+    box-shadow: 0 0 3px rgba(0, 0, 0, .16);
+    border-radius: 5px
+}
+
+.popup-overlay {
+    background: rgba(0, 0, 0, 0.35);
+}
+
+[data-popup=tooltip].popup-overlay {
+    background: transparent
+}
+
+.popup-arrow {
+    -webkit-filter: drop-shadow(0 -3px 3px rgba(0, 0, 0, .16));
+    filter: drop-shadow(0 -3px 3px rgba(0, 0, 0, .16));
+    color: #fff;
+    stroke-width: 2px;
+    stroke: #d7d7d7;
+    stroke-dasharray: 30px;
+    stroke-dashoffset: -54px;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0
+}
+
+
+@keyframes anvil {
+    0% {
+        transform: scale(1) translateY(0px);
+        opacity: 0;
+        box-shadow: 0 0 0 rgba(241, 241, 241, 0);
+    }
+    1% {
+        transform: scale(0.96) translateY(10px);
+        opacity: 0;
+        box-shadow: 0 0 0 rgba(241, 241, 241, 0);
+    }
+    100% {
+        transform: scale(1) translateY(0px);
+        opacity: 1;
+        box-shadow: 0 0 500px rgba(241, 241, 241, 0);
+    }
+}
+.popup-content {
+    -webkit-animation: anvil 0.3s cubic-bezier(0.38, 0.1, 0.36, 0.9) forwards;
 }
