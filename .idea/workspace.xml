@@ -10,11 +10,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d2210a2a-6e0d-45b1-878c-a6df90cc0f60" name="Default Changelist" comment="feat: added fieldset">
-      <change afterPath="$PROJECT_DIR$/src/pages/Employees/user.png" afterDir="false" />
+    <list default="true" id="d2210a2a-6e0d-45b1-878c-a6df90cc0f60" name="Default Changelist" comment="feat: added/styled employee card">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Employees/Employees.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Employees/Employees.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Employees/Employees.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Employees/Employees.module.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -62,7 +60,8 @@
       <workItem from="1645000937659" duration="58000" />
       <workItem from="1645002617832" duration="1730000" />
       <workItem from="1645175391755" duration="230000" />
-      <workItem from="1645176874657" duration="46480000" />
+      <workItem from="1645176874657" duration="48059000" />
+      <workItem from="1645677444227" duration="1517000" />
     </task>
     <task id="LOCAL-00001" summary="init:start hrm">
       <created>1645180109766</created>
@@ -183,7 +182,14 @@
       <option name="project" value="LOCAL" />
       <updated>1645523116081</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="feat: added/styled employee card">
+      <created>1645528487471</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1645528487471</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -219,7 +225,8 @@
     <MESSAGE value="fix: removed some css classes" />
     <MESSAGE value="feat: added new page" />
     <MESSAGE value="feat: added fieldset" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: added fieldset" />
+    <MESSAGE value="feat: added/styled employee card" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: added/styled employee card" />
   </component>
   <component name="WindowStateProjectService">
     <state x="702" y="322" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1645276283769">
