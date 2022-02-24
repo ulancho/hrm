@@ -10,9 +10,17 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d2210a2a-6e0d-45b1-878c-a6df90cc0f60" name="Default Changelist" comment="feat: added/styled employee card">
+    <list default="true" id="d2210a2a-6e0d-45b1-878c-a6df90cc0f60" name="Default Changelist" comment="feat: Added hover effect to button">
+      <change afterPath="$PROJECT_DIR$/src/redux/actions.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/redux/modalReducer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/redux/rootReducer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/redux/types.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Employees/Employees.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Employees/Employees.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Employees/Employees.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Employees/Employees.module.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -34,11 +42,14 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../oplati.kg" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/components" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="http.proxy" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Users\uzhumabaev\Desktop\projects\hrm\src\components" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Users\uzhumabaev\Desktop\projects\hrm\src\pages\Employees" />
       <recent name="D:\Users\uzhumabaev\Desktop\projects\hrm\src\media\icons" />
@@ -61,7 +72,7 @@
       <workItem from="1645002617832" duration="1730000" />
       <workItem from="1645175391755" duration="230000" />
       <workItem from="1645176874657" duration="48059000" />
-      <workItem from="1645677444227" duration="1517000" />
+      <workItem from="1645677444227" duration="12368000" />
     </task>
     <task id="LOCAL-00001" summary="init:start hrm">
       <created>1645180109766</created>
@@ -189,7 +200,21 @@
       <option name="project" value="LOCAL" />
       <updated>1645528487471</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="feat: added/styled employee card">
+      <created>1645679183929</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1645679183929</updated>
+    </task>
+    <task id="LOCAL-00020" summary="feat: Added hover effect to button">
+      <created>1645679236547</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1645679236547</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -226,7 +251,8 @@
     <MESSAGE value="feat: added new page" />
     <MESSAGE value="feat: added fieldset" />
     <MESSAGE value="feat: added/styled employee card" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: added/styled employee card" />
+    <MESSAGE value="feat: Added hover effect to button" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: Added hover effect to button" />
   </component>
   <component name="WindowStateProjectService">
     <state x="702" y="322" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1645276283769">
