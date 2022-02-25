@@ -17,6 +17,37 @@ const AddUserModal = ({close}) => {
                     <input type="text" placeholder="Введите идентификатор 1С:"/>
                     <button className="btn btn-main" disabled={true}>Поиск</button>
                 </div>
+                {/*<div className={styles.foundUserBar}>*/}
+                {/*    <UserCard/>*/}
+                {/*    <button className="btn btn-main">Добавить</button>*/}
+                {/*</div>*/}
+                {/*<div className={styles.notFoundUserBar}>*/}
+                {/*    <p>Сотрудник не найден</p>*/}
+                {/*</div>*/}
+            </div>
+        </div>
+    )
+}
+
+const UserCard = () => {
+    return (
+        <div className={styles.emplCard}>
+            <div className={styles.photo}>
+                <img src={userImg} alt=""/>
+            </div>
+            <div className={styles.labels}>
+                <ul>
+                    <li>Ф.И.О:</li>
+                    <li>Должность:</li>
+                    <li>Моб. тел.:</li>
+                </ul>
+            </div>
+            <div className={styles.data}>
+                <ul>
+                    <li>Коробова Виктория Евгеньевна</li>
+                    <li>Старший дизайнер</li>
+                    <li>0555 505 292</li>
+                </ul>
             </div>
         </div>
     )

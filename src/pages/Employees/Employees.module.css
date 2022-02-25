@@ -140,3 +140,22 @@
 .addUserBar button{
     width: 35%;
 }
+
+.foundUserBar{
+    margin: -31px 24px 24px 24px;
+}
+
+.foundUserBar .labels {
+    width: 20% !important;
+}
+
+.notFoundUserBar{
+    margin: -24px 24px 24px 24px;
+}
+
+.notFoundUserBar p{
+    font-size: 16px;
+    line-height: 22px;
+    text-align: center;
+    color: #000000;
+}
