@@ -1,6 +1,6 @@
-/************* получение сотрудников *************/
 import {GET_EMPLOYEES, HIDE_PRELOADER, SHOW_PRELOADER} from "./types";
 
+/************* получение сотрудников *************/
 export function getEmployees() {
     return dispatch => {
         dispatch({ type:SHOW_PRELOADER });
