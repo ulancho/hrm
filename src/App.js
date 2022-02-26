@@ -7,6 +7,7 @@ import {MainContent} from "./components/mainContent/MainContent";
 import {Profile} from "./components/profile/Profile";
 import {Employees} from "./pages/Employees/Employees";
 import {Preloader} from "./components/preloader/Preloader";
+import {BackdropModal} from "./components/modal/Modal";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
                   </Routes>
               </MainContent>
           </div>
+          <BackdropModal/>
           <Preloader/>
       </BrowserRouter>
   );

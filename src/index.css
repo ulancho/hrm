@@ -172,3 +172,82 @@ legend{
 .popup-content {
     -webkit-animation: anvil 0.3s cubic-bezier(0.38, 0.1, 0.36, 0.9) forwards;
 }
+
+/*********** фон для модалок ***********/
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100vw;
+    height: 100vh;
+    background: #1E1E1E;
+}
+
+.modal-backdrop.show {
+    transition: 0.4s;
+    opacity: 0.35;
+    z-index: 1050;
+}
+
+.modal-backdrop.fade {
+    opacity: 0;
+    transition: 0.4s;
+}
+
+/*************  Preloader ************/
+.loader {
+    position: relative;
+    z-index: 9999;
+}
+
+.loader.show {
+    opacity: 1;
+}
+
+.loader.fade {
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.outer,
+.middle,
+.inner {
+    border: 3px solid transparent;
+    border-top-color:#472F91;
+    border-right-color: #472F91;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+.outer {
+    width: 3.5em;
+    height: 3.5em;
+    margin-left: -1.75em;
+    margin-top: -1.75em;
+    animation: spin 2s linear infinite;
+}
+
+.middle {
+    width: 2.1em;
+    height: 2.1em;
+    margin-left: -1.05em;
+    margin-top: -1.05em;
+    animation: spin 1.75s linear reverse infinite;
+}
+
+.inner {
+    width: 0.8em;
+    height: 0.8em;
+    margin-left: -0.4em;
+    margin-top: -0.4em;
+    animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
