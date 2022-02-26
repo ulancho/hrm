@@ -84,8 +84,9 @@
 }
 
 .photo img{
-    width: 136px;
-    height: 144px;
+    width: 135px;
+    height: 150px;
+    border-radius: 8px;
 }
 
 .labels{
