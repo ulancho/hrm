@@ -1,0 +1,21 @@
+/*********** фон для модалок ***********/
+.modalBackdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100vw;
+    height: 100vh;
+    background: #1E1E1E;
+}
+
+.modalBackdrop.show {
+    transition: 0.4s;
+    opacity: 0.35;
+    z-index: 1050;
+}
+
+.modalBackdrop.fade {
+    opacity: 0;
+    transition: 0.4s;
+}
