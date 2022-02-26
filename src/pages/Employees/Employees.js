@@ -76,7 +76,7 @@ const EmployeesList = () => {
                         <div className={styles.data}>
                             <ul>
                                 <li>{item.full_name}</li>
-                                <li>Старший дизайнер</li>
+                                <li>{item.position}</li>
                                 <li>{item.phone_number}</li>
                             </ul>
                         </div>
