@@ -3,6 +3,9 @@ import styles from "./Employees.module.css";
 import {ReactComponent as SearchIcon} from "./../../media/icons/search.svg";
 import userImg from "./user.png";
 import Popup from "reactjs-popup";
+import {useDispatch, useSelector} from "react-redux";
+import {getEmployees} from "../../redux/actions";
+import {IMAGE_URL} from "../../constants";
 
 const AddUserModal = ({close}) => {
     return (
@@ -53,7 +56,54 @@ const UserCard = () => {
     )
 }
 
+const EmployeesList = () => {
+    const employeesList = useSelector(state => state.staff.employeesList);
+
+    return (
+            employeesList.map((item)=>{
+                return (
+                    <div key={item.id} className={styles.emplCard}>
+                        <div className={styles.photo}>
+                            <img src={IMAGE_URL + item.image} alt=""/>
+                        </div>
+                        <div className={styles.labels}>
+                            <ul>
+                                <li>Ф.И.О:</li>
+                                <li>Должность:</li>
+                                <li>Моб. тел.:</li>
+                            </ul>
+                        </div>
+                        <div className={styles.data}>
+                            <ul>
+                                <li>{item.full_name}</li>
+                                <li>Старший дизайнер</li>
+                                <li>{item.phone_number}</li>
+                            </ul>
+                        </div>
+                        <div className={styles.labels}>
+                            <ul>
+                                <li>Внутр. тел.:</li>
+                                <li>Идентификатор 1С:</li>
+                                <li>Эл. почта:</li>
+                            </ul>
+                        </div>
+                        <div className={styles.data}>
+                            <ul>
+                                <li>{item.ip_phone ? item.ip_phone : 'нет'}</li>
+                                <li>{item.id_1c ? item.id_1c : 'нет'}</li>
+                                <li>{item.email}</li>
+                            </ul>
+                        </div>
+                    </div>
+                )
+            })
+    )
+}
+
 export const Employees = () => {
+    const dispatch = useDispatch();
+    dispatch(getEmployees());
+
     return (
         <div className={styles.employess}>
             <div className={styles.searchBar}>
@@ -87,72 +137,7 @@ export const Employees = () => {
             </div>
             <div className={styles.tableBar}>
                 <div className={styles.emplsList}>
-                    <div className={styles.emplCard}>
-                        <div className={styles.photo}>
-                            <img src={userImg} alt=""/>
-                        </div>
-                        <div className={styles.labels}>
-                            <ul>
-                                <li>Ф.И.О:</li>
-                                <li>Должность:</li>
-                                <li>Моб. тел.:</li>
-                            </ul>
-                        </div>
-                        <div className={styles.data}>
-                            <ul>
-                                <li>Коробова Виктория Евгеньевна</li>
-                                <li>Старший дизайнер</li>
-                                <li>0555 505 292</li>
-                            </ul>
-                        </div>
-                        <div className={styles.labels}>
-                            <ul>
-                                <li>Внутр. тел.:</li>
-                                <li>Идентификатор 1С:</li>
-                                <li>Эл. почта:</li>
-                            </ul>
-                        </div>
-                        <div className={styles.data}>
-                            <ul>
-                                <li>нет</li>
-                                <li>27391019</li>
-                                <li>vkorobova@megacom.kg</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div className={styles.emplCard}>
-                        <div className={styles.photo}>
-                            <img src={userImg} alt=""/>
-                        </div>
-                        <div className={styles.labels}>
-                            <ul>
-                                <li>Ф.И.О:</li>
-                                <li>Должность:</li>
-                                <li>Моб. тел.:</li>
-                            </ul>
-                        </div>
-                        <div className={styles.data}>
-                            <ul>
-                                <li>Коробова Виктория Евгеньевна</li>
-                                <li>Старший дизайнер</li>
-                                <li>0555 505 292</li>
-                            </ul>
-                        </div>
-                        <div className={styles.labels}>
-                            <ul>
-                                <li>Внутр. тел.:</li>
-                                <li>Идентификатор 1С:</li>
-                                <li>Эл. почта:</li>
-                            </ul>
-                        </div>
-                        <div className={styles.data}>
-                            <ul>
-                                <li>нет</li>
-                                <li>27391019</li>
-                                <li>vkorobova@megacom.kg</li>
-                            </ul>
-                        </div>
-                    </div>
+                    <EmployeesList/>
                 </div>
             </div>
         </div>
