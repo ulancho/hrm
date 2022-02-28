@@ -2,6 +2,7 @@
 
 }
 
+/************* поисквоя панель ************/
 .searchBar{
     margin: 10px 0 16px;
     display: flex;
@@ -20,9 +21,10 @@
     width: 100%;
     border: 0;
     font-weight: 600;
-    font-size: 15px;
+    font-size: 14px;
     line-height: 19px;
     color: #000000;
+    background-color: transparent;
     padding: 5px 0;
 }
 
@@ -41,4 +43,78 @@
 
 .buttonBlock button {
     margin-top: 8px;
+}
+
+
+/************* подсказывающая панель ************/
+.helpBar{
+    display: flex;
+}
+
+.helps{
+    display: flex;
+    align-items: center;
+    margin-right: 24px;
+}
+
+.helps div{
+    height: 32px;
+    width: 40px;
+    margin-right: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.commonSign{
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 18px;
+    color: #FFFFFF;
+}
+
+.helpsTitle{
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 18px;
+    color: #1E1E1E;
+}
+
+/*Отработано*/
+.workedOut{
+    background: #6CA2D2;
+    border: 1px solid #F7F7FA;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+
+/*Командировочные*/
+.mission{
+    background: #F4B4AE;
+    border: 1px solid #F7F7FA;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+
+/*Больничные*/
+.sickLeave{
+    background: #A3CAFA;
+    border: 1px solid #F7F7FA;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+
+/*Отпуск*/
+.furlough{
+    background: #C1AB77;
+    border: 1px solid #F7F7FA;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+/*Коэффициент*/
+.coefficient{
+    background: #472F91;
+    border: 1px solid #F7F7FA;
+    box-sizing: border-box;
+    border-radius: 4px;
 }

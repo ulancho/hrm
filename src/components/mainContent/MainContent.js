@@ -3,7 +3,7 @@ import styles from "./MainContent.module.css";
 
 export const MainContent = ({children}) => {
     return (
-        <div className={`container ${styles.mainContent}`}>
+        <div className={`${styles.mainContent}`}>
             {children}
         </div>
     )
