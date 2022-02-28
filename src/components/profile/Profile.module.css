@@ -1,3 +1,15 @@
+.profileBar{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 7px;
+}
+
+.logo{
+    height: 56px;
+    display: flex;
+    align-items: center;
+}
+
 .profile{
     height: 56px;
     display: flex;
