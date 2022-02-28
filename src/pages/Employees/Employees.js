@@ -105,7 +105,7 @@ export const Employees = () => {
     dispatch(getEmployees());
 
     return (
-        <div className={styles.employess}>
+        <div>
             <div className={styles.searchBar}>
                 <div className={styles.fieldBlock}>
                     <fieldset>
@@ -135,7 +135,7 @@ export const Employees = () => {
                     </Popup>
                 </div>
             </div>
-            <div className={styles.tableBar}>
+            <div className={`wrapper ${styles.tableBar}`}>
                 <div className={styles.emplsList}>
                     <EmployeesList/>
                 </div>
