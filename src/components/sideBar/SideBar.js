@@ -1,7 +1,6 @@
 import React from "react";
 import {NavLink} from "react-router-dom";
 import styles from "./SideBar.module.css";
-import {ReactComponent as Logo} from "./../../media/icons/logo.svg";
 
 import {ReactComponent as MainChartLightIcon} from "../../media/icons/main-chart-light.svg";
 import {ReactComponent as MainChartDarkIcon} from "../../media/icons/main-chart-dark.svg";
@@ -20,12 +19,9 @@ import {ReactComponent as StaffDarkIcon} from "../../media/icons/staff-dark.svg"
 
 export const SideBar = () => {
     return (
-        <nav>
-            <div className={`container ${styles.logo}`}>
-                <Logo/>
-            </div>
+        <nav className={styles.nav}>
             <ul className={styles.sidebarMenu}>
-                <li className={styles.menuList}>
+                <li>
                     <NavLink to="main_chart"
                              className={({isActive}) => (isActive ? styles.active : '')}
                     >
@@ -44,7 +40,7 @@ export const SideBar = () => {
                 </li>
                 <li>
                     <NavLink to="processing"
-                             className={({ isActive }) => (isActive ? styles.active : '')}>
+                             className={({isActive}) => (isActive ? styles.active : '')}>
                         <ProcessingLightIcon className={styles.lightIcon}/>
                         <ProcessingDarkIcon className={styles.darkIcon}/>
                         <span>Переработки и ночные работы</span>
@@ -52,17 +48,17 @@ export const SideBar = () => {
                 </li>
                 <li>
                     <NavLink to="form_ke"
-                             className={({ isActive }) => (isActive ? styles.active : '')}>
+                             className={({isActive}) => (isActive ? styles.active : '')}>
                         <FormKeLightIcon className={styles.lightIcon}/>
-                        <FormKeDarkIcon  className={styles.darkIcon}/>
+                        <FormKeDarkIcon className={styles.darkIcon}/>
                         <span>Форма КЭ</span>
                     </NavLink>
                 </li>
                 <li>
                     <NavLink to="employees"
-                             className={({ isActive }) => (isActive ? styles.active : '')}>
+                             className={({isActive}) => (isActive ? styles.active : '')}>
                         <StaffLightIcon className={styles.lightIcon}/>
-                        <StaffDarkIcon  className={styles.darkIcon}/>
+                        <StaffDarkIcon className={styles.darkIcon}/>
                         <span>Список сотрудников</span>
                     </NavLink>
                 </li>
