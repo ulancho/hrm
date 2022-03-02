@@ -28,4 +28,12 @@
     border-radius: 4px;
     padding: 7px 0;
     text-align: center;
+    margin-right: 8px;
+    box-sizing: border-box;
+}
+
+.TableBarHeader>div:nth-child(4), .TableBarHeader>div:nth-child(5), .TableBarHeader>div:nth-child(6),
+.TableBarHeader>div:nth-child(7)
+{
+   min-width: 40px;
 }

@@ -153,19 +153,19 @@ const TableBarBody = () => {
                         <div className={styleTableBarBody.square}><span>8</span></div>
                         <div className={styleTableBarBody.square}><span>8</span></div>
                     </div>
-                    <div>
+                    <div className={styleTableBarBody.allSum}>
                         <div className={styleTableBarBody.square}><span>136</span></div>
                         <div className={styleTableBarBody.square}><span>136</span></div>
                     </div>
-                    <div>
+                    <div className={styleTableBarBody.allSum}>
                         <div className={styleTableBarBody.square}><span>8</span></div>
                         <div className={styleTableBarBody.square}><span>8</span></div>
                     </div>
-                    <div>
+                    <div className={styleTableBarBody.allSum}>
                         <div className={styleTableBarBody.square}><span>15</span></div>
                         <div className={styleTableBarBody.square}><span>15</span></div>
                     </div>
-                    <div>
+                    <div className={styleTableBarBody.allSum}>
                         <div className={styleTableBarBody.square}><span>366</span></div>
                         <div className={styleTableBarBody.square}><span>366</span></div>
                     </div>
