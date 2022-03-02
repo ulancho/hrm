@@ -7,7 +7,7 @@ export function getEmployees() {
         const options = {
             method: 'get',
             headers: {
-                'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbkBtZWdhY29tLmtnIiwiZXhwIjoxNjQ2MjIwNDYzfQ.CojiE3cCyh9jICaVI2nwRg8u4oZov23C1AtAkMO2NVc'
+                'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbkBtZWdhY29tLmtnIiwiZXhwIjoxNjQ2NjU1NTk0fQ.qqufuvz5tcgNbMfAKwmnXErCbG86EX1mOs1igJfHABw'
             }
         };
         fetch('http://10.242.147.11:8000/staff/employees/', options).then((response) => {
