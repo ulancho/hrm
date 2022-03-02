@@ -1,0 +1,84 @@
+.tableBarBody{
+    display: flex;
+    margin-bottom: 8px;
+}
+
+.tableBarBody>div:nth-child(1){
+    width: 3%;
+}
+
+.tableBarBody>div:nth-child(2){
+    width: 25%;
+    border: 1px solid #F7F7FA;
+    border-radius: 4px;
+    padding: 7px 0;
+    text-align: center;
+}
+
+.tableBarBody>div:nth-child(3){
+    width: 65%;
+    border: 1px solid #F7F7FA;
+    border-radius: 4px;
+    padding: 7px 0;
+    text-align: center;
+}
+
+.tableBarBody .num{
+    background: #F7F7FA;
+    border: 1px solid #F7F7FA;
+    border-radius: 4px;
+    width: 100%;
+    min-height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tableBarBody .name{
+    padding: 16px!important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start!important;
+}
+
+.tableBarBody .name p{
+    margin: 0;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 18px;
+    text-align: left;
+}
+
+
+.tableBarBody .calendar{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0!important;
+    margin-right: 8px;
+    box-sizing: border-box;
+}
+
+.square{
+    background: #F7F7FA;
+    border: 0.5px solid #FFFFFF;
+    box-sizing: border-box;
+    border-radius: 4px;
+    min-width: 40px;
+    min-height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.square span{
+    font-size: 16px;
+    line-height: 18px;
+    color: #000000;
+    opacity: 0.8;
+}
+
+.coefficient{
+    height: 100% !important;
+    max-width: 54px!important;
+}
