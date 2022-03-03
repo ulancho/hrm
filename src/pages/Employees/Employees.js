@@ -57,7 +57,7 @@ const UserCard = () => {
 }
 
 const EmployeesList = () => {
-    const employeesList = useSelector(state => state.staff.employeesList);
+    const employeesList = useSelector(state => state.staff.employeesList.data);
 
     return (
             employeesList.map((item)=>{
@@ -100,41 +100,47 @@ const EmployeesList = () => {
     )
 }
 
+const SearchBar = () => {
+    return (
+        <div className={styles.searchBar}>
+            <div className={styles.fieldBlock}>
+                <fieldset>
+                    <legend>Отдел</legend>
+                    <select>
+                        <option value="0">Выбрать</option>
+                        <option value="0">ГД/Отдел разработок</option>
+                    </select>
+                </fieldset>
+            </div>
+            <div className={styles.fieldBlock}>
+                <fieldset>
+                    <legend>Поиск</legend>
+                    <div className={styles.iconInside}>
+                        <input className={styles.input} type="text" placeholder="Имя, инициалы, должность"/>
+                        <SearchIcon className={styles.icon}/>
+                    </div>
+                </fieldset>
+            </div>
+            <div className={styles.buttonBlock}>
+                <Popup
+                    trigger={<button className="btn btn-main">Добавить сотрудника</button>}
+                    modal
+                    nested
+                >
+                    {close => (<AddUserModal close={close}/>)}
+                </Popup>
+            </div>
+        </div>
+    )
+}
+
 export const Employees = () => {
     const dispatch = useDispatch();
     dispatch(getEmployees());
 
     return (
         <div>
-            <div className={styles.searchBar}>
-                <div className={styles.fieldBlock}>
-                    <fieldset>
-                        <legend>Отдел</legend>
-                        <select>
-                            <option value="0">Выбрать</option>
-                            <option value="0">ГД/Отдел разработок</option>
-                        </select>
-                    </fieldset>
-                </div>
-                <div className={styles.fieldBlock}>
-                    <fieldset>
-                        <legend>Поиск</legend>
-                        <div className={styles.iconInside}>
-                            <input className={styles.input} type="text" placeholder="Имя, инициалы, должность"/>
-                            <SearchIcon className={styles.icon}/>
-                        </div>
-                    </fieldset>
-                </div>
-                <div className={styles.buttonBlock}>
-                    <Popup
-                        trigger={<button className="btn btn-main">Добавить сотрудника</button>}
-                        modal
-                        nested
-                    >
-                        {close => (<AddUserModal close={close}/>)}
-                    </Popup>
-                </div>
-            </div>
+            <SearchBar/>
             <div className={`wrapper ${styles.tableBar}`}>
                 <div className={styles.emplsList}>
                     <EmployeesList/>
