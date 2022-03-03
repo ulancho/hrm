@@ -9,12 +9,17 @@
     margin-right: 16px;
 }
 
-.fieldBlock{
+.fieldBlock1{
+    width: 25%;
+}
+
+.fieldBlock2{
     width: 40%;
 }
 
 .buttonBlock{
-    width: 20%;
+    display: flex;
+    width: 35%;
 }
 
 /****************** выпдающий список отделов *******************/

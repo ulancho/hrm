@@ -103,7 +103,7 @@ const EmployeesList = () => {
 const SearchBar = () => {
     return (
         <div className={styles.searchBar}>
-            <div className={styles.fieldBlock}>
+            <div className={`${styles.fieldBlock} ${styles.fieldBlock1}`}>
                 <fieldset>
                     <legend>Отдел</legend>
                     <select>
@@ -112,7 +112,7 @@ const SearchBar = () => {
                     </select>
                 </fieldset>
             </div>
-            <div className={styles.fieldBlock}>
+            <div className={`${styles.fieldBlock} ${styles.fieldBlock2}`}>
                 <fieldset>
                     <legend>Поиск</legend>
                     <div className={styles.iconInside}>
@@ -123,12 +123,13 @@ const SearchBar = () => {
             </div>
             <div className={styles.buttonBlock}>
                 <Popup
-                    trigger={<button className="btn btn-main">Добавить сотрудника</button>}
+                    trigger={<button className="btn btn-main mr-16">Добавить сотрудника</button>}
                     modal
                     nested
                 >
                     {close => (<AddUserModal close={close}/>)}
                 </Popup>
+                <button className="btn btn-secondary">Выгрузить в excel</button>
             </div>
         </div>
     )
