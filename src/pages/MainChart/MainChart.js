@@ -108,7 +108,7 @@ const TableBarHeader = () => {
 }
 
 const TableBarBody = () => {
-    const employeesList = useSelector(state => state.staff.employeesList);
+    const employeesList = useSelector(state => state.staff.employeesList.data);
 
     return (
         employeesList.map((item) => {

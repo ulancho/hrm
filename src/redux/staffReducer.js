@@ -1,7 +1,10 @@
 import {GET_EMPLOYEES} from "./types";
 
 const initialState = {
-    employeesList:[],
+    employeesList:{
+        count:0,
+        data:[]
+    },
 };
 
 export const staffReducer = (state = initialState, action) => {
