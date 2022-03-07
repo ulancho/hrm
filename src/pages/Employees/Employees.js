@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import styles from "./Employees.module.css";
 import {ReactComponent as SearchIcon} from "./../../media/icons/search.svg";
 import userImg from "./user.png";
@@ -57,46 +57,46 @@ const UserCard = () => {
 }
 
 const EmployeesList = () => {
-    const employeesList = useSelector(state => state.staff.employeesList.data);
+    const employeesList = useSelector(state => state.staff.employeesList);
 
     return (
-            employeesList.map((item)=>{
-                return (
-                    <div key={item.id} className={styles.emplCard}>
-                        <div className={styles.photo}>
-                            <img src={IMAGE_URL + item.image} alt=""/>
-                        </div>
-                        <div className={styles.labels}>
-                            <ul>
-                                <li>Ф.И.О:</li>
-                                <li>Должность:</li>
-                                <li>Моб. тел.:</li>
-                            </ul>
-                        </div>
-                        <div className={styles.data}>
-                            <ul>
-                                <li>{item.full_name}</li>
-                                <li>{item.position}</li>
-                                <li>{item.phone_number}</li>
-                            </ul>
-                        </div>
-                        <div className={styles.labels}>
-                            <ul>
-                                <li>Внутр. тел.:</li>
-                                <li>Идентификатор 1С:</li>
-                                <li>Эл. почта:</li>
-                            </ul>
-                        </div>
-                        <div className={styles.data}>
-                            <ul>
-                                <li>{item.ip_phone ? item.ip_phone : 'нет'}</li>
-                                <li>{item.id_1c ? item.id_1c : 'нет'}</li>
-                                <li>{item.email}</li>
-                            </ul>
-                        </div>
+        employeesList.data.map((item) => {
+            return (
+                <div key={item.id} className={styles.emplCard}>
+                    <div className={styles.photo}>
+                        <img src={IMAGE_URL + item.image} alt=""/>
                     </div>
-                )
-            })
+                    <div className={styles.labels}>
+                        <ul>
+                            <li>Ф.И.О:</li>
+                            <li>Должность:</li>
+                            <li>Моб. тел.:</li>
+                        </ul>
+                    </div>
+                    <div className={styles.data}>
+                        <ul>
+                            <li>{item.full_name}</li>
+                            <li>{item.position}</li>
+                            <li>{item.phone_number}</li>
+                        </ul>
+                    </div>
+                    <div className={styles.labels}>
+                        <ul>
+                            <li>Внутр. тел.:</li>
+                            <li>Идентификатор 1С:</li>
+                            <li>Эл. почта:</li>
+                        </ul>
+                    </div>
+                    <div className={styles.data}>
+                        <ul>
+                            <li>{item.ip_phone ? item.ip_phone : 'нет'}</li>
+                            <li>{item.id_1c ? item.id_1c : 'нет'}</li>
+                            <li>{item.email}</li>
+                        </ul>
+                    </div>
+                </div>
+            )
+        })
     )
 }
 
@@ -137,7 +137,10 @@ const SearchBar = () => {
 
 export const Employees = () => {
     const dispatch = useDispatch();
-    dispatch(getEmployees());
+
+    useEffect(() => {
+        dispatch(getEmployees());
+    }, [])
 
     return (
         <div>
