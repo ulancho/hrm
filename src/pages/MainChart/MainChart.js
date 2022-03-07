@@ -5,7 +5,7 @@ import styleHelpBar from "./HelpBar.module.css";
 import styleTableBarHeader from "./TableBarHeader.module.css";
 import styleTableBarBody from "./TableBarBody.module.css";
 import {useDispatch, useSelector} from "react-redux";
-import {getEmployees} from "../../redux/actions";
+import {getEmployees, getMainSchedule} from "../../redux/actions";
 
 const SearchBar = () => {
     return (
@@ -183,7 +183,7 @@ const TableBarBody = () => {
 
 export const MainChart = () => {
     const dispatch = useDispatch();
-    dispatch(getEmployees());
+    dispatch(getMainSchedule());
 
     return (
         <div className={`${styles.mainChart}`}>
