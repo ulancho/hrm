@@ -29,7 +29,6 @@ export function getEmployees() {
     }
 }
 
-
 /************* получение таблицы основной график *************/
 export function getMainSchedule() {
     return dispatch => {

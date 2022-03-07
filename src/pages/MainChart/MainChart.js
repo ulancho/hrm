@@ -1,11 +1,11 @@
-import React from "react";
+import React, {useEffect} from "react";
 import styles from "./MainChart.module.css";
 import styleSearchBar from "./SearchBar.module.css";
 import styleHelpBar from "./HelpBar.module.css";
 import styleTableBarHeader from "./TableBarHeader.module.css";
 import styleTableBarBody from "./TableBarBody.module.css";
 import {useDispatch, useSelector} from "react-redux";
-import {getEmployees, getMainSchedule} from "../../redux/actions";
+import {getMainSchedule} from "../../redux/actions";
 
 const SearchBar = () => {
     return (
@@ -108,82 +108,86 @@ const TableBarHeader = () => {
 }
 
 const TableBarBody = () => {
-    const employeesList = useSelector(state => state.staff.employeesList.data);
+    const data = useSelector(state => state.sheet.mainSchedule);
 
     return (
-        employeesList.map((item) => {
-            return (
-                <div className={styleTableBarBody.tableBarBody}>
-                    <div className={styleTableBarBody.num}>
-                        <span>1</span>
+        data.length > 0 ?
+            data.map((item) => {
+                return (
+                    <div className={styleTableBarBody.tableBarBody}>
+                        <div className={styleTableBarBody.num}>
+                            <span>1</span>
+                        </div>
+                        <div className={styleTableBarBody.name}>
+                            <p>{item.full_name}</p>
+                            <p>{item.position?.title}</p>
+                        </div>
+                        <div className={`${styleTableBarBody.calendar}`}>
+                            <div className={styleTableBarBody.square}><span>8</span></div>
+                            <div className={styleTableBarBody.square}><span>8</span></div>
+                            <div className={styleTableBarBody.square}><span>8</span></div>
+                            <div className={styleTableBarBody.square}><span>8</span></div>
+                            <div className={styleTableBarBody.square}><span>8</span></div>
+                            <div className={styleTableBarBody.square}><span>8</span></div>
+                            <div className={styleTableBarBody.square}><span>8</span></div>
+                            <div className={styleTableBarBody.square}><span>8</span></div>
+                            <div className={styleTableBarBody.square}><span>8</span></div>
+                            <div className={styleTableBarBody.square}><span>8</span></div>
+                            <div className={styleTableBarBody.square}><span>8</span></div>
+                            <div className={styleTableBarBody.square}><span>8</span></div>
+                            <div className={styleTableBarBody.square}><span>8</span></div>
+                            <div className={styleTableBarBody.square}><span>8</span></div>
+                            <div className={styleTableBarBody.square}><span>8</span></div>
+                            <div className={styleTableBarBody.square}><span>8</span></div>
+                            <div className={styleTableBarBody.square}><span>8</span></div>
+                            <div className={styleTableBarBody.square}><span>8</span></div>
+                            <div className={styleTableBarBody.square}><span>8</span></div>
+                            <div className={styleTableBarBody.square}><span>8</span></div>
+                            <div className={styleTableBarBody.square}><span>8</span></div>
+                            <div className={styleTableBarBody.square}><span>8</span></div>
+                            <div className={styleTableBarBody.square}><span>8</span></div>
+                            <div className={styleTableBarBody.square}><span>8</span></div>
+                            <div className={styleTableBarBody.square}><span>8</span></div>
+                            <div className={styleTableBarBody.square}><span>8</span></div>
+                            <div className={styleTableBarBody.square}><span>8</span></div>
+                            <div className={styleTableBarBody.square}><span>8</span></div>
+                            <div className={styleTableBarBody.square}><span>8</span></div>
+                            <div className={styleTableBarBody.square}><span>8</span></div>
+                        </div>
+                        <div className={styleTableBarBody.allSum}>
+                            <div className={styleTableBarBody.square}><span>136</span></div>
+                            <div className={styleTableBarBody.square}><span>136</span></div>
+                        </div>
+                        <div className={styleTableBarBody.allSum}>
+                            <div className={styleTableBarBody.square}><span>8</span></div>
+                            <div className={styleTableBarBody.square}><span>8</span></div>
+                        </div>
+                        <div className={styleTableBarBody.allSum}>
+                            <div className={styleTableBarBody.square}><span>15</span></div>
+                            <div className={styleTableBarBody.square}><span>15</span></div>
+                        </div>
+                        <div className={styleTableBarBody.allSum}>
+                            <div className={styleTableBarBody.square}><span>366</span></div>
+                            <div className={styleTableBarBody.square}><span>366</span></div>
+                        </div>
+                        <div>
+                            <div
+                                className={`${styleTableBarBody.coefficient} ${styleHelpBar.helpsBlock} ${styleHelpBar.coefficient}`}><span
+                                className={styleHelpBar.commonSign}>2.00</span></div>
+                        </div>
                     </div>
-                    <div className={styleTableBarBody.name}>
-                        <p>{item.full_name}</p>
-                        <p>{item.position}</p>
-                    </div>
-                    <div className={`${styleTableBarBody.calendar}`}>
-                        <div className={styleTableBarBody.square}><span>8</span></div>
-                        <div className={styleTableBarBody.square}><span>8</span></div>
-                        <div className={styleTableBarBody.square}><span>8</span></div>
-                        <div className={styleTableBarBody.square}><span>8</span></div>
-                        <div className={styleTableBarBody.square}><span>8</span></div>
-                        <div className={styleTableBarBody.square}><span>8</span></div>
-                        <div className={styleTableBarBody.square}><span>8</span></div>
-                        <div className={styleTableBarBody.square}><span>8</span></div>
-                        <div className={styleTableBarBody.square}><span>8</span></div>
-                        <div className={styleTableBarBody.square}><span>8</span></div>
-                        <div className={styleTableBarBody.square}><span>8</span></div>
-                        <div className={styleTableBarBody.square}><span>8</span></div>
-                        <div className={styleTableBarBody.square}><span>8</span></div>
-                        <div className={styleTableBarBody.square}><span>8</span></div>
-                        <div className={styleTableBarBody.square}><span>8</span></div>
-                        <div className={styleTableBarBody.square}><span>8</span></div>
-                        <div className={styleTableBarBody.square}><span>8</span></div>
-                        <div className={styleTableBarBody.square}><span>8</span></div>
-                        <div className={styleTableBarBody.square}><span>8</span></div>
-                        <div className={styleTableBarBody.square}><span>8</span></div>
-                        <div className={styleTableBarBody.square}><span>8</span></div>
-                        <div className={styleTableBarBody.square}><span>8</span></div>
-                        <div className={styleTableBarBody.square}><span>8</span></div>
-                        <div className={styleTableBarBody.square}><span>8</span></div>
-                        <div className={styleTableBarBody.square}><span>8</span></div>
-                        <div className={styleTableBarBody.square}><span>8</span></div>
-                        <div className={styleTableBarBody.square}><span>8</span></div>
-                        <div className={styleTableBarBody.square}><span>8</span></div>
-                        <div className={styleTableBarBody.square}><span>8</span></div>
-                        <div className={styleTableBarBody.square}><span>8</span></div>
-                    </div>
-                    <div className={styleTableBarBody.allSum}>
-                        <div className={styleTableBarBody.square}><span>136</span></div>
-                        <div className={styleTableBarBody.square}><span>136</span></div>
-                    </div>
-                    <div className={styleTableBarBody.allSum}>
-                        <div className={styleTableBarBody.square}><span>8</span></div>
-                        <div className={styleTableBarBody.square}><span>8</span></div>
-                    </div>
-                    <div className={styleTableBarBody.allSum}>
-                        <div className={styleTableBarBody.square}><span>15</span></div>
-                        <div className={styleTableBarBody.square}><span>15</span></div>
-                    </div>
-                    <div className={styleTableBarBody.allSum}>
-                        <div className={styleTableBarBody.square}><span>366</span></div>
-                        <div className={styleTableBarBody.square}><span>366</span></div>
-                    </div>
-                    <div>
-                        <div
-                            className={`${styleTableBarBody.coefficient} ${styleHelpBar.helpsBlock} ${styleHelpBar.coefficient}`}><span
-                            className={styleHelpBar.commonSign}>2.00</span></div>
-                    </div>
-                </div>
 
-            )
-        })
+                )
+            }) : null
     )
 }
 
 export const MainChart = () => {
     const dispatch = useDispatch();
-    dispatch(getMainSchedule());
+
+    useEffect(() => {
+        dispatch(getMainSchedule());
+    }, [])
 
     return (
         <div className={`${styles.mainChart}`}>
