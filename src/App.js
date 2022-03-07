@@ -6,7 +6,7 @@ import {MainContent} from "./components/mainContent/MainContent";
 import {Profile} from "./components/profile/Profile";
 import {Employees} from "./pages/Employees/Employees";
 import {Preloader} from "./components/preloader/Preloader";
-import {BackdropModal} from "./components/modal/Modal";
+import {BackdropModal, ErrorApiModal} from "./components/modal/Modal";
 import {SideBar} from "./components/sideBar/SideBar";
 
 function App() {
@@ -24,6 +24,7 @@ function App() {
           </div>
           <BackdropModal/>
           <Preloader/>
+          <ErrorApiModal/>
       </BrowserRouter>
   );
 }

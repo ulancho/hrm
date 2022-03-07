@@ -1,4 +1,4 @@
-import {GET_EMPLOYEES, HIDE_PRELOADER, SHOW_PRELOADER} from "./types";
+import {GET_EMPLOYEES, HIDE_PRELOADER, SHOW_FAIL_API_MODAL, SHOW_PRELOADER} from "./types";
 
 /************* получение сотрудников *************/
 export function getEmployees() {
@@ -7,7 +7,7 @@ export function getEmployees() {
         const options = {
             method: 'get',
             headers: {
-                'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbkBtZWdhY29tLmtnIiwiZXhwIjoxNjQ2NjU1NTk0fQ.qqufuvz5tcgNbMfAKwmnXErCbG86EX1mOs1igJfHABw'
+                'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbkBtZWdhY29tLmtnIiwiZXhwIjoxNjQ3MDg4MTMzfQ.2LgHzIch8kVElj5dSDM3c5vxUXn336vAtnyuv-7rJVc'
             }
         };
         fetch('http://10.242.147.11:8000/staff/employees/', options).then((response) => {
@@ -22,11 +22,8 @@ export function getEmployees() {
                 dispatch({ type:HIDE_PRELOADER })
             })
             .catch((error) => {
-                console.log(error)
-                // dispatch({ type:HIDE_PRELOADER, payload:{preloader: 'hide', backdropModal: 'hide'} })
-                // dispatch({ type:SHOW_FAIL_API_MODAL })
+                dispatch({ type:HIDE_PRELOADER, payload:{preloader: 'hide', backdropModal: 'hide'} })
+                dispatch({ type:SHOW_FAIL_API_MODAL,payload:{failApiTxt:error.message} })
             });
     }
 }
-
-
