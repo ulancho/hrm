@@ -17,8 +17,8 @@ function App() {
               <SideBar/>
               <MainContent>
                   <Routes>
-                      <Route path="main_chart" element={<MainChart/>}/> /*стр. основной график*/
-                      <Route path="employees" element={<Employees/>}/> /*стр. список сотрудников*/
+                      <Route path="/main_chart" element={<MainChart/>}/> /*стр. основной график*/
+                      <Route path="/employees" element={<Employees/>}/> /*стр. список сотрудников*/
                   </Routes>
               </MainContent>
           </div>
