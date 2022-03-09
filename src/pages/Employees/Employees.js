@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import styles from "./Employees.module.css";
 import {ReactComponent as SearchIcon} from "./../../media/icons/search.svg";
 import userImg from "./user.png";
@@ -6,6 +6,7 @@ import Popup from "reactjs-popup";
 import {useDispatch, useSelector} from "react-redux";
 import {getEmployees} from "../../redux/actions";
 import {IMAGE_URL} from "../../constants";
+import ReactPaginate from "react-paginate";
 
 const AddUserModal = ({close}) => {
     return (
@@ -56,12 +57,10 @@ const UserCard = () => {
     )
 }
 
-const EmployeesList = () => {
-    const employeesList = useSelector(state => state.staff.employeesList);
-
+const EmployeesList = ({items}) => {
     return (
-        employeesList.data.map((item) => {
-            return (
+        <>
+            {items && items.data.map((item) => (
                 <div key={item.id} className={styles.emplCard}>
                     <div className={styles.photo}>
                         <img src={IMAGE_URL + item.image} alt=""/>
@@ -95,8 +94,8 @@ const EmployeesList = () => {
                         </ul>
                     </div>
                 </div>
-            )
-        })
+            ))}
+        </>
     )
 }
 
@@ -135,21 +134,62 @@ const SearchBar = () => {
     )
 }
 
-export const Employees = () => {
+const TableBar = () => {
     const dispatch = useDispatch();
+    const employeesList = useSelector(state => state.staff.employeesList);
+    const itemsPerPage = 10;
+    const [pageCount, setPageCount] = useState(0);
+    const [itemOffset, setItemOffset] = useState(0);
 
     useEffect(() => {
-        dispatch(getEmployees());
-    }, [])
+        setPageCount(Math.ceil(employeesList.count / itemsPerPage));
+    }, [employeesList]);
+
+    useEffect(() => {
+        dispatch(getEmployees({offset: itemOffset, limit: itemsPerPage}));
+    }, [itemOffset]);
+
+
+    const handlePageClick = (event) => {
+        const newOffset = event.selected * itemsPerPage % employeesList.count;
+        setItemOffset(newOffset);
+    };
+
 
     return (
-        <div>
+        <>
+            <EmployeesList items={employeesList}/>
+            <ReactPaginate
+                previousLabel="Назад"
+                nextLabel="Следующий"
+                breakLabel="..."
+                pageCount={pageCount}
+                pageRangeDisplayed={3}
+                marginPagesDisplayed={2}
+                onPageChange={handlePageClick}
+                pageClassName="page-item"
+                pageLinkClassName="page-link"
+                previousClassName="page-item"
+                previousLinkClassName="page-link"
+                nextClassName="page-item"
+                nextLinkClassName="page-link"
+                breakClassName="page-item"
+                breakLinkClassName="page-link"
+                containerClassName="pagination"
+                activeClassName="active"
+                renderOnZeroPageCount={null}
+            />
+        </>
+    )
+}
+
+export const Employees = () => {
+    return (
+        <>
             <SearchBar/>
             <div className={`wrapper ${styles.tableBar}`}>
-                <div className={styles.emplsList}>
-                    <EmployeesList/>
-                </div>
+                <TableBar/>
             </div>
-        </div>
+        </>
     )
 };

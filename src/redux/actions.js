@@ -2,16 +2,19 @@ import {GET_EMPLOYEES, GET_MAIN_SCHEDULE, HIDE_PRELOADER, SHOW_FAIL_API_MODAL, S
 import {BASE_URL} from "../constants";
 
 /************* получение сотрудников *************/
-export function getEmployees() {
+export function getEmployees(options) {
+    const params = '?limit='+ options.limit +'&offset=' + options.offset;
+    console.log(params);
     return dispatch => {
         dispatch({ type:SHOW_PRELOADER });
+
         const options = {
             method: 'get',
             headers: {
                 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbkBtZWdhY29tLmtnIiwiZXhwIjoxNjQ3MDg4MTMzfQ.2LgHzIch8kVElj5dSDM3c5vxUXn336vAtnyuv-7rJVc'
             }
         };
-        fetch(BASE_URL+ 'staff/employees/', options).then((response) => {
+        fetch(BASE_URL+ 'staff/employees/'+params, options).then((response) => {
             if (response.ok) {
                 return response.json();
             } else {

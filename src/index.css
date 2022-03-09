@@ -164,6 +164,33 @@ legend{
     bottom: 0
 }
 
+/************* Пагинация ************/
+.pagination{
+    display: flex;
+    border-radius: 0.25rem;
+    margin: 35px 0;
+}
+
+.page-link{
+    position: relative;
+    display: block;
+    padding: 0.5rem 0.75rem;
+    line-height: 1.25;
+}
+
+.page-item.active {
+    background-color: #71BF44;
+    color: white;
+    border-radius: 5px;
+}
+
+.page-item:hover:not(.active) {
+    background-color: #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
 /*************  Аниимация для модальной окошки ************/
 @keyframes anvil {
     0% {
