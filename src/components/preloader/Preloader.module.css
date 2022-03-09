@@ -1,6 +1,8 @@
 /*************  Preloader ************/
 .loader {
-    position: relative;
+    position: fixed;
+    top: 45%;
+    left: 50%;
     z-index: 9999;
 }
 
