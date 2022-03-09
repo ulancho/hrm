@@ -123,36 +123,13 @@ const TableBarBody = () => {
                             <p>{item.position?.title}</p>
                         </div>
                         <div className={`${styleTableBarBody.calendar}`}>
-                            <div className={styleTableBarBody.square}><span>8</span></div>
-                            <div className={styleTableBarBody.square}><span>8</span></div>
-                            <div className={styleTableBarBody.square}><span>8</span></div>
-                            <div className={styleTableBarBody.square}><span>8</span></div>
-                            <div className={styleTableBarBody.square}><span>8</span></div>
-                            <div className={styleTableBarBody.square}><span>8</span></div>
-                            <div className={styleTableBarBody.square}><span>8</span></div>
-                            <div className={styleTableBarBody.square}><span>8</span></div>
-                            <div className={styleTableBarBody.square}><span>8</span></div>
-                            <div className={styleTableBarBody.square}><span>8</span></div>
-                            <div className={styleTableBarBody.square}><span>8</span></div>
-                            <div className={styleTableBarBody.square}><span>8</span></div>
-                            <div className={styleTableBarBody.square}><span>8</span></div>
-                            <div className={styleTableBarBody.square}><span>8</span></div>
-                            <div className={styleTableBarBody.square}><span>8</span></div>
-                            <div className={styleTableBarBody.square}><span>8</span></div>
-                            <div className={styleTableBarBody.square}><span>8</span></div>
-                            <div className={styleTableBarBody.square}><span>8</span></div>
-                            <div className={styleTableBarBody.square}><span>8</span></div>
-                            <div className={styleTableBarBody.square}><span>8</span></div>
-                            <div className={styleTableBarBody.square}><span>8</span></div>
-                            <div className={styleTableBarBody.square}><span>8</span></div>
-                            <div className={styleTableBarBody.square}><span>8</span></div>
-                            <div className={styleTableBarBody.square}><span>8</span></div>
-                            <div className={styleTableBarBody.square}><span>8</span></div>
-                            <div className={styleTableBarBody.square}><span>8</span></div>
-                            <div className={styleTableBarBody.square}><span>8</span></div>
-                            <div className={styleTableBarBody.square}><span>8</span></div>
-                            <div className={styleTableBarBody.square}><span>8</span></div>
-                            <div className={styleTableBarBody.square}><span>8</span></div>
+                            {
+                                item.days.map((d)=>{
+                                    return (
+                                        <div className={styleTableBarBody.square}><span>{d.value}</span></div>
+                                    )
+                                })
+                            }
                         </div>
                         <div className={styleTableBarBody.allSum}>
                             <div className={styleTableBarBody.square}><span>136</span></div>
