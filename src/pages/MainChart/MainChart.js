@@ -46,8 +46,8 @@ const TableBarHeader = () => {
 const TableBarBody = () => {
     const data = useSelector(state => state.sheet.mainSchedule);
 
-    const onClickRow = (event,type) => {
-        if(type === 1){
+    const onClickRow = (event, type) => {
+        if (type === 1) {
             event.currentTarget.nextElementSibling.classList.remove('d-none');
             event.currentTarget.classList.add('d-none');
         } else {
@@ -56,16 +56,23 @@ const TableBarBody = () => {
         }
     }
 
+    const onContextCell = (event) => {
+        console.log(event);
+        // event.currentTarget.classList.add('active-cell');
+    }
+
     const freeDayClass = (value) => value === 'В' ? 'freeDay' : '';
 
     return (
         data.length > 0 ?
-            data.map((item,index) => {
+            data.map((item, index) => {
                 return (
-                    <>
-                        <div onClick={(e)=>{onClickRow(e,1)}} className={styleTableBarBody.tableBarBody}>
+                    <React.Fragment key={index}>
+                        <div onClick={(e) => {
+                            onClickRow(e, 1)
+                        }} className={styleTableBarBody.tableBarBody}>
                             <div className={styleTableBarBody.num}>
-                                <span>{index+1}</span>
+                                <span>{index + 1}</span>
                             </div>
                             <div className={styleTableBarBody.name}>
                                 <p>{item.full_name}</p>
@@ -73,9 +80,9 @@ const TableBarBody = () => {
                             </div>
                             <div className={`${styleTableBarBody.calendar}`}>
                                 {
-                                    item.days.map((d)=>{
+                                    item.days.map((d, indexD) => {
                                         return (
-                                            <div className={styleTableBarBody.square}><span>{d.value}</span></div>
+                                            <div key={indexD} className={styleTableBarBody.square}><span>{d.value}</span></div>
                                         )
                                     })
                                 }
@@ -102,9 +109,11 @@ const TableBarBody = () => {
                                     className={styleHelpBar.commonSign}>2.00</span></div>
                             </div>
                         </div>
-                        <div onClick={(e)=>{onClickRow(e,2)}} className={`${styleTableBarBody.tableBarBody} ${styleTableBarBody.tableBarBody2} d-none`}>
+                        <div onClick={(e) => {
+                            onClickRow(e, 2)
+                        }} className={`${styleTableBarBody.tableBarBody} ${styleTableBarBody.tableBarBody2} d-none`}>
                             <div className={styleTableBarBody.num}>
-                                <span>{index+1}</span>
+                                <span>{index + 1}</span>
                             </div>
                             <div className={styleTableBarBody.name}>
                                 <p>{item.full_name}</p>
@@ -112,9 +121,11 @@ const TableBarBody = () => {
                             </div>
                             <div className={`${styleTableBarBody.calendar}`}>
                                 {
-                                    item.days.map((d)=>{
+                                    item.days.map((d, indexD) => {
                                         return (
-                                            <div className={`${styleTableBarBody.square} ${styleTableBarBody[freeDayClass(d.value)]}`}><span>{getDay(d.date)}</span></div>
+                                            <div key={indexD} onContextMenu={onContextCell}
+                                                 className={`${styleTableBarBody.square} ${styleTableBarBody[freeDayClass(d.value)]}`}>
+                                                <span>{getDay(d.date)}</span></div>
                                         )
                                     })
                                 }
@@ -141,7 +152,7 @@ const TableBarBody = () => {
                                     className={styleHelpBar.commonSign}>2.00</span></div>
                             </div>
                         </div>
-                    </>
+                    </React.Fragment>
                 )
             }) : null
     )

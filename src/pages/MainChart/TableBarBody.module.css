@@ -115,3 +115,7 @@
 .freeDay span{
     color: #FFFFFF!important;
 }
+
+.activeCell{
+    background-color: red;
+}
