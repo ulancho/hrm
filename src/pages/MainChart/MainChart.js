@@ -6,6 +6,146 @@ import styleTableBarHeader from "./TableBarHeader.module.css";
 import styleTableBarBody from "./TableBarBody.module.css";
 import {useDispatch, useSelector} from "react-redux";
 import {getMainSchedule} from "../../redux/actions";
+import {getDay} from "../../helpers";
+
+
+const TableBarHeader = () => {
+    return (
+        <div className={styleTableBarHeader.TableBarHeader}>
+            <div/>
+            <div>
+                <span className={styleTableBarHeader.title}>Фамилия, инициалы, должность</span>
+            </div>
+            <div>
+                <span className={styleTableBarHeader.title}>Отметки о явках и неявках на работу по числам месяца</span>
+            </div>
+            <div>
+                <div className={`${styleHelpBar.helpsBlock} ${styleHelpBar.workedOut}`}><span
+                    className={styleHelpBar.commonSign}>P</span></div>
+            </div>
+            <div>
+                <div className={`${styleHelpBar.helpsBlock} ${styleHelpBar.mission}`}><span
+                    className={styleHelpBar.commonSign}>К</span></div>
+            </div>
+            <div>
+                <div className={`${styleHelpBar.helpsBlock} ${styleHelpBar.sickLeave}`}><span
+                    className={styleHelpBar.commonSign}>Б</span></div>
+            </div>
+            <div>
+                <div className={`${styleHelpBar.helpsBlock} ${styleHelpBar.furlough}`}><span
+                    className={styleHelpBar.commonSign}>О</span></div>
+            </div>
+            <div>
+                <div className={`${styleHelpBar.helpsBlock} ${styleHelpBar.coefficient}`}><span
+                    className={styleHelpBar.commonSign}>К.Э</span></div>
+            </div>
+        </div>
+    )
+}
+
+const TableBarBody = () => {
+    const data = useSelector(state => state.sheet.mainSchedule);
+
+    const onClickRow = (event,type) => {
+        if(type === 1){
+            event.currentTarget.nextElementSibling.classList.remove('d-none');
+            event.currentTarget.classList.add('d-none');
+        } else {
+            event.currentTarget.previousElementSibling.classList.remove('d-none');
+            event.currentTarget.classList.add('d-none');
+        }
+    }
+
+    const freeDayClass = (value) => value === 'В' ? 'freeDay' : '';
+
+    return (
+        data.length > 0 ?
+            data.map((item,index) => {
+                return (
+                    <>
+                        <div onClick={(e)=>{onClickRow(e,1)}} className={styleTableBarBody.tableBarBody}>
+                            <div className={styleTableBarBody.num}>
+                                <span>{index+1}</span>
+                            </div>
+                            <div className={styleTableBarBody.name}>
+                                <p>{item.full_name}</p>
+                                <p>{item.position?.title}</p>
+                            </div>
+                            <div className={`${styleTableBarBody.calendar}`}>
+                                {
+                                    item.days.map((d)=>{
+                                        return (
+                                            <div className={styleTableBarBody.square}><span>{d.value}</span></div>
+                                        )
+                                    })
+                                }
+                            </div>
+                            <div className={styleTableBarBody.allSum}>
+                                <div className={styleTableBarBody.square}><span>136</span></div>
+                                <div className={styleTableBarBody.square}><span>136</span></div>
+                            </div>
+                            <div className={styleTableBarBody.allSum}>
+                                <div className={styleTableBarBody.square}><span>8</span></div>
+                                <div className={styleTableBarBody.square}><span>8</span></div>
+                            </div>
+                            <div className={styleTableBarBody.allSum}>
+                                <div className={styleTableBarBody.square}><span>15</span></div>
+                                <div className={styleTableBarBody.square}><span>15</span></div>
+                            </div>
+                            <div className={styleTableBarBody.allSum}>
+                                <div className={styleTableBarBody.square}><span>366</span></div>
+                                <div className={styleTableBarBody.square}><span>366</span></div>
+                            </div>
+                            <div>
+                                <div
+                                    className={`${styleTableBarBody.coefficient} ${styleHelpBar.helpsBlock} ${styleHelpBar.coefficient}`}><span
+                                    className={styleHelpBar.commonSign}>2.00</span></div>
+                            </div>
+                        </div>
+                        <div onClick={(e)=>{onClickRow(e,2)}} className={`${styleTableBarBody.tableBarBody} ${styleTableBarBody.tableBarBody2} d-none`}>
+                            <div className={styleTableBarBody.num}>
+                                <span>{index+1}</span>
+                            </div>
+                            <div className={styleTableBarBody.name}>
+                                <p>{item.full_name}</p>
+                                <p>{item.position?.title}</p>
+                            </div>
+                            <div className={`${styleTableBarBody.calendar}`}>
+                                {
+                                    item.days.map((d)=>{
+                                        return (
+                                            <div className={`${styleTableBarBody.square} ${styleTableBarBody[freeDayClass(d.value)]}`}><span>{getDay(d.date)}</span></div>
+                                        )
+                                    })
+                                }
+                            </div>
+                            <div className={styleTableBarBody.allSum}>
+                                <div className={styleTableBarBody.square}><span>136</span></div>
+                                <div className={styleTableBarBody.square}><span>136</span></div>
+                            </div>
+                            <div className={styleTableBarBody.allSum}>
+                                <div className={styleTableBarBody.square}><span>8</span></div>
+                                <div className={styleTableBarBody.square}><span>8</span></div>
+                            </div>
+                            <div className={styleTableBarBody.allSum}>
+                                <div className={styleTableBarBody.square}><span>15</span></div>
+                                <div className={styleTableBarBody.square}><span>15</span></div>
+                            </div>
+                            <div className={styleTableBarBody.allSum}>
+                                <div className={styleTableBarBody.square}><span>366</span></div>
+                                <div className={styleTableBarBody.square}><span>366</span></div>
+                            </div>
+                            <div>
+                                <div
+                                    className={`${styleTableBarBody.coefficient} ${styleHelpBar.helpsBlock} ${styleHelpBar.coefficient}`}><span
+                                    className={styleHelpBar.commonSign}>2.00</span></div>
+                            </div>
+                        </div>
+                    </>
+                )
+            }) : null
+    )
+}
 
 const SearchBar = () => {
     return (
@@ -70,92 +210,6 @@ const TableBar = () => {
             <TableBarHeader/>
             <TableBarBody/>
         </div>
-    )
-}
-
-const TableBarHeader = () => {
-    return (
-        <div className={styleTableBarHeader.TableBarHeader}>
-            <div/>
-            <div>
-                <span className={styleTableBarHeader.title}>Фамилия, инициалы, должность</span>
-            </div>
-            <div>
-                <span className={styleTableBarHeader.title}>Отметки о явках и неявках на работу по числам месяца</span>
-            </div>
-            <div>
-                <div className={`${styleHelpBar.helpsBlock} ${styleHelpBar.workedOut}`}><span
-                    className={styleHelpBar.commonSign}>P</span></div>
-            </div>
-            <div>
-                <div className={`${styleHelpBar.helpsBlock} ${styleHelpBar.mission}`}><span
-                    className={styleHelpBar.commonSign}>К</span></div>
-            </div>
-            <div>
-                <div className={`${styleHelpBar.helpsBlock} ${styleHelpBar.sickLeave}`}><span
-                    className={styleHelpBar.commonSign}>Б</span></div>
-            </div>
-            <div>
-                <div className={`${styleHelpBar.helpsBlock} ${styleHelpBar.furlough}`}><span
-                    className={styleHelpBar.commonSign}>О</span></div>
-            </div>
-            <div>
-                <div className={`${styleHelpBar.helpsBlock} ${styleHelpBar.coefficient}`}><span
-                    className={styleHelpBar.commonSign}>К.Э</span></div>
-            </div>
-        </div>
-    )
-}
-
-const TableBarBody = () => {
-    const data = useSelector(state => state.sheet.mainSchedule);
-
-    return (
-        data.length > 0 ?
-            data.map((item) => {
-                return (
-                    <div className={styleTableBarBody.tableBarBody}>
-                        <div className={styleTableBarBody.num}>
-                            <span>1</span>
-                        </div>
-                        <div className={styleTableBarBody.name}>
-                            <p>{item.full_name}</p>
-                            <p>{item.position?.title}</p>
-                        </div>
-                        <div className={`${styleTableBarBody.calendar}`}>
-                            {
-                                item.days.map((d)=>{
-                                    return (
-                                        <div className={styleTableBarBody.square}><span>{d.value}</span></div>
-                                    )
-                                })
-                            }
-                        </div>
-                        <div className={styleTableBarBody.allSum}>
-                            <div className={styleTableBarBody.square}><span>136</span></div>
-                            <div className={styleTableBarBody.square}><span>136</span></div>
-                        </div>
-                        <div className={styleTableBarBody.allSum}>
-                            <div className={styleTableBarBody.square}><span>8</span></div>
-                            <div className={styleTableBarBody.square}><span>8</span></div>
-                        </div>
-                        <div className={styleTableBarBody.allSum}>
-                            <div className={styleTableBarBody.square}><span>15</span></div>
-                            <div className={styleTableBarBody.square}><span>15</span></div>
-                        </div>
-                        <div className={styleTableBarBody.allSum}>
-                            <div className={styleTableBarBody.square}><span>366</span></div>
-                            <div className={styleTableBarBody.square}><span>366</span></div>
-                        </div>
-                        <div>
-                            <div
-                                className={`${styleTableBarBody.coefficient} ${styleHelpBar.helpsBlock} ${styleHelpBar.coefficient}`}><span
-                                className={styleHelpBar.commonSign}>2.00</span></div>
-                        </div>
-                    </div>
-
-                )
-            }) : null
     )
 }
 

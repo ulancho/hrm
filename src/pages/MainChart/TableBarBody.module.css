@@ -3,6 +3,25 @@
     margin-bottom: 8px;
 }
 
+.tableBarBody2>.num, .tableBarBody2>.name{
+    background-color: #71BF44!important;
+    color: #FFFFFF!important;
+}
+
+.tableBarBody:hover{
+   cursor: pointer;
+}
+
+.tableBarBody:hover .num{
+    background-color: #71BF44;
+    color: #FFFFFF;
+}
+
+.tableBarBody:hover .name{
+    background-color: #71BF44;
+    color: #FFFFFF;
+}
+
 .tableBarBody>div:nth-child(1){
     width: 3%;
 }
@@ -84,6 +103,15 @@
 }
 
 .allSum{
-    /*display: flex;*/
-    /*flex-wrap: wrap;*/
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 40px;
+}
+
+.freeDay{
+    background: #71BF44!important;
+}
+
+.freeDay span{
+    color: #FFFFFF!important;
 }
