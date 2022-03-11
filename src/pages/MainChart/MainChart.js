@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import styles from "./MainChart.module.css";
 import styleSearchBar from "./SearchBar.module.css";
 import styleHelpBar from "./HelpBar.module.css";
@@ -7,6 +7,7 @@ import styleTableBarBody from "./TableBarBody.module.css";
 import {useDispatch, useSelector} from "react-redux";
 import {getMainSchedule} from "../../redux/actions";
 import {getDay} from "../../helpers";
+import {ContextMenu} from "../../components/contextMenu/ContextMenu";
 
 
 const TableBarHeader = () => {
@@ -44,6 +45,8 @@ const TableBarHeader = () => {
 }
 
 const TableBarBody = () => {
+    const [event, setEvent] = useState({});
+    const [showContextMenu, setShowContextMenu] = useState(false);
     const data = useSelector(state => state.sheet.mainSchedule);
 
     const onClickRow = (event, type) => {
@@ -58,6 +61,8 @@ const TableBarBody = () => {
 
     const onContextCell = (event) => {
         event.preventDefault();
+        setEvent(event);
+        setShowContextMenu(true);
         event.currentTarget.lastElementChild.classList.toggle('active-cell');
     }
 
@@ -127,9 +132,10 @@ const TableBarBody = () => {
                                     item.days.map((d, indexD) => {
                                         return (
                                             <div key={indexD} onContextMenu={onContextCell}
-                                                 className={`${styleTableBarBody.square} ${styleTableBarBody.square2} ${styleTableBarBody[freeDayClass(d.value)]}`}>
-                                                <span>{getDay(d.date)}</span>
+                                                 className={`d ${styleTableBarBody.square} ${styleTableBarBody.square2} ${styleTableBarBody[freeDayClass(d.value)]}`}>
+                                                <span className="d">{getDay(d.date)}</span>
                                                 <div/>
+                                                <ContextMenu event={event} show={showContextMenu}/>
                                             </div>
                                         )
                                     })
