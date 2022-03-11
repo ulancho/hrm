@@ -108,11 +108,21 @@
     max-width: 40px;
 }
 
-.freeDay{
-    background: #71BF44!important;
+.table1 .freeDay{
+    background: rgba(113, 191, 68, 0.35);
+    border: 0.5px solid #F7F7FA;
 }
 
-.freeDay span{
+.table1 .freeDay span{
+    color: #000000!important;
+}
+
+.table2 .freeDay{
+    background: #71BF44;
+    border: 0.5px solid #FFFFFF;
+}
+
+.table2 .freeDay span{
     color: #FFFFFF!important;
 }
 
