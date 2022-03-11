@@ -217,3 +217,14 @@ legend{
 .popup-content {
     -webkit-animation: anvil 0.3s cubic-bezier(0.38, 0.1, 0.36, 0.9) forwards;
 }
+
+
+/*************  таблица основного графика ************/
+.active-cell{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: #E06555;
+    height: 8px;
+    width: 8px;
+}

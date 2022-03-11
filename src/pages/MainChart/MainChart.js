@@ -57,8 +57,8 @@ const TableBarBody = () => {
     }
 
     const onContextCell = (event) => {
-        console.log(event);
-        // event.currentTarget.classList.add('active-cell');
+        event.preventDefault();
+        event.currentTarget.lastElementChild.classList.toggle('active-cell');
     }
 
     const freeDayClass = (value) => value === 'В' ? 'freeDay' : '';
@@ -82,7 +82,9 @@ const TableBarBody = () => {
                                 {
                                     item.days.map((d, indexD) => {
                                         return (
-                                            <div key={indexD} className={`${styleTableBarBody.square} ${styleTableBarBody[freeDayClass(d.value)]}`}><span>{d.value}</span></div>
+                                            <div key={indexD}
+                                                 className={`${styleTableBarBody.square} ${styleTableBarBody[freeDayClass(d.value)]}`}>
+                                                <span>{d.value}</span></div>
                                         )
                                     })
                                 }
@@ -111,7 +113,8 @@ const TableBarBody = () => {
                         </div>
                         <div onClick={(e) => {
                             onClickRow(e, 2)
-                        }} className={`${styleTableBarBody.tableBarBody} ${styleTableBarBody.table2} ${styleTableBarBody.tableBarBody2} d-none`}>
+                        }}
+                             className={`${styleTableBarBody.tableBarBody} ${styleTableBarBody.table2} ${styleTableBarBody.tableBarBody2} d-none`}>
                             <div className={styleTableBarBody.num}>
                                 <span>{index + 1}</span>
                             </div>
@@ -124,8 +127,10 @@ const TableBarBody = () => {
                                     item.days.map((d, indexD) => {
                                         return (
                                             <div key={indexD} onContextMenu={onContextCell}
-                                                 className={`${styleTableBarBody.square} ${styleTableBarBody[freeDayClass(d.value)]}`}>
-                                                <span>{getDay(d.date)}</span></div>
+                                                 className={`${styleTableBarBody.square} ${styleTableBarBody.square2} ${styleTableBarBody[freeDayClass(d.value)]}`}>
+                                                <span>{getDay(d.date)}</span>
+                                                <div/>
+                                            </div>
                                         )
                                     })
                                 }
