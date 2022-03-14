@@ -1,17 +1,16 @@
 import {GET_EMPLOYEES, GET_MAIN_SCHEDULE, HIDE_PRELOADER, SHOW_FAIL_API_MODAL, SHOW_PRELOADER} from "./types";
-import {BASE_URL} from "../constants";
+import {BASE_URL, TOKEN} from "../constants";
 
 /************* получение сотрудников *************/
 export function getEmployees(options) {
     const params = '?limit='+ options.limit +'&offset=' + options.offset;
-    console.log(params);
     return dispatch => {
         dispatch({ type:SHOW_PRELOADER });
 
         const options = {
             method: 'get',
             headers: {
-                'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbkBtZWdhY29tLmtnIiwiZXhwIjoxNjQ3MDg4MTMzfQ.2LgHzIch8kVElj5dSDM3c5vxUXn336vAtnyuv-7rJVc'
+                'Authorization': 'Bearer ' + TOKEN
             }
         };
         fetch(BASE_URL+ 'staff/employees/'+params, options).then((response) => {
@@ -39,7 +38,7 @@ export function getMainSchedule() {
         const options = {
             method: 'get',
             headers: {
-                'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbkBtZWdhY29tLmtnIiwiZXhwIjoxNjQ3MDg4MTMzfQ.2LgHzIch8kVElj5dSDM3c5vxUXn336vAtnyuv-7rJVc'
+                'Authorization': 'Bearer ' + TOKEN
             }
         };
         fetch(BASE_URL+'schedule/sheet/?is_remote=0', options).then((response) => {
