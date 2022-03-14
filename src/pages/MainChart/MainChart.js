@@ -72,6 +72,7 @@ const TableBarHeader = () => {
 }
 
 const TableBarBody = () => {
+
     const data = useSelector(state => state.sheet.mainSchedule);
 
     const onClickRow = (event, type) => {
