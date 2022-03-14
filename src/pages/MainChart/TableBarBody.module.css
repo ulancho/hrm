@@ -17,12 +17,12 @@
 }
 
 .tableBarBody:hover .num{
-    background-color: #71BF44;
+    background-color:rgba(113, 191, 68, 0.6);
     color: #FFFFFF;
 }
 
 .tableBarBody:hover .name{
-    background-color: #71BF44;
+    background-color: rgba(113, 191, 68, 0.6);
     color: #FFFFFF;
 }
 
