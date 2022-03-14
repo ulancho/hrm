@@ -94,11 +94,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
-}
-
-.square2:hover{
-    box-shadow: 0 0 8px 1px #a9a7a7;
+    /*overflow: hidden;*/
 }
 
 .square span{

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import styles from "./MainChart.module.css";
 import styleSearchBar from "./SearchBar.module.css";
 import styleHelpBar from "./HelpBar.module.css";
@@ -9,6 +9,33 @@ import {getMainSchedule} from "../../redux/actions";
 import {getDay} from "../../helpers";
 import {ContextMenu} from "../../components/contextMenu/ContextMenu";
 
+const testData = [
+    {
+        "id": null,
+        "employee_id": "04bce0d5-95d3-4306-a32e-41e58e0b8a89",
+        "full_name": "Admin",
+        "position": null,
+        "days": [
+            {
+                "id": null,
+                "date": "2022-03-01",
+                "value": null
+            }
+        ],
+        "overall": [
+            {
+                "id": null,
+                "employee_id": "04bce0d5-95d3-4306-a32e-41e58e0b8a89",
+                "total_hours": 8,
+                "total_days": 1,
+                "sick": 0,
+                "vacation": 0,
+                "secondment": 0,
+                "remote": 0
+            }
+        ]
+    },
+];
 
 const TableBarHeader = () => {
     return (
@@ -45,15 +72,13 @@ const TableBarHeader = () => {
 }
 
 const TableBarBody = () => {
-    const [event, setEvent] = useState({});
-    const [showContextMenu, setShowContextMenu] = useState(false);
     const data = useSelector(state => state.sheet.mainSchedule);
 
     const onClickRow = (event, type) => {
         if (type === 1) {
             event.currentTarget.nextElementSibling.classList.remove('d-none');
             event.currentTarget.classList.add('d-none');
-        } else {
+        } else if (!event.target.classList.contains('s')) {
             event.currentTarget.previousElementSibling.classList.remove('d-none');
             event.currentTarget.classList.add('d-none');
         }
@@ -61,9 +86,8 @@ const TableBarBody = () => {
 
     const onContextCell = (event) => {
         event.preventDefault();
-        setEvent(event);
-        setShowContextMenu(true);
         event.currentTarget.lastElementChild.classList.toggle('active-cell');
+        event.currentTarget.querySelector('.menu').classList.toggle('d-none');
     }
 
     const freeDayClass = (value) => value === 'В' ? 'freeDay' : '';
@@ -132,10 +156,10 @@ const TableBarBody = () => {
                                     item.days.map((d, indexD) => {
                                         return (
                                             <div key={indexD} onContextMenu={onContextCell}
-                                                 className={`d ${styleTableBarBody.square} ${styleTableBarBody.square2} ${styleTableBarBody[freeDayClass(d.value)]}`}>
+                                                 className={`d ${styleTableBarBody.square} ${styleTableBarBody[freeDayClass(d.value)]}`}>
                                                 <span className="d">{getDay(d.date)}</span>
+                                                <ContextMenu/>
                                                 <div/>
-                                                <ContextMenu event={event} show={showContextMenu}/>
                                             </div>
                                         )
                                     })

@@ -227,21 +227,40 @@ legend{
     background-color: #E06555;
     height: 8px;
     width: 8px;
+    border-bottom-right-radius: 6px;
 }
 
 /*************  контекстное меню ************/
 .menu {
-    font-size: 14px;
-    background-color: #fff;
-    border-radius: 2px;
-    padding: 5px 0 5px 0;
-    width: 150px;
-    height: auto;
-    margin: 0;
-    /* use absolute positioning  */
+    background: #FFFFFF;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(2px);
+    border-radius: 0 4px 4px 4px;
     position: absolute;
     list-style: none;
-    box-shadow: 0 0 20px 0 #ccc;
-    opacity: 1;
     transition: opacity 0.5s linear;
+    top: 40px;
+    left: 40px;
+    z-index: 99;
+}
+
+.menu ul li{
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 18px;
+    color: #1E1E1E;
+    padding: 10px 16px;
+    text-align: left;
+}
+
+.menu ul{
+    margin: 16px 0;
+}
+
+.active-status{
+    background: #A3CAFA;
+}
+
+.s:hover{
+    background: #d6e3f4;
 }

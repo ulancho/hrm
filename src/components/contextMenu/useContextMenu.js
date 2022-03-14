@@ -1,33 +1,37 @@
-import { useEffect, useCallback, useState } from "react";
+import React, {useCallback, useEffect, useState} from "react";
 
-const useContextMenu = () => {
-    const [anchorPoint, setAnchorPoint] = useState({ x: 0, y: 0 });
-    const [show, setShow] = useState(false);
+export const useContextMenu = () => {
+    const [xPos, setXPos] = useState("0px");
+    const [yPos, setYPos] = useState("0px");
+    const [showMenu, setShowMenu] = useState(false);
 
     const handleContextMenu = useCallback(
-        (event) => {
-            event.preventDefault();
-
-            if (event.target.classList.contains('d')){
-                setAnchorPoint({ x: event.pageX, y: event.pageY });
-                setShow(true);
+        (e) => {
+            e.preventDefault();
+            console.log(e.target);
+            if(e.target.classList.contains('d')){
+                setXPos(`${e.pageX}px`);
+                setYPos(`${e.pageY}px`);
+                setShowMenu(true);
             }
 
+
         },
-        [setShow, setAnchorPoint]
+        [setXPos, setYPos]
     );
 
-    const handleClick = useCallback(() => (show ? setShow(false) : null), [show]);
+    const handleClick = useCallback(() => {
+        showMenu && setShowMenu(false);
+    }, [showMenu]);
 
     useEffect(() => {
         document.addEventListener("click", handleClick);
         document.addEventListener("contextmenu", handleContextMenu);
         return () => {
-            document.removeEventListener("click", handleClick);
+            document.addEventListener("click", handleClick);
             document.removeEventListener("contextmenu", handleContextMenu);
         };
     });
-    return { anchorPoint, show };
-};
 
-export default useContextMenu;
+    return { xPos, yPos, showMenu };
+};
