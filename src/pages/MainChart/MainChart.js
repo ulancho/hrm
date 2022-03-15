@@ -252,6 +252,27 @@ const HelpBar = () => {
 }
 
 const TableBar = () => {
+
+    const clickCloseContextMenu = (event) => {
+        if (event.target.classList.contains('s') || event.target.classList.contains('menu') || event.target.parentNode.classList.contains('s')) return;
+
+        let menu = document.querySelectorAll('.menu');
+        let activeCell = document.querySelectorAll('.active-cell');
+        for(let i = 0; i < menu.length; i++){
+            menu[i].classList.add('d-none');
+        }
+        for(let i = 0; i < activeCell.length; i++){
+            activeCell[i].classList.remove('active-cell');
+        }
+    }
+
+    useEffect(() => {
+        document.addEventListener("click", clickCloseContextMenu);
+        return () => {
+            document.addEventListener("click", clickCloseContextMenu);
+        };
+    });
+
     return (
         <div className={styles.tableBar}>
             <TableBarHeader/>
