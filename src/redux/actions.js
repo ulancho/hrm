@@ -1,4 +1,10 @@
-import {GET_EMPLOYEES, GET_MAIN_SCHEDULE, HIDE_PRELOADER, SHOW_FAIL_API_MODAL, SHOW_PRELOADER} from "./types";
+import {
+    GET_EMPLOYEES,
+    HIDE_PRELOADER,
+    SET_MAIN_SCHEDULE,
+    SHOW_FAIL_API_MODAL,
+    SHOW_PRELOADER
+} from "./types";
 import {BASE_URL, TOKEN} from "../constants";
 
 /************* получение сотрудников *************/
@@ -49,7 +55,7 @@ export function getMainSchedule() {
             }
         })
             .then((responseJson) => {
-                dispatch({ type:GET_MAIN_SCHEDULE, payload:responseJson })
+                dispatch({ type:SET_MAIN_SCHEDULE, payload:responseJson })
                 dispatch({ type:HIDE_PRELOADER })
             })
             .catch((error) => {

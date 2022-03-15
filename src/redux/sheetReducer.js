@@ -1,13 +1,13 @@
-import {GET_MAIN_SCHEDULE} from "./types";
+import {SET_MAIN_SCHEDULE} from "./types";
 
 const initialState = {
-    mainSchedule:[],
+    mainScheduleInput:[],
 };
 
 export const sheetReducer = (state = initialState, action) => {
     switch (action.type) {
-        case GET_MAIN_SCHEDULE:
-            return { ...state, mainSchedule:action.payload };
+        case SET_MAIN_SCHEDULE:
+            return { ...state, mainScheduleInput:action.payload }
         default: return state;
     }
 };

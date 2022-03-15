@@ -73,7 +73,7 @@ const TableBarHeader = () => {
 
 const TableBarBody = () => {
 
-    const data = useSelector(state => state.sheet.mainSchedule);
+    const data = useSelector(state => state.sheet.mainScheduleInput);
 
     const onClickRow = (event, type) => {
         const currentRow = event.currentTarget.parentNode;
@@ -159,7 +159,7 @@ const TableBarBody = () => {
                                             <div key={indexD} onContextMenu={onContextCell}
                                                  className={`d ${styleTableBarBody.square} ${styleTableBarBody[freeDayClass(d.value)]}`}>
                                                 <span className="d">{getDay(d.date)}</span>
-                                                <ContextMenu/>
+                                                <ContextMenu employeeId={item.employee_id}/>
                                                 <div/>
                                             </div>
                                         )
