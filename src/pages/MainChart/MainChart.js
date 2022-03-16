@@ -37,6 +37,7 @@ const testData = [
     },
 ];
 
+/********************** доп. компоненты ********************/
 const SearchBar = () => {
     return (
         <div className={styleSearchBar.searchBar}>
