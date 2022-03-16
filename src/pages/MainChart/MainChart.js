@@ -132,8 +132,6 @@ const TableBarBody = () => {
 
     const data = useSelector(state => state.sheet.mainScheduleInput);
 
-    console.log(data);
-
     const onClickRow = (event, type) => {
         const currentRow = event.currentTarget.parentNode;
         if (type === 1) {
@@ -157,7 +155,7 @@ const TableBarBody = () => {
         data.length > 0 ?
             data.map((item, index) => {
                 return (
-                    <React.Fragment key={index}>
+                    <React.Fragment key={item.employee_id}>
                         <div className={styleTableBarBody.tableBarBody}>
                             <div className={styleTableBarBody.num}>
                                 <span>{index + 1}</span>
@@ -218,7 +216,7 @@ const TableBarBody = () => {
                                             <div key={indexD} onContextMenu={onContextCell}
                                                  className={`d ${styleTableBarBody.square} ${styleTableBarBody[freeDayClass(d.value)]}`}>
                                                 <span className="d">{getDay(d.date)}</span>
-                                                <ContextMenu data={item} indexData={index} employeeId={item.employee_id} indexDate={indexD} date={d.date}/>
+                                                <ContextMenu allData={item} indexData={index} employeeId={item.employee_id} indexDate={indexD} date={d.date}/>
                                                 <div/>
                                             </div>
                                         )
