@@ -7,7 +7,7 @@ const initialState = {
 export const sheetReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_MAIN_SCHEDULE:
-            return { ...state, mainScheduleInput:action.payload }
+            return { ...state, mainScheduleInput:[...action.payload] }
         default: return state;
     }
 };

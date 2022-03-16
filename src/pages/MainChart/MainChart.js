@@ -37,6 +37,63 @@ const testData = [
     },
 ];
 
+const SearchBar = () => {
+    return (
+        <div className={styleSearchBar.searchBar}>
+            <div className={styleSearchBar.dateFieldBlock}>
+                <fieldset>
+                    <legend>Дата</legend>
+                    <input type="month"/>
+                </fieldset>
+            </div>
+            <div className={styleSearchBar.searchFieldBlock}>
+                <fieldset>
+                    <legend>Поиск</legend>
+                    <input type="text" placeholder="Имя, инициалы, должность"/>
+                </fieldset>
+            </div>
+            <div className={styleSearchBar.buttonBlock}>
+                <button className="btn btn-main">Сохранить</button>
+            </div>
+            <div className={styleSearchBar.buttonBlock}>
+                <button className="btn btn-secondary">Сохранить в excel</button>
+            </div>
+        </div>
+    )
+}
+
+const HelpBar = () => {
+    return (
+        <div className={styleHelpBar.helpBar}>
+            <div className={styleHelpBar.helps}>
+                <div className={`${styleHelpBar.helpsBlock} ${styleHelpBar.workedOut} ${styles.mr8}`}><span
+                    className={styleHelpBar.commonSign}>P</span></div>
+                <span className={styleHelpBar.helpsTitle}>Отработано</span>
+            </div>
+            <div className={styleHelpBar.helps}>
+                <div className={`${styleHelpBar.helpsBlock} ${styleHelpBar.mission} ${styles.mr8}`}><span
+                    className={styleHelpBar.commonSign}>К</span></div>
+                <span className={styleHelpBar.helpsTitle}>Командировочные</span>
+            </div>
+            <div className={styleHelpBar.helps}>
+                <div className={`${styleHelpBar.helpsBlock} ${styleHelpBar.sickLeave} ${styles.mr8}`}><span
+                    className={styleHelpBar.commonSign}>Б</span></div>
+                <span className={styleHelpBar.helpsTitle}>Больничные</span>
+            </div>
+            <div className={styleHelpBar.helps}>
+                <div className={`${styleHelpBar.helpsBlock} ${styleHelpBar.furlough} ${styles.mr8}`}><span
+                    className={styleHelpBar.commonSign}>О</span></div>
+                <span className={styleHelpBar.helpsTitle}>Отпуск</span>
+            </div>
+            <div className={styleHelpBar.helps}>
+                <div className={`${styleHelpBar.helpsBlock} ${styleHelpBar.coefficient} ${styles.mr8}`}><span
+                    className={styleHelpBar.commonSign}>К.Э</span></div>
+                <span className={styleHelpBar.helpsTitle}>Коэффициент</span>
+            </div>
+        </div>
+    )
+}
+
 const TableBarHeader = () => {
     return (
         <div className={styleTableBarHeader.TableBarHeader}>
@@ -74,6 +131,8 @@ const TableBarHeader = () => {
 const TableBarBody = () => {
 
     const data = useSelector(state => state.sheet.mainScheduleInput);
+
+    console.log(data);
 
     const onClickRow = (event, type) => {
         const currentRow = event.currentTarget.parentNode;
@@ -194,65 +253,7 @@ const TableBarBody = () => {
     )
 }
 
-const SearchBar = () => {
-    return (
-        <div className={styleSearchBar.searchBar}>
-            <div className={styleSearchBar.dateFieldBlock}>
-                <fieldset>
-                    <legend>Дата</legend>
-                    <input type="month"/>
-                </fieldset>
-            </div>
-            <div className={styleSearchBar.searchFieldBlock}>
-                <fieldset>
-                    <legend>Поиск</legend>
-                    <input type="text" placeholder="Имя, инициалы, должность"/>
-                </fieldset>
-            </div>
-            <div className={styleSearchBar.buttonBlock}>
-                <button className="btn btn-main">Сохранить</button>
-            </div>
-            <div className={styleSearchBar.buttonBlock}>
-                <button className="btn btn-secondary">Сохранить в excel</button>
-            </div>
-        </div>
-    )
-}
-
-const HelpBar = () => {
-    return (
-        <div className={styleHelpBar.helpBar}>
-            <div className={styleHelpBar.helps}>
-                <div className={`${styleHelpBar.helpsBlock} ${styleHelpBar.workedOut} ${styles.mr8}`}><span
-                    className={styleHelpBar.commonSign}>P</span></div>
-                <span className={styleHelpBar.helpsTitle}>Отработано</span>
-            </div>
-            <div className={styleHelpBar.helps}>
-                <div className={`${styleHelpBar.helpsBlock} ${styleHelpBar.mission} ${styles.mr8}`}><span
-                    className={styleHelpBar.commonSign}>К</span></div>
-                <span className={styleHelpBar.helpsTitle}>Командировочные</span>
-            </div>
-            <div className={styleHelpBar.helps}>
-                <div className={`${styleHelpBar.helpsBlock} ${styleHelpBar.sickLeave} ${styles.mr8}`}><span
-                    className={styleHelpBar.commonSign}>Б</span></div>
-                <span className={styleHelpBar.helpsTitle}>Больничные</span>
-            </div>
-            <div className={styleHelpBar.helps}>
-                <div className={`${styleHelpBar.helpsBlock} ${styleHelpBar.furlough} ${styles.mr8}`}><span
-                    className={styleHelpBar.commonSign}>О</span></div>
-                <span className={styleHelpBar.helpsTitle}>Отпуск</span>
-            </div>
-            <div className={styleHelpBar.helps}>
-                <div className={`${styleHelpBar.helpsBlock} ${styleHelpBar.coefficient} ${styles.mr8}`}><span
-                    className={styleHelpBar.commonSign}>К.Э</span></div>
-                <span className={styleHelpBar.helpsTitle}>Коэффициент</span>
-            </div>
-        </div>
-    )
-}
-
 const TableBar = () => {
-
     const clickCloseContextMenu = (event) => {
         if (event.target.classList.contains('s') || event.target.classList.contains('menu') || event.target.parentNode.classList.contains('s')) return;
 
