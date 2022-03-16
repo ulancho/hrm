@@ -159,7 +159,7 @@ const TableBarBody = () => {
                                             <div key={indexD} onContextMenu={onContextCell}
                                                  className={`d ${styleTableBarBody.square} ${styleTableBarBody[freeDayClass(d.value)]}`}>
                                                 <span className="d">{getDay(d.date)}</span>
-                                                <ContextMenu employeeId={item.employee_id}/>
+                                                <ContextMenu data={item} indexData={index} employeeId={item.employee_id} indexDate={indexD} date={d.date}/>
                                                 <div/>
                                             </div>
                                         )
