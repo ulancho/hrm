@@ -1,7 +1,7 @@
 import {
     GET_EMPLOYEES,
     HIDE_PRELOADER,
-    SET_MAIN_SCHEDULE,
+    SET_MAIN_SCHEDULE_INPUT,
     SHOW_FAIL_API_MODAL,
     SHOW_PRELOADER
 } from "./types";
@@ -55,7 +55,7 @@ export function getMainSchedule() {
             }
         })
             .then((responseJson) => {
-                dispatch({ type:SET_MAIN_SCHEDULE, payload:responseJson })
+                dispatch({ type:SET_MAIN_SCHEDULE_INPUT, payload:responseJson })
                 dispatch({ type:HIDE_PRELOADER })
             })
             .catch((error) => {
@@ -64,3 +64,5 @@ export function getMainSchedule() {
             });
     }
 }
+
+
