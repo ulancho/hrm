@@ -5,7 +5,7 @@ import styleHelpBar from "./HelpBar.module.css";
 import styleTableBarHeader from "./TableBarHeader.module.css";
 import styleTableBarBody from "./TableBarBody.module.css";
 import {useDispatch, useSelector} from "react-redux";
-import {getMainSchedule} from "../../redux/actions";
+import {getMainSchedule, saveMainSchedule} from "../../redux/actions";
 import {getDay} from "../../helpers";
 import {ContextMenu} from "../../components/contextMenu/ContextMenu";
 
@@ -39,6 +39,14 @@ const testData = [
 
 /********************** доп. компоненты ********************/
 const SearchBar = () => {
+    const dispatch = useDispatch();
+    const mainScheduleOutput = useSelector(state => state.sheet.mainScheduleOutput);
+
+    /********************** обработчики для событий ********************/
+    const clickSave = () => {
+        dispatch(saveMainSchedule(mainScheduleOutput));
+    }
+
     return (
         <div className={styleSearchBar.searchBar}>
             <div className={styleSearchBar.dateFieldBlock}>
@@ -54,7 +62,7 @@ const SearchBar = () => {
                 </fieldset>
             </div>
             <div className={styleSearchBar.buttonBlock}>
-                <button className="btn btn-main">Сохранить</button>
+                <button onClick={clickSave} className="btn btn-main">Сохранить</button>
             </div>
             <div className={styleSearchBar.buttonBlock}>
                 <button className="btn btn-secondary">Сохранить в excel</button>
@@ -281,6 +289,8 @@ const TableBar = () => {
     )
 }
 
+
+/********************** главный компоненты ********************/
 export const MainChart = () => {
     const dispatch = useDispatch();
 

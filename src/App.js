@@ -8,7 +8,7 @@ import {Employees} from "./pages/Employees/Employees";
 import {Preloader} from "./components/preloader/Preloader";
 import {BackdropModal, ErrorApiModal} from "./components/modal/Modal";
 import {SideBar} from "./components/sideBar/SideBar";
-import ContextMenu from "./components/contextMenu/ContextMenu";
+import {Toaster} from "react-hot-toast";
 
 function App() {
     return (
@@ -26,7 +26,7 @@ function App() {
             <Preloader/>
             <BackdropModal/>
             <ErrorApiModal/>
-            {/*<ContextMenu/>*/}
+            <Toaster />
         </BrowserRouter>
     );
 }
