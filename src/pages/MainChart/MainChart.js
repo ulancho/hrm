@@ -47,6 +47,15 @@ const SearchBar = () => {
         dispatch(saveMainSchedule(mainScheduleOutput));
     }
 
+    /********************** доп.компоненты ********************/
+    const SaveButton = () => {
+        if (mainScheduleOutput.length > 0) {
+            return <button onClick={clickSave} className="btn btn-main">Сохранить</button>
+        } else {
+            return <button className="btn btn-main btn-not-allowed">Сохранить</button>
+        }
+    }
+
     return (
         <div className={styleSearchBar.searchBar}>
             <div className={styleSearchBar.dateFieldBlock}>
@@ -62,7 +71,7 @@ const SearchBar = () => {
                 </fieldset>
             </div>
             <div className={styleSearchBar.buttonBlock}>
-                <button onClick={clickSave} className="btn btn-main">Сохранить</button>
+                <SaveButton/>
             </div>
             <div className={styleSearchBar.buttonBlock}>
                 <button className="btn btn-secondary">Сохранить в excel</button>
@@ -208,7 +217,8 @@ const TableBarBody = () => {
                                     className={styleHelpBar.commonSign}>2.00</span></div>
                             </div>
                         </div>
-                        <div className={`${styleTableBarBody.tableBarBody} ${styleTableBarBody.table2} ${styleTableBarBody.tableBarBody2} d-none`}>
+                        <div
+                            className={`${styleTableBarBody.tableBarBody} ${styleTableBarBody.table2} ${styleTableBarBody.tableBarBody2} d-none`}>
                             <div className={styleTableBarBody.num}>
                                 <span>{index + 1}</span>
                             </div>
@@ -225,7 +235,9 @@ const TableBarBody = () => {
                                             <div key={indexD} onContextMenu={onContextCell}
                                                  className={`d ${styleTableBarBody.square} ${styleTableBarBody[freeDayClass(d.value)]}`}>
                                                 <span className="d">{getDay(d.date)}</span>
-                                                <ContextMenu allData={item} indexData={index} employeeId={item.employee_id} indexDate={indexD} date={d.date}/>
+                                                <ContextMenu allData={item} indexData={index}
+                                                             employeeId={item.employee_id} indexDate={indexD}
+                                                             date={d.date}/>
                                                 <div/>
                                             </div>
                                         )
@@ -261,15 +273,17 @@ const TableBarBody = () => {
 }
 
 const TableBar = () => {
+
+    /********************** обработчики для событий ********************/
     const clickCloseContextMenu = (event) => {
         if (event.target.classList.contains('s') || event.target.classList.contains('menu') || event.target.parentNode.classList.contains('s')) return;
 
         let menu = document.querySelectorAll('.menu');
         let activeCell = document.querySelectorAll('.active-cell');
-        for(let i = 0; i < menu.length; i++){
+        for (let i = 0; i < menu.length; i++) {
             menu[i].classList.add('d-none');
         }
-        for(let i = 0; i < activeCell.length; i++){
+        for (let i = 0; i < activeCell.length; i++) {
             activeCell[i].classList.remove('active-cell');
         }
     }
@@ -290,7 +304,7 @@ const TableBar = () => {
 }
 
 
-/********************** главный компоненты ********************/
+/********************** главный компонент ********************/
 export const MainChart = () => {
     const dispatch = useDispatch();
 
