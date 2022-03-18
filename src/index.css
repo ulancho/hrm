@@ -266,6 +266,6 @@ legend{
     background: #A3CAFA;
 }
 
-.s:hover{
-    background: #d6e3f4;
+.s:not(.active-status):hover{
+    background: #cfd1d5dc;
 }
