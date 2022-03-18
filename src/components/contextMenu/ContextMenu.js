@@ -68,7 +68,7 @@ export const ContextMenu = ({allData, employeeId, indexData, date, indexDate}) =
 
     /********************** доп. компоненты ********************/
     const HoursField = () => {
-        return <input className={styles.hoursFiled} onChange={changeHoursField} value={hours} autoFocus type="text" placeholder="Отработанные часы"/>
+        return <input className={`${styles.hoursFiled} hours-field`} onChange={changeHoursField} value={hours} autoFocus type="text" placeholder="Отработанные часы"/>
     }
 
 
