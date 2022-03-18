@@ -150,7 +150,12 @@ const TableBarBody = () => {
 
     const data = useSelector(state => state.sheet.mainScheduleInput);
 
+    const freeDayClass = (value) => value === 'В' ? 'freeDay' : '';
+
+
+    /********************** обработчики для событий ********************/
     const onClickRow = (event, type) => {
+        if (event.target.classList.contains('s') || event.target.classList.contains('menu') || event.target.classList.contains('hours-field')) return;
         const currentRow = event.currentTarget.parentNode;
         if (type === 1) {
             currentRow.nextElementSibling.classList.remove('d-none');
@@ -167,13 +172,12 @@ const TableBarBody = () => {
         event.currentTarget.querySelector('.menu').classList.toggle('d-none');
     }
 
-    const freeDayClass = (value) => value === 'В' ? 'freeDay' : '';
-
     return (
         data.length > 0 ?
             data.map((item, index) => {
                 return (
                     <React.Fragment key={item.employee_id}>
+                        {/*До клика*/}
                         <div className={styleTableBarBody.tableBarBody}>
                             <div className={styleTableBarBody.num}>
                                 <span>{index + 1}</span>
@@ -184,7 +188,9 @@ const TableBarBody = () => {
                                 <p>{item.full_name}</p>
                                 <p>{item.position?.title}</p>
                             </div>
-                            <div className={`${styleTableBarBody.calendar} ${styleTableBarBody.table1}`}>
+                            <div onClick={(e) => {
+                                onClickRow(e, 1)
+                            }} className={`${styleTableBarBody.calendar} ${styleTableBarBody.table1}`}>
                                 {
                                     item.days.map((d, indexD) => {
                                         return (
@@ -217,8 +223,8 @@ const TableBarBody = () => {
                                     className={styleHelpBar.commonSign}>2.00</span></div>
                             </div>
                         </div>
-                        <div
-                            className={`${styleTableBarBody.tableBarBody} ${styleTableBarBody.table2} ${styleTableBarBody.tableBarBody2} d-none`}>
+                        {/*После клика*/}
+                        <div className={`${styleTableBarBody.tableBarBody} ${styleTableBarBody.table2} ${styleTableBarBody.tableBarBody2} d-none`}>
                             <div className={styleTableBarBody.num}>
                                 <span>{index + 1}</span>
                             </div>
@@ -228,7 +234,9 @@ const TableBarBody = () => {
                                 <p>{item.full_name}</p>
                                 <p>{item.position?.title}</p>
                             </div>
-                            <div className={`${styleTableBarBody.calendar}`}>
+                            <div onClick={(e) => {
+                                onClickRow(e, 2)
+                            }} className={`${styleTableBarBody.calendar}`}>
                                 {
                                     item.days.map((d, indexD) => {
                                         return (
