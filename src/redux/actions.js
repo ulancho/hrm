@@ -48,7 +48,7 @@ export function getMainSchedule() {
                 'Authorization': 'Bearer ' + TOKEN
             }
         };
-        fetch(BASE_URL+'schedule/sheet/?is_remote=0', options).then((response) => {
+        fetch(BASE_URL+'schedule/sheet/?is_remote=0&limit=1&offset=1270', options).then((response) => {
             if (response.ok) {
                 return response.json();
             } else {
