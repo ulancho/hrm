@@ -173,8 +173,8 @@ const TableBarBody = () => {
     }
 
     return (
-        data.length > 0 ?
-            data.map((item, index) => {
+        data.count > 0 ?
+            data.data.map((item, index) => {
                 return (
                     <React.Fragment key={item.employee_id}>
                         {/*До клика*/}
@@ -202,25 +202,25 @@ const TableBarBody = () => {
                                 }
                             </div>
                             <div className={styleTableBarBody.allSum}>
-                                <div className={styleTableBarBody.square}><span>136</span></div>
-                                <div className={styleTableBarBody.square}><span>136</span></div>
+                                <div className={styleTableBarBody.square}><span>{item.overall ? (item.overall.total_days ||= 0) : 0}</span></div>
+                                <div className={styleTableBarBody.square}><span>{item.overall ? (item.overall.total_hours ||= 0) : 0}</span></div>
                             </div>
                             <div className={styleTableBarBody.allSum}>
-                                <div className={styleTableBarBody.square}><span>8</span></div>
-                                <div className={styleTableBarBody.square}><span>8</span></div>
+                                <div className={styleTableBarBody.square}><span>{item.overall ? (item.overall.secondment ||= 0) : 0}</span></div>
+                                <div className={styleTableBarBody.square}><span>{item.overall ? (item.overall.secondment_hours ||= 0) : 0}</span></div>
                             </div>
                             <div className={styleTableBarBody.allSum}>
-                                <div className={styleTableBarBody.square}><span>15</span></div>
-                                <div className={styleTableBarBody.square}><span>15</span></div>
+                                <div className={styleTableBarBody.square}><span>{item.overall ? (item.overall.sick ||= 0) : 0}</span></div>
+                                <div className={styleTableBarBody.square}><span>{item.overall ? (item.overall.sick_hours ||= 0) : 0}</span></div>
                             </div>
                             <div className={styleTableBarBody.allSum}>
-                                <div className={styleTableBarBody.square}><span>366</span></div>
-                                <div className={styleTableBarBody.square}><span>366</span></div>
+                                <div className={styleTableBarBody.square}><span>{item.overall ? (item.overall.vacation ||= 0) : 0}</span></div>
+                                <div className={styleTableBarBody.square}><span>{item.overall ? (item.overall.vacation_hours ||= 0) : 0}</span></div>
                             </div>
                             <div>
                                 <div
                                     className={`${styleTableBarBody.coefficient} ${styleHelpBar.helpsBlock} ${styleHelpBar.coefficient}`}><span
-                                    className={styleHelpBar.commonSign}>2.00</span></div>
+                                    className={styleHelpBar.commonSign}>{item.overall ? (item.overall.ratio ||= 0) : 0}</span></div>
                             </div>
                         </div>
                         {/*После клика*/}
