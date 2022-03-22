@@ -102,7 +102,7 @@
 
 .coefficient{
     height: 100% !important;
-    max-width: 54px!important;
+    min-width: 54px!important;
 }
 
 .allSum{

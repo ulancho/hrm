@@ -68,4 +68,5 @@
     border: 1px solid #F7F7FA;
     box-sizing: border-box;
     border-radius: 4px;
+    min-width: 54px!important;
 }
