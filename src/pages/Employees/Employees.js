@@ -141,6 +141,13 @@ const TableBar = () => {
     const [pageCount, setPageCount] = useState(0);
     const [itemOffset, setItemOffset] = useState(0);
 
+    /********************** обработчики для событий ********************/
+    const handlePageClick = (event) => {
+        const newOffset = event.selected * itemsPerPage % employeesList.count;
+        setItemOffset(newOffset);
+    };
+
+    /********************** хуки ********************/
     useEffect(() => {
         setPageCount(Math.ceil(employeesList.count / itemsPerPage));
     }, [employeesList]);
@@ -149,11 +156,6 @@ const TableBar = () => {
         dispatch(getEmployees({offset: itemOffset, limit: itemsPerPage}));
     }, [itemOffset]);
 
-
-    const handlePageClick = (event) => {
-        const newOffset = event.selected * itemsPerPage % employeesList.count;
-        setItemOffset(newOffset);
-    };
 
 
     return (
@@ -183,6 +185,7 @@ const TableBar = () => {
     )
 }
 
+/********************** главный компонент ********************/
 export const Employees = () => {
     return (
         <>
