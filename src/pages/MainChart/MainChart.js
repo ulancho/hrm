@@ -9,34 +9,6 @@ import {getMainSchedule, saveMainSchedule} from "../../redux/actions";
 import {getDay} from "../../helpers";
 import {ContextMenu} from "../../components/contextMenu/ContextMenu";
 
-const testData = [
-    {
-        "id": null,
-        "employee_id": "04bce0d5-95d3-4306-a32e-41e58e0b8a89",
-        "full_name": "Admin",
-        "position": null,
-        "days": [
-            {
-                "id": null,
-                "date": "2022-03-01",
-                "value": null
-            }
-        ],
-        "overall": [
-            {
-                "id": null,
-                "employee_id": "04bce0d5-95d3-4306-a32e-41e58e0b8a89",
-                "total_hours": 8,
-                "total_days": 1,
-                "sick": 0,
-                "vacation": 0,
-                "secondment": 0,
-                "remote": 0
-            }
-        ]
-    },
-];
-
 /********************** доп. компоненты ********************/
 const SearchBar = () => {
     const dispatch = useDispatch();
@@ -172,6 +144,26 @@ const TableBarBody = () => {
         event.currentTarget.querySelector('.menu').classList.toggle('d-none');
     }
 
+    /********************** доп. компоненты ********************/
+    const OverallCell = ({item, day, hour}) => {
+        return (
+            <div className={styleTableBarBody.allSum}>
+                <div className={styleTableBarBody.square}><span>{item.overall ? (day ||= 0) : 0}</span></div>
+                <div className={styleTableBarBody.square}><span>{item.overall ? (hour ||= 0) : 0}</span></div>
+            </div>
+        )
+    }
+
+    const RationCell = ({item}) => {
+        return (
+            <div>
+                <div className={`${styleTableBarBody.coefficient} ${styleHelpBar.helpsBlock} ${styleHelpBar.coefficient}`}>
+                    <span className={styleHelpBar.commonSign}>{item.overall ? (item.overall.ratio ||= 0) : 0}</span>
+                </div>
+            </div>
+        )
+    }
+
     return (
         data.count > 0 ?
             data.data.map((item, index) => {
@@ -182,15 +174,11 @@ const TableBarBody = () => {
                             <div className={styleTableBarBody.num}>
                                 <span>{index + 1}</span>
                             </div>
-                            <div onClick={(e) => {
-                                onClickRow(e, 1)
-                            }} className={styleTableBarBody.name}>
+                            <div onClick={(e) => {onClickRow(e, 1)}} className={styleTableBarBody.name}>
                                 <p>{item.full_name}</p>
                                 <p>{item.position?.title}</p>
                             </div>
-                            <div onClick={(e) => {
-                                onClickRow(e, 1)
-                            }} className={`${styleTableBarBody.calendar} ${styleTableBarBody.table1}`}>
+                            <div onClick={(e) => {onClickRow(e, 1)}} className={`${styleTableBarBody.calendar} ${styleTableBarBody.table1}`}>
                                 {
                                     item.days.map((d, indexD) => {
                                         return (
@@ -201,42 +189,27 @@ const TableBarBody = () => {
                                     })
                                 }
                             </div>
-                            <div className={styleTableBarBody.allSum}>
-                                <div className={styleTableBarBody.square}><span>{item.overall ? (item.overall.total_days ||= 0) : 0}</span></div>
-                                <div className={styleTableBarBody.square}><span>{item.overall ? (item.overall.total_hours ||= 0) : 0}</span></div>
-                            </div>
-                            <div className={styleTableBarBody.allSum}>
-                                <div className={styleTableBarBody.square}><span>{item.overall ? (item.overall.secondment ||= 0) : 0}</span></div>
-                                <div className={styleTableBarBody.square}><span>{item.overall ? (item.overall.secondment_hours ||= 0) : 0}</span></div>
-                            </div>
-                            <div className={styleTableBarBody.allSum}>
-                                <div className={styleTableBarBody.square}><span>{item.overall ? (item.overall.sick ||= 0) : 0}</span></div>
-                                <div className={styleTableBarBody.square}><span>{item.overall ? (item.overall.sick_hours ||= 0) : 0}</span></div>
-                            </div>
-                            <div className={styleTableBarBody.allSum}>
-                                <div className={styleTableBarBody.square}><span>{item.overall ? (item.overall.vacation ||= 0) : 0}</span></div>
-                                <div className={styleTableBarBody.square}><span>{item.overall ? (item.overall.vacation_hours ||= 0) : 0}</span></div>
-                            </div>
-                            <div>
-                                <div
-                                    className={`${styleTableBarBody.coefficient} ${styleHelpBar.helpsBlock} ${styleHelpBar.coefficient}`}><span
-                                    className={styleHelpBar.commonSign}>{item.overall ? (item.overall.ratio ||= 0) : 0}</span></div>
-                            </div>
+                            {/*Отработано*/}
+                            <OverallCell item={item} day={item.overall.total_days} hour={item.overall.total_hours}/>
+                            {/*Командировачные*/}
+                            <OverallCell item={item} day={item.overall.secondment} hour={item.overall.secondment_hours}/>
+                            {/*Больничные*/}
+                            <OverallCell item={item} day={item.overall.sick} hour={item.overall.sick_hours}/>
+                            {/*Отпуск*/}
+                            <OverallCell item={item} day={item.overall.vacation} hour={item.overall.vacation_hours}/>
+                            {/*Коэффициент*/}
+                            <RationCell item={item}/>
                         </div>
                         {/*После клика*/}
                         <div className={`${styleTableBarBody.tableBarBody} ${styleTableBarBody.table2} ${styleTableBarBody.tableBarBody2} d-none`}>
                             <div className={styleTableBarBody.num}>
                                 <span>{index + 1}</span>
                             </div>
-                            <div onClick={(e) => {
-                                onClickRow(e, 2)
-                            }} className={styleTableBarBody.name}>
+                            <div onClick={(e) => {onClickRow(e, 2)}} className={styleTableBarBody.name}>
                                 <p>{item.full_name}</p>
                                 <p>{item.position?.title}</p>
                             </div>
-                            <div onClick={(e) => {
-                                onClickRow(e, 2)
-                            }} className={`${styleTableBarBody.calendar}`}>
+                            <div onClick={(e) => {onClickRow(e, 2)}} className={`${styleTableBarBody.calendar}`}>
                                 {
                                     item.days.map((d, indexD) => {
                                         return (
@@ -252,27 +225,16 @@ const TableBarBody = () => {
                                     })
                                 }
                             </div>
-                            <div className={styleTableBarBody.allSum}>
-                                <div className={styleTableBarBody.square}><span>136</span></div>
-                                <div className={styleTableBarBody.square}><span>136</span></div>
-                            </div>
-                            <div className={styleTableBarBody.allSum}>
-                                <div className={styleTableBarBody.square}><span>8</span></div>
-                                <div className={styleTableBarBody.square}><span>8</span></div>
-                            </div>
-                            <div className={styleTableBarBody.allSum}>
-                                <div className={styleTableBarBody.square}><span>15</span></div>
-                                <div className={styleTableBarBody.square}><span>15</span></div>
-                            </div>
-                            <div className={styleTableBarBody.allSum}>
-                                <div className={styleTableBarBody.square}><span>366</span></div>
-                                <div className={styleTableBarBody.square}><span>366</span></div>
-                            </div>
-                            <div>
-                                <div
-                                    className={`${styleTableBarBody.coefficient} ${styleHelpBar.helpsBlock} ${styleHelpBar.coefficient}`}><span
-                                    className={styleHelpBar.commonSign}>2.00</span></div>
-                            </div>
+                            {/*Отработано*/}
+                            <OverallCell item={item} day={item.overall.total_days} hour={item.overall.total_hours}/>
+                            {/*Командировачные*/}
+                            <OverallCell item={item} day={item.overall.secondment} hour={item.overall.secondment_hours}/>
+                            {/*Больничные*/}
+                            <OverallCell item={item} day={item.overall.sick} hour={item.overall.sick_hours}/>
+                            {/*Отпуск*/}
+                            <OverallCell item={item} day={item.overall.vacation} hour={item.overall.vacation_hours}/>
+                            {/*Коэффициент*/}
+                            <RationCell item={item}/>
                         </div>
                     </React.Fragment>
                 )
