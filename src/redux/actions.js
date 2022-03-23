@@ -1,7 +1,7 @@
 import {
     GET_EMPLOYEES,
     HIDE_PRELOADER,
-    SET_MAIN_SCHEDULE_INPUT,
+    SET_MAIN_SCHEDULE_INPUT, SET_MAIN_SCHEDULE_PAGINATION,
     SHOW_FAIL_API_MODAL,
     SHOW_PRELOADER
 } from "./types";
@@ -39,16 +39,18 @@ export function getEmployees(options) {
 }
 
 /************* получение таблицы основной график *************/
-export function getMainSchedule(inner=false) {
+export function getMainSchedule(options,inner=false) {
+    const params = '&limit='+ options.limit +'&offset=' + options.offset;
     return dispatch => {
+        dispatch({type:SET_MAIN_SCHEDULE_PAGINATION, payload:options})
         if(!inner) dispatch({ type:SHOW_PRELOADER });
-        const options = {
+        const opt = {
             method: 'get',
             headers: {
                 'Authorization': 'Bearer ' + TOKEN
             }
         };
-        fetch(BASE_URL+'schedule/sheet/?is_remote=0&limit=1&offset=1270', options).then((response) => {
+        fetch(BASE_URL+'schedule/sheet/?is_remote=0' + params, opt).then((response) => {
             if (response.ok) {
                 return response.json();
             } else {
@@ -67,7 +69,7 @@ export function getMainSchedule(inner=false) {
 }
 
 /************* сохранение таблицы основной график *************/
-export function saveMainSchedule(data) {
+export function saveMainSchedule(data,pagination) {
     return dispatch => {
         dispatch({ type:SHOW_PRELOADER });
         const options = {
@@ -87,7 +89,7 @@ export function saveMainSchedule(data) {
         })
             .then((responseJson) => {
                 toast.success('Данные успешно сохранены',{ position: 'top-right',});
-                dispatch(getMainSchedule(true));
+                dispatch(getMainSchedule(pagination,true));
             })
             .catch((error) => {
                 dispatch({ type:HIDE_PRELOADER, payload:{preloader: 'hide', backdropModal: 'hide'} })

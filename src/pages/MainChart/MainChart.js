@@ -1,22 +1,24 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import styles from "./MainChart.module.css";
 import styleSearchBar from "./SearchBar.module.css";
 import styleHelpBar from "./HelpBar.module.css";
 import styleTableBarHeader from "./TableBarHeader.module.css";
 import styleTableBarBody from "./TableBarBody.module.css";
 import {useDispatch, useSelector} from "react-redux";
-import {getMainSchedule, saveMainSchedule} from "../../redux/actions";
+import {getEmployees, getMainSchedule, saveMainSchedule} from "../../redux/actions";
 import {getDay} from "../../helpers";
 import {ContextMenu} from "../../components/contextMenu/ContextMenu";
+import ReactPaginate from "react-paginate";
 
 /********************** доп. компоненты ********************/
 const SearchBar = () => {
     const dispatch = useDispatch();
     const mainScheduleOutput = useSelector(state => state.sheet.mainScheduleOutput);
+    const mainSchedulePagination = useSelector(state => state.sheet.mainSchedulePagination);
 
     /********************** обработчики для событий ********************/
     const clickSave = () => {
-        dispatch(saveMainSchedule(mainScheduleOutput));
+        dispatch(saveMainSchedule(mainScheduleOutput,mainSchedulePagination));
     }
 
     /********************** доп.компоненты ********************/
@@ -118,12 +120,8 @@ const TableBarHeader = () => {
     )
 }
 
-const TableBarBody = () => {
-
-    const data = useSelector(state => state.sheet.mainScheduleInput);
-
+const TableBarBody = ({items}) => {
     const freeDayClass = (value) => value === 'В' ? 'freeDay' : '';
-
 
     /********************** обработчики для событий ********************/
     const onClickRow = (event, type) => {
@@ -145,28 +143,28 @@ const TableBarBody = () => {
     }
 
     /********************** доп. компоненты ********************/
-    const OverallCell = ({item, day, hour}) => {
+    const OverallCell = ({day=0, hour=0}) => {
         return (
             <div className={styleTableBarBody.allSum}>
-                <div className={styleTableBarBody.square}><span>{item.overall ? (day ||= 0) : 0}</span></div>
-                <div className={styleTableBarBody.square}><span>{item.overall ? (hour ||= 0) : 0}</span></div>
+                <div className={styleTableBarBody.square}><span>{day}</span></div>
+                <div className={styleTableBarBody.square}><span>{hour}</span></div>
             </div>
         )
     }
 
-    const RationCell = ({item}) => {
+    const RationCell = ({ratio=0}) => {
         return (
             <div>
                 <div className={`${styleTableBarBody.coefficient} ${styleHelpBar.helpsBlock} ${styleHelpBar.coefficient}`}>
-                    <span className={styleHelpBar.commonSign}>{item.overall ? (item.overall.ratio ||= 0) : 0}</span>
+                    <span className={styleHelpBar.commonSign}>{ratio}</span>
                 </div>
             </div>
         )
     }
 
     return (
-        data.count > 0 ?
-            data.data.map((item, index) => {
+        items.count > 0 ?
+            items.data.map((item, index) => {
                 return (
                     <React.Fragment key={item.employee_id}>
                         {/*До клика*/}
@@ -190,15 +188,15 @@ const TableBarBody = () => {
                                 }
                             </div>
                             {/*Отработано*/}
-                            <OverallCell item={item} day={item.overall.total_days} hour={item.overall.total_hours}/>
+                            <OverallCell day={item.overall?.total_days} hour={item.overall?.total_hours}/>
                             {/*Командировачные*/}
-                            <OverallCell item={item} day={item.overall.secondment} hour={item.overall.secondment_hours}/>
+                            <OverallCell day={item.overall?.secondment} hour={item.overall?.secondment_hours}/>
                             {/*Больничные*/}
-                            <OverallCell item={item} day={item.overall.sick} hour={item.overall.sick_hours}/>
+                            <OverallCell day={item.overall?.sick} hour={item.overall?.sick_hours}/>
                             {/*Отпуск*/}
-                            <OverallCell item={item} day={item.overall.vacation} hour={item.overall.vacation_hours}/>
+                            <OverallCell day={item.overall?.vacation} hour={item.overall?.vacation_hours}/>
                             {/*Коэффициент*/}
-                            <RationCell item={item}/>
+                            <RationCell ratio={item.overall?.ratio}/>
                         </div>
                         {/*После клика*/}
                         <div className={`${styleTableBarBody.tableBarBody} ${styleTableBarBody.table2} ${styleTableBarBody.tableBarBody2} d-none`}>
@@ -226,15 +224,15 @@ const TableBarBody = () => {
                                 }
                             </div>
                             {/*Отработано*/}
-                            <OverallCell item={item} day={item.overall.total_days} hour={item.overall.total_hours}/>
+                            <OverallCell day={item.overall?.total_days} hour={item.overall?.total_hours}/>
                             {/*Командировачные*/}
-                            <OverallCell item={item} day={item.overall.secondment} hour={item.overall.secondment_hours}/>
+                            <OverallCell day={item.overall?.secondment} hour={item.overall?.secondment_hours}/>
                             {/*Больничные*/}
-                            <OverallCell item={item} day={item.overall.sick} hour={item.overall.sick_hours}/>
+                            <OverallCell day={item.overall?.sick} hour={item.overall?.sick_hours}/>
                             {/*Отпуск*/}
-                            <OverallCell item={item} day={item.overall.vacation} hour={item.overall.vacation_hours}/>
+                            <OverallCell day={item.overall?.vacation} hour={item.overall?.vacation_hours}/>
                             {/*Коэффициент*/}
-                            <RationCell item={item}/>
+                            <RationCell ratio={item.overall?.ratio}/>
                         </div>
                     </React.Fragment>
                 )
@@ -243,6 +241,11 @@ const TableBarBody = () => {
 }
 
 const TableBar = () => {
+    const dispatch = useDispatch();
+    const employeesList = useSelector(state => state.sheet.mainScheduleInput);
+    const itemsPerPage = 10;
+    const [pageCount, setPageCount] = useState(0);
+    const [itemOffset, setItemOffset] = useState(0);
 
     /********************** обработчики для событий ********************/
     const clickCloseContextMenu = (event) => {
@@ -258,6 +261,20 @@ const TableBar = () => {
         }
     }
 
+    const handlePageClick = (event) => {
+        const newOffset = event.selected * itemsPerPage % employeesList.count;
+        setItemOffset(newOffset);
+    };
+
+    /********************** хуки ********************/
+    useEffect(() => {
+        setPageCount(Math.ceil(employeesList.count / itemsPerPage));
+    }, [employeesList]);
+
+    useEffect(() => {
+        dispatch(getMainSchedule({offset: itemOffset, limit: itemsPerPage}));
+    }, [itemOffset]);
+
     useEffect(() => {
         document.addEventListener("click", clickCloseContextMenu);
         return () => {
@@ -268,20 +285,33 @@ const TableBar = () => {
     return (
         <div className={styles.tableBar}>
             <TableBarHeader/>
-            <TableBarBody/>
+            <TableBarBody items={employeesList}/>
+            <ReactPaginate
+                previousLabel="Назад"
+                nextLabel="Следующий"
+                breakLabel="..."
+                pageCount={pageCount}
+                pageRangeDisplayed={3}
+                marginPagesDisplayed={2}
+                onPageChange={handlePageClick}
+                pageClassName="page-item"
+                pageLinkClassName="page-link"
+                previousClassName="page-item"
+                previousLinkClassName="page-link"
+                nextClassName="page-item"
+                nextLinkClassName="page-link"
+                breakClassName="page-item"
+                breakLinkClassName="page-link"
+                containerClassName="pagination"
+                activeClassName="active"
+                renderOnZeroPageCount={null}
+            />
         </div>
     )
 }
 
-
 /********************** главный компонент ********************/
 export const MainChart = () => {
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(getMainSchedule());
-    }, [])
-
     return (
         <div className={`${styles.mainChart}`}>
             <SearchBar/>
