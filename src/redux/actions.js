@@ -39,9 +39,9 @@ export function getEmployees(options) {
 }
 
 /************* получение таблицы основной график *************/
-export function getMainSchedule() {
+export function getMainSchedule(inner=false) {
     return dispatch => {
-        dispatch({ type:SHOW_PRELOADER });
+        if(!inner) dispatch({ type:SHOW_PRELOADER });
         const options = {
             method: 'get',
             headers: {
@@ -87,7 +87,7 @@ export function saveMainSchedule(data) {
         })
             .then((responseJson) => {
                 toast.success('Данные успешно сохранены',{ position: 'top-right',});
-                dispatch({ type:HIDE_PRELOADER })
+                dispatch(getMainSchedule(true));
             })
             .catch((error) => {
                 dispatch({ type:HIDE_PRELOADER, payload:{preloader: 'hide', backdropModal: 'hide'} })
