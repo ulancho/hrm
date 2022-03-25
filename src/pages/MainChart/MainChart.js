@@ -9,22 +9,50 @@ import {getMainSchedule, saveMainSchedule} from "../../redux/actions";
 import {getDay} from "../../helpers";
 import {ContextMenu} from "../../components/contextMenu/ContextMenu";
 import ReactPaginate from "react-paginate";
+import {ReactComponent as SearchIcon} from "./../../media/icons/search.svg";
 
 /********************** доп. компоненты ********************/
 const SearchBar = () => {
     const dispatch = useDispatch();
     const mainScheduleOutput = useSelector(state => state.sheet.mainScheduleOutput);
     const mainSchedulePagination = useSelector(state => state.sheet.mainSchedulePagination);
+    const [searchBtnActive,setSearchBtnActive] = useState(false);
+    const [paramMonth,setParamMonth] = useState('');
+    const [paramSearch,setParamSearch] = useState('');
 
     /********************** обработчики для событий ********************/
     const clickSave = () => {
         dispatch(saveMainSchedule(mainScheduleOutput,mainSchedulePagination));
     }
 
+    const clickSaveToExcel = () => {
+        const url = 'http://10.242.147.11:8000/schedule/sheet/?is_remote=0&to_excel=true';
+        fetch(url).then((response) => {
+            return response.blob();
+        }).then((response) => {
+            const url = window.URL.createObjectURL(new Blob([response]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', `${Date.now()}.xlsx`);
+            document.body.appendChild(link);
+            link.click();
+        });
+    }
+
     const changeMonth = (event) => {
+        setParamMonth(event.currentTarget.value.slice(5,8));
+    }
+
+    const changeSearch = (event) => {
+        setParamSearch(event.currentTarget.value);
+    }
+
+    const clickSearch = () => {
         const pagination = { offset: 0, limit: 10 };
-        const params = 'month_number=' +  event.currentTarget.value.slice(5,8);
-        dispatch(getMainSchedule(pagination,false, params));
+        const month = paramMonth ? '&month_number=' +  paramMonth : '';
+        const search = paramSearch ? '&search=' +  paramSearch : '';
+        const queryParams = month + search;
+        dispatch(getMainSchedule(pagination,false, queryParams));
     }
 
     /********************** доп.компоненты ********************/
@@ -36,6 +64,33 @@ const SearchBar = () => {
         }
     }
 
+    const SearchButton = () => {
+            if(searchBtnActive){
+                return (
+                    <button onClick={clickSearch} className="btn btn-main">
+                        <SearchIcon className={styleSearchBar.searchIcon}/>
+                        Поиск
+                    </button>
+                )
+            } else {
+                return (
+                    <button onClick={clickSearch} className="btn btn-main btn-not-allowed">
+                        <SearchIcon className={styleSearchBar.searchIcon}/>
+                        Поиск
+                    </button>
+                )
+            }
+    }
+
+    /********************** хуки ********************/
+    useEffect(() => {
+        if (paramMonth || paramSearch){
+            setSearchBtnActive(true);
+        } else {
+            setSearchBtnActive(false);
+        }
+    }, [paramMonth,paramSearch]);
+
     return (
         <div className={styleSearchBar.searchBar}>
             <div className={styleSearchBar.dateFieldBlock}>
@@ -44,17 +99,29 @@ const SearchBar = () => {
                     <input onChange={changeMonth} type="month"/>
                 </fieldset>
             </div>
+            <div className={styleSearchBar.selectFieldBlock}>
+                <fieldset>
+                    <legend>Отдел</legend>
+                    <select>
+                        <option value="0">Выбрать</option>
+                        <option value="0">ГД/Отдел разработок</option>
+                    </select>
+                </fieldset>
+            </div>
             <div className={styleSearchBar.searchFieldBlock}>
                 <fieldset>
                     <legend>Поиск</legend>
-                    <input type="text" placeholder="Имя, инициалы, должность"/>
+                    <input type="text" onChange={changeSearch} placeholder="ФИО, должность"/>
                 </fieldset>
+            </div>
+            <div className={styleSearchBar.buttonBlock}>
+                <SearchButton/>
             </div>
             <div className={styleSearchBar.buttonBlock}>
                 <SaveButton/>
             </div>
             <div className={styleSearchBar.buttonBlock}>
-                <button className="btn btn-secondary">Сохранить в excel</button>
+                <button className="btn btn-secondary" onClick={clickSaveToExcel}>Сохранить в excel</button>
             </div>
         </div>
     )
