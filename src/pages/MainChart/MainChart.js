@@ -5,7 +5,7 @@ import styleHelpBar from "./HelpBar.module.css";
 import styleTableBarHeader from "./TableBarHeader.module.css";
 import styleTableBarBody from "./TableBarBody.module.css";
 import {useDispatch, useSelector} from "react-redux";
-import {getEmployees, getMainSchedule, saveMainSchedule} from "../../redux/actions";
+import {getMainSchedule, saveMainSchedule} from "../../redux/actions";
 import {getDay} from "../../helpers";
 import {ContextMenu} from "../../components/contextMenu/ContextMenu";
 import ReactPaginate from "react-paginate";
@@ -19,6 +19,12 @@ const SearchBar = () => {
     /********************** обработчики для событий ********************/
     const clickSave = () => {
         dispatch(saveMainSchedule(mainScheduleOutput,mainSchedulePagination));
+    }
+
+    const changeMonth = (event) => {
+        const pagination = { offset: 0, limit: 10 };
+        const params = 'month_number=' +  event.currentTarget.value.slice(5,8);
+        dispatch(getMainSchedule(pagination,false, params));
     }
 
     /********************** доп.компоненты ********************/
@@ -35,7 +41,7 @@ const SearchBar = () => {
             <div className={styleSearchBar.dateFieldBlock}>
                 <fieldset>
                     <legend>Дата</legend>
-                    <input type="month"/>
+                    <input onChange={changeMonth} type="month"/>
                 </fieldset>
             </div>
             <div className={styleSearchBar.searchFieldBlock}>

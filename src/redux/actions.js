@@ -39,10 +39,10 @@ export function getEmployees(options) {
 }
 
 /************* получение таблицы основной график *************/
-export function getMainSchedule(options,inner=false) {
-    const params = '&limit='+ options.limit +'&offset=' + options.offset;
+export function getMainSchedule(pagination,inner=false,options) {
+    const params = '?is_remote=0&limit='+ pagination.limit +'&offset=' + pagination.offset + '&' + options;
     return dispatch => {
-        dispatch({type:SET_MAIN_SCHEDULE_PAGINATION, payload:options})
+        dispatch({type:SET_MAIN_SCHEDULE_PAGINATION, payload:pagination})
         if(!inner) dispatch({ type:SHOW_PRELOADER });
         const opt = {
             method: 'get',
@@ -50,15 +50,17 @@ export function getMainSchedule(options,inner=false) {
                 'Authorization': 'Bearer ' + TOKEN
             }
         };
-        fetch(BASE_URL+'schedule/sheet/?is_remote=0' + params, opt).then((response) => {
-            if (response.ok) {
+        fetch(BASE_URL+'schedule/sheet/' + params, opt).then((response) => {
+            if (response.status === 200) {
                 return response.json();
+            } else if(response.status === 404){
+                toast.error('Данные по вашему запросу не найдены',{position: 'top-right'});
             } else {
                 throw new Error(response.status);
             }
         })
             .then((responseJson) => {
-                dispatch({ type:SET_MAIN_SCHEDULE_INPUT, payload:responseJson })
+                if (responseJson) dispatch({ type:SET_MAIN_SCHEDULE_INPUT, payload:responseJson })
                 dispatch({ type:HIDE_PRELOADER })
             })
             .catch((error) => {
