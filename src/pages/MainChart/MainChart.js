@@ -74,7 +74,7 @@ const SearchBar = () => {
                 )
             } else {
                 return (
-                    <button onClick={clickSearch} className="btn btn-main btn-not-allowed">
+                    <button className="btn btn-main btn-not-allowed">
                         <SearchIcon className={styleSearchBar.searchIcon}/>
                         Поиск
                     </button>
