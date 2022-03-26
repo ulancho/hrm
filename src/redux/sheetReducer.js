@@ -1,4 +1,9 @@
-import {SET_MAIN_SCHEDULE_INPUT, SET_MAIN_SCHEDULE_OUTPUT, SET_MAIN_SCHEDULE_PAGINATION} from "./types";
+import {
+    RESET_MAIN_SCHEDULE_OUTPUT,
+    SET_MAIN_SCHEDULE_INPUT,
+    SET_MAIN_SCHEDULE_OUTPUT,
+    SET_MAIN_SCHEDULE_PAGINATION
+} from "./types";
 
 const initialState = {
     mainScheduleInput:{
@@ -18,6 +23,8 @@ export const sheetReducer = (state = initialState, action) => {
             return { ...state, mainScheduleInput:{...action.payload} }
         case SET_MAIN_SCHEDULE_OUTPUT:
             return { ...state, mainScheduleOutput:[...state.mainScheduleOutput, action.payload] }
+        case RESET_MAIN_SCHEDULE_OUTPUT:
+            return { ...state, mainScheduleOutput:[] }
         case SET_MAIN_SCHEDULE_PAGINATION:
             return { ...state, mainSchedulePagination:{...action.payload} }
         default: return state;
