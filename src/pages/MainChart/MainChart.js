@@ -5,7 +5,7 @@ import styleHelpBar from "./HelpBar.module.css";
 import styleTableBarHeader from "./TableBarHeader.module.css";
 import styleTableBarBody from "./TableBarBody.module.css";
 import {useDispatch, useSelector} from "react-redux";
-import {getMainSchedule, saveMainSchedule} from "../../redux/actions";
+import {getDepartments, getMainSchedule, saveMainSchedule} from "../../redux/actions";
 import {getDay, saveFile} from "../../helpers";
 import {ContextMenu} from "../../components/contextMenu/ContextMenu";
 import ReactPaginate from "react-paginate";
@@ -17,16 +17,19 @@ const SearchBar = () => {
     const dispatch = useDispatch();
     const mainScheduleOutput = useSelector(state => state.sheet.mainScheduleOutput);
     const mainSchedulePagination = useSelector(state => state.sheet.mainSchedulePagination);
+    const departmentsList = useSelector(state => state.staff.departmentsList);
     const [searchBtnActive,setSearchBtnActive] = useState(false);
     const [paramMonth,setParamMonth] = useState('');
     const [paramSearch,setParamSearch] = useState('');
+    const [paramDepartments,setParamDepartments] = useState(0);
 
     /********************** обработчики для событий ********************/
     const clickSearch = () => {
         const pagination = { offset: 0, limit: 10 };
         const month = paramMonth ? '&month_number=' +  paramMonth : '';
         const search = paramSearch ? '&search=' +  paramSearch : '';
-        const queryParams = month + search;
+        const departments = paramDepartments ? '&department_id=' +  paramDepartments : '';
+        const queryParams = month + search + departments;
         dispatch(getMainSchedule(pagination,false, queryParams));
     }
 
@@ -45,6 +48,10 @@ const SearchBar = () => {
 
     const changeSearch = (event) => {
         setParamSearch(event.currentTarget.value);
+    }
+
+    const changeDepartments = (event) => {
+        setParamDepartments(parseInt(event.currentTarget.value));
     }
 
     /********************** доп.компоненты ********************/
@@ -76,12 +83,16 @@ const SearchBar = () => {
 
     /********************** хуки ********************/
     useEffect(() => {
-        if (paramMonth || paramSearch){
+        if (paramMonth || paramSearch || paramDepartments){
             setSearchBtnActive(true);
         } else {
             setSearchBtnActive(false);
         }
-    }, [paramMonth,paramSearch]);
+    }, [paramMonth,paramSearch,paramDepartments]);
+
+    useEffect(()=>{
+        dispatch(getDepartments())
+    }, [])
 
     return (
         <div className={styleSearchBar.searchBar}>
@@ -94,9 +105,9 @@ const SearchBar = () => {
             <div className={styleSearchBar.selectFieldBlock}>
                 <fieldset>
                     <legend>Отдел</legend>
-                    <select>
+                    <select onChange={changeDepartments}>
                         <option value="0">Выбрать</option>
-                        <option value="0">ГД/Отдел разработок</option>
+                        { departmentsList.data.map(item => <option key={item.id} value={item.id}>{item.title}</option>) }
                     </select>
                 </fieldset>
             </div>

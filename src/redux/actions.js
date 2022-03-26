@@ -1,4 +1,5 @@
 import {
+    GET_DEPARTMENTS,
     GET_EMPLOYEES,
     HIDE_PRELOADER, RESET_MAIN_SCHEDULE_OUTPUT,
     SET_MAIN_SCHEDULE_INPUT,
@@ -94,6 +95,33 @@ export function saveMainSchedule(data, pagination) {
                 toast.success('Данные успешно сохранены', {position: 'top-right',});
                 dispatch({ type:RESET_MAIN_SCHEDULE_OUTPUT});
                 dispatch(getMainSchedule(pagination, true));
+            })
+            .catch((error) => {
+                dispatch({type: HIDE_PRELOADER, payload: {preloader: 'hide', backdropModal: 'hide'}})
+                dispatch({type: SHOW_FAIL_API_MODAL, payload: {failApiTxt: error.message}})
+            });
+    }
+}
+
+/************* получение отделов  *************/
+export function getDepartments() {
+    return dispatch => {
+        const options = {
+            method: 'get',
+            headers: {
+                'Authorization': 'Bearer ' + TOKEN
+            }
+        };
+        fetch(BASE_URL + 'staff/departments/', options).then((response) => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error(response.status);
+            }
+        })
+            .then((responseJson) => {
+                dispatch({type: GET_DEPARTMENTS, payload: responseJson})
+                dispatch({type: HIDE_PRELOADER})
             })
             .catch((error) => {
                 dispatch({type: HIDE_PRELOADER, payload: {preloader: 'hide', backdropModal: 'hide'}})
