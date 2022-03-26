@@ -1,6 +1,6 @@
 import {
     GET_EMPLOYEES,
-    HIDE_PRELOADER,
+    HIDE_PRELOADER, RESET_MAIN_SCHEDULE_OUTPUT,
     SET_MAIN_SCHEDULE_INPUT,
     SET_MAIN_SCHEDULE_PAGINATION,
     SHOW_FAIL_API_MODAL,
@@ -92,6 +92,7 @@ export function saveMainSchedule(data, pagination) {
         })
             .then((responseJson) => {
                 toast.success('Данные успешно сохранены', {position: 'top-right',});
+                dispatch({ type:RESET_MAIN_SCHEDULE_OUTPUT});
                 dispatch(getMainSchedule(pagination, true));
             })
             .catch((error) => {
