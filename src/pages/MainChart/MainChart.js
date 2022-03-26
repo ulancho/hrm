@@ -6,10 +6,11 @@ import styleTableBarHeader from "./TableBarHeader.module.css";
 import styleTableBarBody from "./TableBarBody.module.css";
 import {useDispatch, useSelector} from "react-redux";
 import {getMainSchedule, saveMainSchedule} from "../../redux/actions";
-import {getDay} from "../../helpers";
+import {getDay, saveFile} from "../../helpers";
 import {ContextMenu} from "../../components/contextMenu/ContextMenu";
 import ReactPaginate from "react-paginate";
 import {ReactComponent as SearchIcon} from "./../../media/icons/search.svg";
+import {BASE_URL} from "../../constants";
 
 /********************** доп. компоненты ********************/
 const SearchBar = () => {
@@ -21,22 +22,21 @@ const SearchBar = () => {
     const [paramSearch,setParamSearch] = useState('');
 
     /********************** обработчики для событий ********************/
+    const clickSearch = () => {
+        const pagination = { offset: 0, limit: 10 };
+        const month = paramMonth ? '&month_number=' +  paramMonth : '';
+        const search = paramSearch ? '&search=' +  paramSearch : '';
+        const queryParams = month + search;
+        dispatch(getMainSchedule(pagination,false, queryParams));
+    }
+
     const clickSave = () => {
         dispatch(saveMainSchedule(mainScheduleOutput,mainSchedulePagination));
     }
 
     const clickSaveToExcel = () => {
-        const url = 'http://10.242.147.11:8000/schedule/sheet/?is_remote=0&to_excel=true';
-        fetch(url).then((response) => {
-            return response.blob();
-        }).then((response) => {
-            const url = window.URL.createObjectURL(new Blob([response]));
-            const link = document.createElement('a');
-            link.href = url;
-            link.setAttribute('download', `${Date.now()}.xlsx`);
-            document.body.appendChild(link);
-            link.click();
-        });
+        const url = BASE_URL + 'schedule/sheet/?is_remote=0&to_excel=true';
+        saveFile(url, 'xlsx');
     }
 
     const changeMonth = (event) => {
@@ -45,14 +45,6 @@ const SearchBar = () => {
 
     const changeSearch = (event) => {
         setParamSearch(event.currentTarget.value);
-    }
-
-    const clickSearch = () => {
-        const pagination = { offset: 0, limit: 10 };
-        const month = paramMonth ? '&month_number=' +  paramMonth : '';
-        const search = paramSearch ? '&search=' +  paramSearch : '';
-        const queryParams = month + search;
-        dispatch(getMainSchedule(pagination,false, queryParams));
     }
 
     /********************** доп.компоненты ********************/
@@ -309,7 +301,7 @@ const TableBarBody = ({items}) => {
                         </div>
                     </React.Fragment>
                 )
-            }) : null
+            }) : <h3 className="text-center">Данные не найдены</h3>
     )
 }
 
