@@ -11,8 +11,8 @@ import {BASE_URL, TOKEN} from "../constants";
 import toast from 'react-hot-toast';
 
 /************* получение сотрудников *************/
-export function getEmployees(options) {
-    const params = '?limit=' + options.limit + '&offset=' + options.offset;
+export function getEmployees(pagination,queryParams='') {
+    const params = '?limit=' + pagination.limit + '&offset=' + pagination.offset + queryParams;
     return dispatch => {
         dispatch({type: SHOW_PRELOADER});
 

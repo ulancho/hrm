@@ -4,9 +4,10 @@ import {ReactComponent as SearchIcon} from "./../../media/icons/search.svg";
 import userImg from "./user.png";
 import Popup from "reactjs-popup";
 import {useDispatch, useSelector} from "react-redux";
-import {getEmployees} from "../../redux/actions";
+import {getDepartments, getEmployees} from "../../redux/actions";
 import {IMAGE_URL} from "../../constants";
 import ReactPaginate from "react-paginate";
+import styleSearchBar from "../MainChart/SearchBar.module.css";
 
 const AddUserModal = ({close}) => {
     return (
@@ -100,14 +101,69 @@ const EmployeesList = ({items}) => {
 }
 
 const SearchBar = () => {
+    const dispatch = useDispatch();
+    const [searchBtnActive,setSearchBtnActive] = useState(false);
+    const departmentsList = useSelector(state => state.staff.departmentsList);
+    const [paramDepartments,setParamDepartments] = useState(0);
+    const [paramSearch,setParamSearch] = useState('');
+
+    /********************** обработчики для событий ********************/
+    const changeDepartments = (event) => {
+        setParamDepartments(parseInt(event.currentTarget.value));
+    }
+
+    const changeSearch = (event) => {
+        setParamSearch(event.currentTarget.value);
+    }
+
+    const clickSearch = () => {
+        const pagination = { offset: 0, limit: 10 };
+        const departments = paramDepartments ? '&department_id=' +  paramDepartments : '';
+        const search = paramSearch ? '&search=' +  paramSearch : '';
+        const queryParams = departments + search;
+        dispatch(getEmployees(pagination, queryParams));
+    }
+
+    /********************** доп.компоненты ********************/
+    const SearchButton = () => {
+        if(searchBtnActive){
+            return (
+                <button onClick={clickSearch} className="btn btn-main mr-16">
+                    <SearchIcon className={styleSearchBar.searchIcon}/>
+                    Поиск
+                </button>
+            )
+        } else {
+            return (
+                <button className="btn btn-main btn-not-allowed mr-16">
+                    <SearchIcon className={styleSearchBar.searchIcon}/>
+                    Поиск
+                </button>
+            )
+        }
+    }
+
+    /********************** хуки ********************/
+    useEffect(()=>{
+        dispatch(getDepartments())
+    }, [])
+
+    useEffect(() => {
+        if (paramDepartments || paramSearch){
+            setSearchBtnActive(true);
+        } else {
+            setSearchBtnActive(false);
+        }
+    }, [paramDepartments,paramSearch])
+
     return (
         <div className={styles.searchBar}>
             <div className={`${styles.fieldBlock} ${styles.fieldBlock1}`}>
                 <fieldset>
                     <legend>Отдел</legend>
-                    <select>
+                    <select onChange={changeDepartments}>
                         <option value="0">Выбрать</option>
-                        <option value="0">ГД/Отдел разработок</option>
+                        { departmentsList.data.map(item => <option key={item.id} value={item.id}>{item.title}</option>) }
                     </select>
                 </fieldset>
             </div>
@@ -115,12 +171,13 @@ const SearchBar = () => {
                 <fieldset>
                     <legend>Поиск</legend>
                     <div className={styles.iconInside}>
-                        <input className={styles.input} type="text" placeholder="Имя, инициалы, должность"/>
+                        <input onChange={changeSearch}  className={styles.input} type="text" placeholder="Имя, инициалы, должность"/>
                         <SearchIcon className={styles.icon}/>
                     </div>
                 </fieldset>
             </div>
             <div className={styles.buttonBlock}>
+                <SearchButton/>
                 <Popup
                     trigger={<button className="btn btn-main mr-16">Добавить сотрудника</button>}
                     modal
