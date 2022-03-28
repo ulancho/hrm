@@ -5,9 +5,10 @@ import userImg from "./user.png";
 import Popup from "reactjs-popup";
 import {useDispatch, useSelector} from "react-redux";
 import {getDepartments, getEmployees} from "../../redux/actions";
-import {IMAGE_URL} from "../../constants";
+import {EMPLOYEES_PAGINATION, IMAGE_URL} from "../../constants";
 import ReactPaginate from "react-paginate";
 import styleSearchBar from "../MainChart/SearchBar.module.css";
+import {RESET_EMPLOYEES_PAGINATION} from "../../redux/types";
 
 const AddUserModal = ({close}) => {
     return (
@@ -117,11 +118,11 @@ const SearchBar = () => {
     }
 
     const clickSearch = () => {
-        const pagination = { offset: 0, limit: 10 };
         const departments = paramDepartments ? '&department_id=' +  paramDepartments : '';
         const search = paramSearch ? '&search=' +  paramSearch : '';
         const queryParams = departments + search;
-        dispatch(getEmployees(pagination, queryParams));
+        dispatch(getEmployees({offset: EMPLOYEES_PAGINATION.offset, limit: EMPLOYEES_PAGINATION.limit}, queryParams));
+        dispatch({type:RESET_EMPLOYEES_PAGINATION, payload:Date.now()});
     }
 
     /********************** доп.компоненты ********************/
@@ -194,15 +195,20 @@ const SearchBar = () => {
 const TableBar = () => {
     const dispatch = useDispatch();
     const employeesList = useSelector(state => state.staff.employeesList);
+    const queryParams = useSelector(state => state.staff.queryParams);
+    const resetEmployeesPagination = useSelector(state => state.staff.resetEmployeesPagination);
     const itemsPerPage = 10;
     const [pageCount, setPageCount] = useState(0);
     const [itemOffset, setItemOffset] = useState(0);
+    const [pageNumber, setPageNumber] = useState(0);
 
     /********************** обработчики для событий ********************/
     const handlePageClick = (event) => {
         const newOffset = event.selected * itemsPerPage % employeesList.count;
         setItemOffset(newOffset);
+        setPageNumber(event.selected);
     };
+
 
     /********************** хуки ********************/
     useEffect(() => {
@@ -210,8 +216,12 @@ const TableBar = () => {
     }, [employeesList]);
 
     useEffect(() => {
-        dispatch(getEmployees({offset: itemOffset, limit: itemsPerPage}));
+        dispatch(getEmployees({offset: itemOffset, limit: EMPLOYEES_PAGINATION.limit}, queryParams));
     }, [itemOffset]);
+
+    useEffect(() => {
+        setPageNumber(0);
+    }, [resetEmployeesPagination]);
 
 
 
@@ -221,11 +231,12 @@ const TableBar = () => {
             <ReactPaginate
                 previousLabel="Назад"
                 nextLabel="Следующий"
-                breakLabel="..."
                 pageCount={pageCount}
+                forcePage={pageNumber}
+                onPageChange={handlePageClick}
+                breakLabel="..."
                 pageRangeDisplayed={3}
                 marginPagesDisplayed={2}
-                onPageChange={handlePageClick}
                 pageClassName="page-item"
                 pageLinkClassName="page-link"
                 previousClassName="page-item"

@@ -1,6 +1,6 @@
 export const IMAGE_URL = 'https://reports.megacom.local/plugins/BussinesDirectory/cache/photosEx/';
 export const BASE_URL = 'http://10.242.147.11:8000/';
-export const TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbkBtZWdhY29tLmtnIiwiZXhwIjoxNjQ4Mzc1OTE3fQ.OaSEu4_lLkD37IzuMTVPY-T1dwG8WfGXJ6-XRu5zfeY';
+export const TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbkBtZWdhY29tLmtnIiwiZXhwIjoxNjQ4ODc3NzUxfQ.-SuTN8KK9dL7ZwQ25ZNUjWiBPYVAeSAlUeEljfBgg5o';
 export const SHIFT_STATUSES = {
     1:{
         name: "Больничный день",
@@ -19,3 +19,5 @@ export const SHIFT_STATUSES = {
         short_name: "У"
     }
 }
+
+export const EMPLOYEES_PAGINATION = {offset: 0, limit: 10}

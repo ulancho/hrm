@@ -1,9 +1,9 @@
 import {
     GET_DEPARTMENTS,
     GET_EMPLOYEES,
-    HIDE_PRELOADER, RESET_MAIN_SCHEDULE_OUTPUT,
+    HIDE_PRELOADER, RESET_MAIN_SCHEDULE_OUTPUT, SET_EMPLOYEES_PAGINATION,
     SET_MAIN_SCHEDULE_INPUT,
-    SET_MAIN_SCHEDULE_PAGINATION,
+    SET_MAIN_SCHEDULE_PAGINATION, SET_QUERY_PARAMS,
     SHOW_FAIL_API_MODAL,
     SHOW_PRELOADER
 } from "./types";
@@ -11,9 +11,11 @@ import {BASE_URL, TOKEN} from "../constants";
 import toast from 'react-hot-toast';
 
 /************* получение сотрудников *************/
-export function getEmployees(pagination,queryParams='') {
+export function getEmployees(pagination, queryParams='') {
     const params = '?limit=' + pagination.limit + '&offset=' + pagination.offset + queryParams;
     return dispatch => {
+        dispatch({type:SET_EMPLOYEES_PAGINATION, payload:pagination});
+        dispatch({type:SET_QUERY_PARAMS, payload:queryParams});
         dispatch({type: SHOW_PRELOADER});
 
         const options = {

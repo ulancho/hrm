@@ -1,4 +1,10 @@
-import {GET_DEPARTMENTS, GET_EMPLOYEES} from "./types";
+import {
+    GET_DEPARTMENTS,
+    GET_EMPLOYEES,
+    RESET_EMPLOYEES_PAGINATION,
+    SET_EMPLOYEES_PAGINATION,
+    SET_QUERY_PARAMS
+} from "./types";
 
 const initialState = {
     employeesList:{
@@ -9,6 +15,12 @@ const initialState = {
         count:0,
         data:[]
     },
+    employeesPagination:{
+        limit:10,
+        offset:0
+    },
+    queryParams:'',
+    resetEmployeesPagination:0,
 };
 
 export const staffReducer = (state = initialState, action) => {
@@ -17,6 +29,12 @@ export const staffReducer = (state = initialState, action) => {
             return { ...state, employeesList:action.payload };
         case GET_DEPARTMENTS:
             return { ...state, departmentsList:action.payload };
+        case SET_QUERY_PARAMS:
+            return { ...state, queryParams:action.payload };
+        case SET_EMPLOYEES_PAGINATION:
+            return { ...state, employeesPagination:{...action.payload} };
+        case RESET_EMPLOYEES_PAGINATION:
+            return { ...state, resetEmployeesPagination:action.payload}
         default: return state;
     }
 };
