@@ -92,7 +92,7 @@ input:focus-visible{
 /*************  кнопка-1 ************/
 .btn-main{
     background: #71BF44;
-
+    cursor: pointer;
 }
 
 /*************  кнопка-2 ************/
