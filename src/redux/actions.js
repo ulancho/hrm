@@ -1,5 +1,5 @@
 import {
-    GET_DEPARTMENTS,
+    GET_DEPARTMENTS, SET_EMPLOYEE,
     GET_EMPLOYEES,
     HIDE_PRELOADER, RESET_MAIN_SCHEDULE_OUTPUT, SET_EMPLOYEES_PAGINATION,
     SET_MAIN_SCHEDULE_INPUT,
@@ -9,6 +9,34 @@ import {
 } from "./types";
 import {BASE_URL, TOKEN} from "../constants";
 import toast from 'react-hot-toast';
+
+/************* получение сотрудника *************/
+export function getEmployeeBy1c(id) {
+    return dispatch => {
+        dispatch({type: SHOW_PRELOADER});
+        const options = {
+            method: 'get',
+            headers: {
+                'Authorization': 'Bearer ' + TOKEN
+            }
+        };
+        fetch(BASE_URL + 'staff/employees/search-1c/?id_1c=' + id, options).then((response) => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error(response.status);
+            }
+        })
+            .then((responseJson) => {
+                dispatch({type: SET_EMPLOYEE, payload: responseJson})
+                dispatch({type: HIDE_PRELOADER})
+            })
+            .catch((error) => {
+                dispatch({type: HIDE_PRELOADER, payload: {preloader: 'hide', backdropModal: 'hide'}})
+                dispatch({type: SHOW_FAIL_API_MODAL, payload: {failApiTxt: error.message}})
+            });
+    }
+}
 
 /************* получение сотрудников *************/
 export function getEmployees(pagination, queryParams='') {

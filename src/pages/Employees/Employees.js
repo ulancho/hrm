@@ -1,10 +1,9 @@
 import React, {useEffect, useState} from "react";
 import styles from "./Employees.module.css";
 import {ReactComponent as SearchIcon} from "./../../media/icons/search.svg";
-import userImg from "./user.png";
 import Popup from "reactjs-popup";
 import {useDispatch, useSelector} from "react-redux";
-import {getDepartments, getEmployees} from "../../redux/actions";
+import {getDepartments, getEmployeeBy1c, getEmployees} from "../../redux/actions";
 import {BASE_URL, EMPLOYEES_PAGINATION, IMAGE_URL} from "../../constants";
 import ReactPaginate from "react-paginate";
 import styleSearchBar from "../MainChart/SearchBar.module.css";
@@ -12,6 +11,19 @@ import {RESET_EMPLOYEES_PAGINATION} from "../../redux/types";
 import {saveFile} from "../../helpers";
 
 const AddUserModal = ({close}) => {
+    const dispatch = useDispatch()
+    const [id, setId] = useState(0);
+    const [activeBtn, setActiveBtn] = useState(true);
+
+    const clickSearch = () => {
+        dispatch(getEmployeeBy1c(id))
+    }
+
+    const change1c = (e) => {
+        setId(e.currentTarget.value);
+        setActiveBtn(false);
+    }
+
     return (
         <div className="modal">
             <div className="close-bar">
@@ -21,13 +33,10 @@ const AddUserModal = ({close}) => {
             </div>
             <div className="content">
                 <div className={styles.addUserBar}>
-                    <input type="text" placeholder="Введите идентификатор 1С:"/>
-                    <button className="btn btn-main" disabled={true}>Поиск</button>
+                    <input onChange={change1c} type="text" placeholder="Введите идентификатор 1С:"/>
+                    <button onClick={clickSearch} className="btn btn-main" disabled={activeBtn}>Поиск</button>
                 </div>
-                {/*<div className={styles.foundUserBar}>*/}
-                {/*    <UserCard/>*/}
-                {/*    <button className="btn btn-main">Добавить</button>*/}
-                {/*</div>*/}
+                <UserCard/>
                 {/*<div className={styles.notFoundUserBar}>*/}
                 {/*    <p>Сотрудник не найден</p>*/}
                 {/*</div>*/}
@@ -37,26 +46,29 @@ const AddUserModal = ({close}) => {
 }
 
 const UserCard = () => {
+    const userData = useSelector(state => state.staff.employee);
+
     return (
-        <div className={styles.emplCard}>
-            <div className={styles.photo}>
-                <img src={userImg} alt=""/>
-            </div>
-            <div className={styles.labels}>
-                <ul>
-                    <li>Ф.И.О:</li>
-                    <li>Должность:</li>
-                    <li>Моб. тел.:</li>
-                </ul>
-            </div>
-            <div className={styles.data}>
-                <ul>
-                    <li>Коробова Виктория Евгеньевна</li>
-                    <li>Старший дизайнер</li>
-                    <li>0555 505 292</li>
-                </ul>
-            </div>
-        </div>
+        userData.FullName ?
+            <div className={styles.foundUserBar}>
+                <div className={styles.emplCard}>
+                    <div className={styles.labels}>
+                        <ul>
+                            <li>Ф.И.О:</li>
+                            <li>Должность:</li>
+                            <li>Email:</li>
+                        </ul>
+                    </div>
+                    <div className={styles.data}>
+                        <ul>
+                            <li>{userData.FullName}</li>
+                            <li>{userData.Position}</li>
+                            <li>{userData.Mail}</li>
+                        </ul>
+                    </div>
+                </div>
+                <button className="btn btn-main">Добавить</button>
+            </div> : null
     )
 }
 
@@ -104,10 +116,10 @@ const EmployeesList = ({items}) => {
 
 const SearchBar = () => {
     const dispatch = useDispatch();
-    const [searchBtnActive,setSearchBtnActive] = useState(false);
+    const [searchBtnActive, setSearchBtnActive] = useState(false);
     const departmentsList = useSelector(state => state.staff.departmentsList);
-    const [paramDepartments,setParamDepartments] = useState(0);
-    const [paramSearch,setParamSearch] = useState('');
+    const [paramDepartments, setParamDepartments] = useState(0);
+    const [paramSearch, setParamSearch] = useState('');
 
     /********************** обработчики для событий ********************/
     const changeDepartments = (event) => {
@@ -119,23 +131,23 @@ const SearchBar = () => {
     }
 
     const clickSearch = () => {
-        const departments = paramDepartments ? '&department_id=' +  paramDepartments : '';
-        const search = paramSearch ? '&search=' +  paramSearch : '';
+        const departments = paramDepartments ? '&department_id=' + paramDepartments : '';
+        const search = paramSearch ? '&search=' + paramSearch : '';
         const queryParams = departments + search;
         dispatch(getEmployees({offset: EMPLOYEES_PAGINATION.offset, limit: EMPLOYEES_PAGINATION.limit}, queryParams));
-        dispatch({type:RESET_EMPLOYEES_PAGINATION, payload:Date.now()});
+        dispatch({type: RESET_EMPLOYEES_PAGINATION, payload: Date.now()});
     }
 
     const clickSaveToExcel = () => {
-        const departments = paramDepartments ? 'department_id=' +  paramDepartments : '';
-        const search = paramSearch ? 'search=' +  paramSearch : '';
+        const departments = paramDepartments ? 'department_id=' + paramDepartments : '';
+        const search = paramSearch ? 'search=' + paramSearch : '';
         let queryParams = '';
 
-        if(departments && search){
+        if (departments && search) {
             queryParams = departments + '&' + search;
-        } else if(departments && !search){
+        } else if (departments && !search) {
             queryParams = departments;
-        } else if(search && !departments){
+        } else if (search && !departments) {
             queryParams = search;
         }
 
@@ -145,7 +157,7 @@ const SearchBar = () => {
 
     /********************** доп.компоненты ********************/
     const SearchButton = () => {
-        if(searchBtnActive){
+        if (searchBtnActive) {
             return (
                 <button onClick={clickSearch} className="btn btn-main mr-16">
                     <SearchIcon className={styleSearchBar.searchIcon}/>
@@ -163,17 +175,17 @@ const SearchBar = () => {
     }
 
     /********************** хуки ********************/
-    useEffect(()=>{
+    useEffect(() => {
         dispatch(getDepartments())
     }, [])
 
     useEffect(() => {
-        if (paramDepartments || paramSearch){
+        if (paramDepartments || paramSearch) {
             setSearchBtnActive(true);
         } else {
             setSearchBtnActive(false);
         }
-    }, [paramDepartments,paramSearch])
+    }, [paramDepartments, paramSearch])
 
     return (
         <div className={styles.searchBar}>
@@ -182,7 +194,7 @@ const SearchBar = () => {
                     <legend>Отдел</legend>
                     <select onChange={changeDepartments}>
                         <option value="0">Выбрать</option>
-                        { departmentsList.data.map(item => <option key={item.id} value={item.id}>{item.title}</option>) }
+                        {departmentsList.data.map(item => <option key={item.id} value={item.id}>{item.title}</option>)}
                     </select>
                 </fieldset>
             </div>
@@ -190,7 +202,8 @@ const SearchBar = () => {
                 <fieldset>
                     <legend>Поиск</legend>
                     <div className={styles.iconInside}>
-                        <input onChange={changeSearch}  className={styles.input} type="text" placeholder="Имя, инициалы, должность"/>
+                        <input onChange={changeSearch} className={styles.input} type="text"
+                               placeholder="Имя, инициалы, должность"/>
                         <SearchIcon className={styles.icon}/>
                     </div>
                 </fieldset>
@@ -240,7 +253,6 @@ const TableBar = () => {
     useEffect(() => {
         setPageNumber(0);
     }, [resetEmployeesPagination]);
-
 
 
     return (
