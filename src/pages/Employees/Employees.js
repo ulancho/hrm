@@ -5,10 +5,11 @@ import userImg from "./user.png";
 import Popup from "reactjs-popup";
 import {useDispatch, useSelector} from "react-redux";
 import {getDepartments, getEmployees} from "../../redux/actions";
-import {EMPLOYEES_PAGINATION, IMAGE_URL} from "../../constants";
+import {BASE_URL, EMPLOYEES_PAGINATION, IMAGE_URL} from "../../constants";
 import ReactPaginate from "react-paginate";
 import styleSearchBar from "../MainChart/SearchBar.module.css";
 import {RESET_EMPLOYEES_PAGINATION} from "../../redux/types";
+import {saveFile} from "../../helpers";
 
 const AddUserModal = ({close}) => {
     return (
@@ -125,6 +126,23 @@ const SearchBar = () => {
         dispatch({type:RESET_EMPLOYEES_PAGINATION, payload:Date.now()});
     }
 
+    const clickSaveToExcel = () => {
+        const departments = paramDepartments ? 'department_id=' +  paramDepartments : '';
+        const search = paramSearch ? 'search=' +  paramSearch : '';
+        let queryParams = '';
+
+        if(departments && search){
+            queryParams = departments + '&' + search;
+        } else if(departments && !search){
+            queryParams = departments;
+        } else if(search && !departments){
+            queryParams = search;
+        }
+
+        const url = BASE_URL + 'staff/employees/upload?' + queryParams;
+        saveFile(url, 'xlsx');
+    }
+
     /********************** доп.компоненты ********************/
     const SearchButton = () => {
         if(searchBtnActive){
@@ -186,7 +204,7 @@ const SearchBar = () => {
                 >
                     {close => (<AddUserModal close={close}/>)}
                 </Popup>
-                <button className="btn btn-secondary">Выгрузить в excel</button>
+                <button onClick={clickSaveToExcel} className="btn btn-secondary">Выгрузить в excel</button>
             </div>
         </div>
     )
