@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from "react";
 import styles from "./Employees.module.css";
 import {ReactComponent as SearchIcon} from "./../../media/icons/search.svg";
+import {ReactComponent as CameraIcon} from "./../../media/icons/camera.svg";
+import notImage from "./../../media/images/not_image.png";
 import Popup from "reactjs-popup";
 import {useDispatch, useSelector} from "react-redux";
 import {addEmployeeBy1c, getDepartments, getEmployeeBy1c, getEmployees} from "../../redux/actions";
@@ -89,7 +91,14 @@ const EmployeesList = ({items}) => {
             {items && items.data.map((item) => (
                 <div key={item.id} className={styles.emplCard}>
                     <div className={styles.photo}>
-                        <img src={IMAGE_URL + item.image} alt=""/>
+                        <img src={item.image ? IMAGE_URL + item.image : notImage}/>
+                        {
+                            item.image ? <div className={`${styles.camera} ${styles.updatePhoto}`}>
+                                <CameraIcon/>
+                            </div> : <div className={`${styles.camera} ${styles.addPhoto}`}>
+                                <CameraIcon/>
+                            </div>
+                        }
                     </div>
                     <div className={styles.labels}>
                         <ul>
@@ -100,9 +109,9 @@ const EmployeesList = ({items}) => {
                     </div>
                     <div className={styles.data}>
                         <ul>
-                            <li>{item.full_name}</li>
-                            <li>{item.position}</li>
-                            <li>{item.phone_number}</li>
+                            <li>{item.full_name ||= <br/>}</li>
+                            <li>{item.position ||= <br/>}</li>
+                            <li>{item.phone_number ||= <br/>}</li>
                         </ul>
                     </div>
                     <div className={styles.labels}>
@@ -116,7 +125,7 @@ const EmployeesList = ({items}) => {
                         <ul>
                             <li>{item.ip_phone ? item.ip_phone : 'нет'}</li>
                             <li>{item.id_1c ? item.id_1c : 'нет'}</li>
-                            <li>{item.email}</li>
+                            <li>{item.email ||= <br/>}</li>
                         </ul>
                     </div>
                 </div>
