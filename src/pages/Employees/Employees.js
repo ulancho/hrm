@@ -3,7 +3,7 @@ import styles from "./Employees.module.css";
 import {ReactComponent as SearchIcon} from "./../../media/icons/search.svg";
 import Popup from "reactjs-popup";
 import {useDispatch, useSelector} from "react-redux";
-import {getDepartments, getEmployeeBy1c, getEmployees} from "../../redux/actions";
+import {addEmployeeBy1c, getDepartments, getEmployeeBy1c, getEmployees} from "../../redux/actions";
 import {BASE_URL, EMPLOYEES_PAGINATION, IMAGE_URL} from "../../constants";
 import ReactPaginate from "react-paginate";
 import styleSearchBar from "../MainChart/SearchBar.module.css";
@@ -11,7 +11,7 @@ import {RESET_EMPLOYEES_PAGINATION} from "../../redux/types";
 import {isEmptyObject, saveFile} from "../../helpers";
 
 const AddUserModal = ({close}) => {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
     const [id, setId] = useState('');
     const [disableBtn, setDisableBtn] = useState(true);
     const notFoundEmployee = useSelector(state => state.staff.notFoundEmployee);
@@ -45,15 +45,20 @@ const AddUserModal = ({close}) => {
                     <input onChange={change1c} value={id} type="text" placeholder="Введите идентификатор 1С:"/>
                     <button onClick={clickSearch} className="btn btn-main" disabled={disableBtn}>Поиск</button>
                 </div>
-                <UserCard/>
+                <UserCard id1c={id}/>
                 <NotFound/>
             </div>
         </div>
     )
 }
 
-const UserCard = () => {
+const UserCard = ({id1c}) => {
     const userData = useSelector(state => state.staff.employee);
+    const dispatch = useDispatch();
+
+    const addEmployee = () => {
+        dispatch(addEmployeeBy1c(id1c))
+    }
 
     return (
         !isEmptyObject(userData) ? <div className={styles.foundUserBar}>
@@ -73,7 +78,7 @@ const UserCard = () => {
                     </ul>
                 </div>
             </div>
-            <button className="btn btn-main">Добавить</button>
+            <button onClick={addEmployee} className="btn btn-main">Добавить</button>
         </div> : null
     )
 }

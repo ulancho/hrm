@@ -10,7 +10,45 @@ import {
 import {BASE_URL, TOKEN} from "../constants";
 import toast from 'react-hot-toast';
 
-/************* получение сотрудника *************/
+
+/************* добавление сотрудника по 1с идентификтатору *************/
+export function addEmployeeBy1c(id) {
+    return dispatch => {
+        dispatch({type: SHOW_PRELOADER});
+        const options = {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + TOKEN
+            }
+        };
+        fetch(BASE_URL + 'staff/employees/add-employee/?id_1c=' + id, options).then((response) => {
+            if (response.status === 200) {
+                return response.json();
+            } else if(response.status === 404 || response.status === 400){
+                return { status: response.status }
+            } else {
+                throw new Error(response.status);
+            }
+        })
+            .then((responseJson) => {
+                if(responseJson.status === 400){
+                    toast.error('Данный сотрудник уже добавлен')
+                } else if(responseJson.status === 404){
+                    dispatch({type: NOT_FOUND_EMPLOYEE, payload: true})
+                    dispatch({type: SET_EMPLOYEE, payload: {}})
+                } else{
+                    toast.success('Сотрудник добавлен')
+                }
+                dispatch({type: HIDE_PRELOADER})
+            })
+            .catch((error) => {
+                dispatch({type: HIDE_PRELOADER, payload: {preloader: 'hide', backdropModal: 'hide'}})
+                dispatch({type: SHOW_FAIL_API_MODAL, payload: {failApiTxt: error.message}})
+            });
+    }
+}
+
+/************* получение сотрудника по 1с идентификтатору *************/
 export function getEmployeeBy1c(id) {
     return dispatch => {
         dispatch({type: SHOW_PRELOADER});
