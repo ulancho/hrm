@@ -14,3 +14,12 @@ export const saveFile = (url,typeFile) => {
         link.click();
     });
 }
+
+export const isEmptyObject = (obj) => {
+    for (var i in obj) {
+        if (obj.hasOwnProperty(i)) {
+            return false;
+        }
+    }
+    return true;
+}
