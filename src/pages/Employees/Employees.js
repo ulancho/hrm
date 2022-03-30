@@ -12,7 +12,7 @@ import {isEmptyObject, saveFile} from "../../helpers";
 
 const AddUserModal = ({close}) => {
     const dispatch = useDispatch()
-    const [id, setId] = useState(0);
+    const [id, setId] = useState('');
     const [disableBtn, setDisableBtn] = useState(true);
     const notFoundEmployee = useSelector(state => state.staff.notFoundEmployee);
 
@@ -24,7 +24,6 @@ const AddUserModal = ({close}) => {
         setId(e.currentTarget.value);
         setDisableBtn(!e.currentTarget.value);
     }
-
 
     const NotFound = () => {
         return (
@@ -43,7 +42,7 @@ const AddUserModal = ({close}) => {
             </div>
             <div className="content">
                 <div className={styles.addUserBar}>
-                    <input onChange={change1c} type="text" placeholder="Введите идентификатор 1С:"/>
+                    <input onChange={change1c} value={id} type="text" placeholder="Введите идентификатор 1С:"/>
                     <button onClick={clickSearch} className="btn btn-main" disabled={disableBtn}>Поиск</button>
                 </div>
                 <UserCard/>
