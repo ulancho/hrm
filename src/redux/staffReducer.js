@@ -1,6 +1,6 @@
 import {
     GET_DEPARTMENTS,
-    GET_EMPLOYEES,
+    GET_EMPLOYEES, NOT_FOUND_EMPLOYEE,
     RESET_EMPLOYEES_PAGINATION, SET_EMPLOYEE,
     SET_EMPLOYEES_PAGINATION,
     SET_QUERY_PARAMS
@@ -21,7 +21,8 @@ const initialState = {
     },
     queryParams:'',
     resetEmployeesPagination:0,
-    employee:{}
+    employee:{},
+    notFoundEmployee:false
 };
 
 export const staffReducer = (state = initialState, action) => {
@@ -38,6 +39,8 @@ export const staffReducer = (state = initialState, action) => {
             return { ...state, resetEmployeesPagination:action.payload}
         case SET_EMPLOYEE:
             return { ...state, employee:action.payload}
+        case NOT_FOUND_EMPLOYEE:
+            return { ...state, notFoundEmployee:action.payload}
         default: return state;
     }
 };

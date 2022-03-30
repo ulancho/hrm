@@ -5,7 +5,7 @@ import {
     SET_MAIN_SCHEDULE_INPUT,
     SET_MAIN_SCHEDULE_PAGINATION, SET_QUERY_PARAMS,
     SHOW_FAIL_API_MODAL,
-    SHOW_PRELOADER
+    SHOW_PRELOADER, NOT_FOUND_EMPLOYEE
 } from "./types";
 import {BASE_URL, TOKEN} from "../constants";
 import toast from 'react-hot-toast';
@@ -15,20 +15,28 @@ export function getEmployeeBy1c(id) {
     return dispatch => {
         dispatch({type: SHOW_PRELOADER});
         const options = {
-            method: 'get',
+            method: 'GET',
             headers: {
                 'Authorization': 'Bearer ' + TOKEN
             }
         };
         fetch(BASE_URL + 'staff/employees/search-1c/?id_1c=' + id, options).then((response) => {
-            if (response.ok) {
+            if (response.status === 200) {
                 return response.json();
+            } else if(response.status === 404){
+                return { status: 404 }
             } else {
                 throw new Error(response.status);
             }
         })
             .then((responseJson) => {
-                dispatch({type: SET_EMPLOYEE, payload: responseJson})
+                if(responseJson.status === 404){
+                    dispatch({type: NOT_FOUND_EMPLOYEE, payload: true})
+                    dispatch({type: SET_EMPLOYEE, payload: {}})
+                } else{
+                    dispatch({type: NOT_FOUND_EMPLOYEE, payload: false})
+                    dispatch({type: SET_EMPLOYEE, payload: responseJson})
+                }
                 dispatch({type: HIDE_PRELOADER})
             })
             .catch((error) => {

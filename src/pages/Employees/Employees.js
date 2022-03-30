@@ -8,12 +8,13 @@ import {BASE_URL, EMPLOYEES_PAGINATION, IMAGE_URL} from "../../constants";
 import ReactPaginate from "react-paginate";
 import styleSearchBar from "../MainChart/SearchBar.module.css";
 import {RESET_EMPLOYEES_PAGINATION} from "../../redux/types";
-import {saveFile} from "../../helpers";
+import {isEmptyObject, saveFile} from "../../helpers";
 
 const AddUserModal = ({close}) => {
     const dispatch = useDispatch()
     const [id, setId] = useState(0);
-    const [activeBtn, setActiveBtn] = useState(true);
+    const [disableBtn, setDisableBtn] = useState(true);
+    const notFoundEmployee = useSelector(state => state.staff.notFoundEmployee);
 
     const clickSearch = () => {
         dispatch(getEmployeeBy1c(id))
@@ -21,7 +22,16 @@ const AddUserModal = ({close}) => {
 
     const change1c = (e) => {
         setId(e.currentTarget.value);
-        setActiveBtn(false);
+        setDisableBtn(!e.currentTarget.value);
+    }
+
+
+    const NotFound = () => {
+        return (
+            notFoundEmployee ? <div className={styles.notFoundUserBar}>
+                <p>Сотрудник не найден</p>
+            </div> : null
+        )
     }
 
     return (
@@ -34,12 +44,10 @@ const AddUserModal = ({close}) => {
             <div className="content">
                 <div className={styles.addUserBar}>
                     <input onChange={change1c} type="text" placeholder="Введите идентификатор 1С:"/>
-                    <button onClick={clickSearch} className="btn btn-main" disabled={activeBtn}>Поиск</button>
+                    <button onClick={clickSearch} className="btn btn-main" disabled={disableBtn}>Поиск</button>
                 </div>
                 <UserCard/>
-                {/*<div className={styles.notFoundUserBar}>*/}
-                {/*    <p>Сотрудник не найден</p>*/}
-                {/*</div>*/}
+                <NotFound/>
             </div>
         </div>
     )
@@ -49,26 +57,25 @@ const UserCard = () => {
     const userData = useSelector(state => state.staff.employee);
 
     return (
-        userData.FullName ?
-            <div className={styles.foundUserBar}>
-                <div className={styles.emplCard}>
-                    <div className={styles.labels}>
-                        <ul>
-                            <li>Ф.И.О:</li>
-                            <li>Должность:</li>
-                            <li>Email:</li>
-                        </ul>
-                    </div>
-                    <div className={styles.data}>
-                        <ul>
-                            <li>{userData.FullName}</li>
-                            <li>{userData.Position}</li>
-                            <li>{userData.Mail}</li>
-                        </ul>
-                    </div>
+        !isEmptyObject(userData) ? <div className={styles.foundUserBar}>
+            <div className={styles.emplCard}>
+                <div className={styles.labels}>
+                    <ul>
+                        <li>Ф.И.О:</li>
+                        <li>Должность:</li>
+                        <li>Email:</li>
+                    </ul>
                 </div>
-                <button className="btn btn-main">Добавить</button>
-            </div> : null
+                <div className={styles.data}>
+                    <ul>
+                        <li>{userData.FullName}</li>
+                        <li>{userData.Position}</li>
+                        <li>{userData.Mail}</li>
+                    </ul>
+                </div>
+            </div>
+            <button className="btn btn-main">Добавить</button>
+        </div> : null
     )
 }
 
