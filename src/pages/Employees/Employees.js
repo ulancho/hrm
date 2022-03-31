@@ -11,6 +11,7 @@ import ReactPaginate from "react-paginate";
 import styleSearchBar from "../MainChart/SearchBar.module.css";
 import {RESET_EMPLOYEES_PAGINATION} from "../../redux/types";
 import {isEmptyObject, saveFile} from "../../helpers";
+import UserPhotoModal from "./Components/UserPhotoModal/UserPhotoModal";
 
 const AddUserModal = ({close}) => {
     const dispatch = useDispatch();
@@ -90,16 +91,24 @@ const EmployeesList = ({items}) => {
         <>
             {items && items.data.map((item) => (
                 <div key={item.id} className={styles.emplCard}>
-                    <div className={styles.photo}>
-                        <img src={item.image ? IMAGE_URL + item.image : notImage}/>
-                        {
-                            item.image ? <div className={`${styles.camera} ${styles.updatePhoto}`}>
-                                <CameraIcon/>
-                            </div> : <div className={`${styles.camera} ${styles.addPhoto}`}>
-                                <CameraIcon/>
+                    <Popup
+                        trigger={
+                            <div className={styles.photo}>
+                                <img src={item.image ? IMAGE_URL + item.image : notImage} alt={item.full_name ||= ''}/>
+                                {
+                                    item.image ? <div className={`${styles.camera} ${styles.updatePhoto}`}>
+                                        <CameraIcon/>
+                                    </div> : <div className={`${styles.camera} ${styles.addPhoto}`}>
+                                        <CameraIcon/>
+                                    </div>
+                                }
                             </div>
                         }
-                    </div>
+                        modal
+                        nested
+                    >
+                        {close => (<UserPhotoModal close={close}/>)}
+                    </Popup>
                     <div className={styles.labels}>
                         <ul>
                             <li>Ф.И.О:</li>
