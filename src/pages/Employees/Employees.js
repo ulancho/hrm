@@ -109,7 +109,7 @@ const EmployeesList = ({items}) => {
                     >
                         {close => (<UserPhotoModal close={close}/>)}
                     </Popup>
-                    <div className={styles.labels}>
+                    <div className={`${styles.labels} ${styles.label1}`}>
                         <ul>
                             <li>Ф.И.О:</li>
                             <li>Должность:</li>
@@ -123,7 +123,7 @@ const EmployeesList = ({items}) => {
                             <li>{item.phone_number ||= <br/>}</li>
                         </ul>
                     </div>
-                    <div className={styles.labels}>
+                    <div className={`${styles.labels} ${styles.label2}`}>
                         <ul>
                             <li>Внутр. тел.:</li>
                             <li>Идентификатор 1С:</li>

@@ -107,8 +107,12 @@
     height: 100%;
 }
 
-.labels{
-    width: 12%;
+.label1{
+    width: 10%;
+}
+
+.label2{
+    width: 15%;
 }
 
 .labels ul li{
