@@ -5,7 +5,7 @@ import {ReactComponent as Logo} from "../../media/icons/logo.svg";
 
 export const Profile = () => {
     return (
-        <div className={`container ${styles.profileBar}`}>
+        <div className={`my-container ${styles.profileBar}`}>
             <div className={styles.logo}>
                 <Logo/>
             </div>

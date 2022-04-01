@@ -9,6 +9,7 @@ import {Preloader} from "./components/preloader/Preloader";
 import {BackdropModal, ErrorApiModal} from "./components/modal/Modal";
 import {SideBar} from "./components/sideBar/SideBar";
 import {Toaster} from "react-hot-toast";
+import Remote from "./pages/Remote/Remote";
 
 function App() {
     return (
@@ -20,6 +21,7 @@ function App() {
                     <Routes>
                         <Route path="/main_chart" element={<MainChart/>}/> /*стр. основной график*/
                         <Route path="/employees" element={<Employees/>}/> /*стр. список сотрудников*/
+                        <Route path="/remote" element={<Remote/>}/> /*стр. удаленка*/
                     </Routes>
                 </MainContent>
             </div>
