@@ -5,6 +5,9 @@ const Remote = () => {
     return (
         <div className="">
             <SearchBar/>
+            <div className="wrapper">
+                <h1>8964</h1>
+            </div>
         </div>
     )
 };
