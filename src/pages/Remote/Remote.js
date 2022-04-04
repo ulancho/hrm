@@ -1,14 +1,15 @@
 import React from "react";
 import SearchBar from "../../components/searchBar/SearchBar";
+import TableRemote from "./components/Table/TableRemote";
 
 const Remote = () => {
     return (
-        <div className="">
-            <SearchBar/>
+        <>
+            <SearchBar is_remote="1"/>
             <div className="wrapper">
-                <h1>8964</h1>
+                <TableRemote/>
             </div>
-        </div>
+        </>
     )
 };
 

@@ -116,9 +116,9 @@ export function getEmployees(pagination, queryParams='') {
     }
 }
 
-/************* получение таблицы основной график *************/
+/************* получение таблицы основной график (inner:false - вызов идет из компонентов, true - вызов идет из action ) *************/
 export function getMainSchedule(pagination, inner = false, options='') {
-    const params = '?is_remote=0&limit=' + pagination.limit + '&offset=' + pagination.offset + options;
+    const params = '?limit=' + pagination.limit + '&offset=' + pagination.offset + options;
     return dispatch => {
         dispatch({type: SET_MAIN_SCHEDULE_PAGINATION, payload: pagination})
         if (!inner) dispatch({type: SHOW_PRELOADER});

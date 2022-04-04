@@ -7,8 +7,9 @@ import styleSearchBar from "./SearchBar.module.css";
 import classNames from "classnames";
 import SearchButton from "./components/SearchButton/SearchButton";
 
-const SearchBar = () => {
+const SearchBar = ({is_remote}) => {
     const dispatch = useDispatch();
+    const remote = '&is_remote=' + is_remote;
     const mainScheduleOutput = useSelector(state => state.sheet.mainScheduleOutput);
     const mainSchedulePagination = useSelector(state => state.sheet.mainSchedulePagination);
     const departmentsList = useSelector(state => state.staff.departmentsList);
@@ -23,9 +24,10 @@ const SearchBar = () => {
         const month = paramMonth ? '&month_number=' +  paramMonth : '';
         const search = paramSearch ? '&search=' +  paramSearch : '';
         const departments = paramDepartments ? '&department_id=' +  paramDepartments : '';
-        const queryParams = month + search + departments;
+        const queryParams = remote + month + search + departments;
         dispatch(getMainSchedule(pagination,false, queryParams));
     }
+
 
     const clickSave = () => {
         dispatch(saveMainSchedule(mainScheduleOutput,mainSchedulePagination));
@@ -35,6 +37,7 @@ const SearchBar = () => {
         const url = BASE_URL + 'schedule/sheet/?is_remote=0&to_excel=true';
         saveFile(url, 'xlsx');
     }
+
 
     const changeMonth = (event) => {
         setParamMonth(event.currentTarget.value.slice(5,8));
@@ -94,13 +97,13 @@ const SearchBar = () => {
                 </fieldset>
             </div>
             <div className={classNames(styleSearchBar.buttonBlock)}>
-                <SearchButton active={searchBtnActive}/>
+                <SearchButton handleClick={clickSearch} active={searchBtnActive}/>
             </div>
             <div className={classNames(styleSearchBar.buttonBlock)}>
                 <SaveButton/>
             </div>
             <div className={classNames(styleSearchBar.buttonBlock)}>
-                <button className="btn btn-secondary" onClick={clickSaveToExcel}>Сохранить в excel</button>
+                <button className="btn btn-secondary" onClick={clickSaveToExcel}>Выгрузить в excel</button>
             </div>
         </div>
     )
