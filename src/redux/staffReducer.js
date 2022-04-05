@@ -2,8 +2,7 @@ import {
     GET_DEPARTMENTS,
     GET_EMPLOYEES, NOT_FOUND_EMPLOYEE,
     RESET_EMPLOYEES_PAGINATION, SET_EMPLOYEE,
-    SET_EMPLOYEES_PAGINATION,
-    SET_QUERY_PARAMS
+    SET_EMPLOYEES_PAGINATION, SET_EMPLOYEES_QUERY_PARAMS
 } from "./types";
 
 const initialState = {
@@ -31,7 +30,7 @@ export const staffReducer = (state = initialState, action) => {
             return { ...state, employeesList:action.payload };
         case GET_DEPARTMENTS:
             return { ...state, departmentsList:action.payload };
-        case SET_QUERY_PARAMS:
+        case SET_EMPLOYEES_QUERY_PARAMS:
             return { ...state, queryParams:action.payload };
         case SET_EMPLOYEES_PAGINATION:
             return { ...state, employeesPagination:{...action.payload} };

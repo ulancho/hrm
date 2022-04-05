@@ -6,11 +6,13 @@ import {saveFile} from "../../helpers";
 import styleSearchBar from "./SearchBar.module.css";
 import classNames from "classnames";
 import SearchButton from "./components/SearchButton/SearchButton";
+import UnloadButton from "./components/UnloadButton/UnloadButton";
+import SaveButton from "./components/SaveButton/SaveButton";
 
 const SearchBar = ({is_remote}) => {
     const dispatch = useDispatch();
-    const remote = '&is_remote=' + is_remote;
     const mainScheduleOutput = useSelector(state => state.sheet.mainScheduleOutput);
+    const mainScheduleInput = useSelector(state => state.sheet.mainScheduleInput);
     const mainSchedulePagination = useSelector(state => state.sheet.mainSchedulePagination);
     const departmentsList = useSelector(state => state.staff.departmentsList);
     const [searchBtnActive,setSearchBtnActive] = useState(false);
@@ -21,23 +23,19 @@ const SearchBar = ({is_remote}) => {
     /********************** обработчики для событий ********************/
     const clickSearch = () => {
         const pagination = { offset: 0, limit: 10 };
-        const month = paramMonth ? '&month_number=' +  paramMonth : '';
-        const search = paramSearch ? '&search=' +  paramSearch : '';
-        const departments = paramDepartments ? '&department_id=' +  paramDepartments : '';
-        const queryParams = remote + month + search + departments;
-        dispatch(getMainSchedule(pagination,false, queryParams));
+        const queryParams = getQueryParams();
+        dispatch(getMainSchedule(pagination,false, queryParams, is_remote));
     }
-
 
     const clickSave = () => {
         dispatch(saveMainSchedule(mainScheduleOutput,mainSchedulePagination));
     }
 
     const clickSaveToExcel = () => {
-        const url = BASE_URL + 'schedule/sheet/?is_remote=0&to_excel=true';
+        const queryParams = getQueryParams();
+        const url = BASE_URL + 'schedule/sheet/?is_remote=' + is_remote + '&to_excel=true' + queryParams;
         saveFile(url, 'xlsx');
     }
-
 
     const changeMonth = (event) => {
         setParamMonth(event.currentTarget.value.slice(5,8));
@@ -51,14 +49,13 @@ const SearchBar = ({is_remote}) => {
         setParamDepartments(parseInt(event.currentTarget.value));
     }
 
-    /********************** доп.компоненты ********************/
-    const SaveButton = () => {
-        if (mainScheduleOutput.length > 0) {
-            return <button onClick={clickSave} className="btn btn-main">Сохранить</button>
-        } else {
-            return <button className="btn btn-main btn-not-allowed">Сохранить</button>
-        }
+    const getQueryParams = () => {
+        const month = paramMonth ? '&month_number=' +  paramMonth : '';
+        const search = paramSearch ? '&search=' +  paramSearch : '';
+        const departments = paramDepartments ? '&department_id=' +  paramDepartments : '';
+        return  month + search + departments;
     }
+
 
     /********************** хуки ********************/
     useEffect(() => {
@@ -100,10 +97,10 @@ const SearchBar = ({is_remote}) => {
                 <SearchButton handleClick={clickSearch} active={searchBtnActive}/>
             </div>
             <div className={classNames(styleSearchBar.buttonBlock)}>
-                <SaveButton/>
+                <SaveButton handleClick={clickSave} active={mainScheduleOutput.length}/>
             </div>
             <div className={classNames(styleSearchBar.buttonBlock)}>
-                <button className="btn btn-secondary" onClick={clickSaveToExcel}>Выгрузить в excel</button>
+                <UnloadButton handleClick={clickSaveToExcel} active={mainScheduleInput.count}/>
             </div>
         </div>
     )

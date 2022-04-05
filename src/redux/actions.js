@@ -3,9 +3,9 @@ import {
     GET_EMPLOYEES,
     HIDE_PRELOADER, RESET_MAIN_SCHEDULE_OUTPUT, SET_EMPLOYEES_PAGINATION,
     SET_MAIN_SCHEDULE_INPUT,
-    SET_MAIN_SCHEDULE_PAGINATION, SET_QUERY_PARAMS,
+    SET_MAIN_SCHEDULE_PAGINATION, SET_EMPLOYEES_QUERY_PARAMS,
     SHOW_FAIL_API_MODAL,
-    SHOW_PRELOADER, NOT_FOUND_EMPLOYEE
+    SHOW_PRELOADER, NOT_FOUND_EMPLOYEE, SET_SCHEDULE_QUERY_PARAMS
 } from "./types";
 import {BASE_URL, TOKEN} from "../constants";
 import toast from 'react-hot-toast';
@@ -89,7 +89,7 @@ export function getEmployees(pagination, queryParams='') {
     const params = '?limit=' + pagination.limit + '&offset=' + pagination.offset + queryParams;
     return dispatch => {
         dispatch({type:SET_EMPLOYEES_PAGINATION, payload:pagination});
-        dispatch({type:SET_QUERY_PARAMS, payload:queryParams});
+        dispatch({type:SET_EMPLOYEES_QUERY_PARAMS, payload:queryParams});
         dispatch({type: SHOW_PRELOADER});
 
         const options = {
@@ -117,10 +117,11 @@ export function getEmployees(pagination, queryParams='') {
 }
 
 /************* получение таблицы основной график (inner:false - вызов идет из компонентов, true - вызов идет из action ) *************/
-export function getMainSchedule(pagination, inner = false, options='') {
-    const params = '?limit=' + pagination.limit + '&offset=' + pagination.offset + options;
+export function getMainSchedule(pagination, inner = false, options='', is_remote=0) {
+    const params = '?is_remote=' + is_remote + '&limit=' + pagination.limit + '&offset=' + pagination.offset + options;
     return dispatch => {
         dispatch({type: SET_MAIN_SCHEDULE_PAGINATION, payload: pagination})
+        dispatch({type: SET_SCHEDULE_QUERY_PARAMS, payload: options})
         if (!inner) dispatch({type: SHOW_PRELOADER});
         const opt = {
             method: 'get',
@@ -138,7 +139,7 @@ export function getMainSchedule(pagination, inner = false, options='') {
             }
         })
             .then((responseJson) => {
-                if (responseJson) dispatch({type: SET_MAIN_SCHEDULE_INPUT, payload: responseJson})
+                dispatch({type: SET_MAIN_SCHEDULE_INPUT, payload: responseJson})
                 dispatch({type: HIDE_PRELOADER})
             })
             .catch((error) => {

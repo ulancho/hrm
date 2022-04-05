@@ -121,7 +121,7 @@ const TableBodyRemote = ({items}) => {
                         </div>
                     </React.Fragment>
                 )
-            }) : <h3 className="text-center">Данные не найдены</h3>
+            }) : <h3 id="not-found" className="text-center">Данные не найдены</h3>
     )
 };
 

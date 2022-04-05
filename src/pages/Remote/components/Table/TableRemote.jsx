@@ -8,6 +8,7 @@ import TableHeaderRemote from "../TableHeaderRemote/TableHeaderRemote";
 
 const TableRemote = () => {
     const dispatch = useDispatch();
+    const queryParams = useSelector(state => state.sheet.queryParams);
     const employeesList = useSelector(state => state.sheet.mainScheduleInput);
     const itemsPerPage = 10;
     const [pageCount, setPageCount] = useState(0);
@@ -38,7 +39,7 @@ const TableRemote = () => {
     }, [employeesList]);
 
     useEffect(() => {
-        dispatch(getMainSchedule({offset: itemOffset, limit: itemsPerPage}, false, "&is_remote=1"));
+        dispatch(getMainSchedule({offset: itemOffset, limit: itemsPerPage}, false, queryParams, 1));
     }, [itemOffset]);
 
     useEffect(() => {
@@ -52,26 +53,28 @@ const TableRemote = () => {
         <div className={styles.tableBar}>
             <TableHeaderRemote/>
             <TableBodyRemote items={employeesList}/>
-            <ReactPaginate
-                previousLabel="Назад"
-                nextLabel="Следующий"
-                breakLabel="..."
-                pageCount={pageCount}
-                pageRangeDisplayed={3}
-                marginPagesDisplayed={2}
-                onPageChange={handlePageClick}
-                pageClassName="page-item"
-                pageLinkClassName="page-link"
-                previousClassName="page-item"
-                previousLinkClassName="page-link"
-                nextClassName="page-item"
-                nextLinkClassName="page-link"
-                breakClassName="page-item"
-                breakLinkClassName="page-link"
-                containerClassName="pagination"
-                activeClassName="active"
-                renderOnZeroPageCount={null}
-            />
+            {
+                employeesList.count ? <ReactPaginate
+                    previousLabel="Назад"
+                    nextLabel="Следующий"
+                    breakLabel="..."
+                    pageCount={pageCount}
+                    pageRangeDisplayed={3}
+                    marginPagesDisplayed={2}
+                    onPageChange={handlePageClick}
+                    pageClassName="page-item"
+                    pageLinkClassName="page-link"
+                    previousClassName="page-item"
+                    previousLinkClassName="page-link"
+                    nextClassName="page-item"
+                    nextLinkClassName="page-link"
+                    breakClassName="page-item"
+                    breakLinkClassName="page-link"
+                    containerClassName="pagination"
+                    activeClassName="active"
+                    renderOnZeroPageCount={null}
+                /> : null
+            }
         </div>
     )
 };
