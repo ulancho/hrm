@@ -29,8 +29,8 @@ const TableBodyRemote = ({items}) => {
     const OverallCell = ({day = 0, hour = 0}) => {
         return (
             <div className={styles.allSum}>
-                <div className={styles.square}><span>{day}</span></div>
-                <div className={styles.square}><span>{hour}</span></div>
+                <div className={styles.square2}><span>{day}</span></div>
+                <div className={styles.square2}><span>{hour}</span></div>
             </div>
         )
     }
