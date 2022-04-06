@@ -2,13 +2,17 @@ import React from 'react';
 import styles from "./TableBodyRemote.module.css";
 import {getDay} from "../../../../helpers";
 import classNames from "classnames";
+import {useDispatch, useSelector} from "react-redux";
+import {SET_MAIN_SCHEDULE_INPUT, SET_MAIN_SCHEDULE_OUTPUT} from "../../../../redux/types";
 
 const TableBodyRemote = ({items}) => {
+    const remotesList = useSelector(state => state.sheet.mainScheduleInput);
+    const dispatch = useDispatch();
+
     const freeDayClass = (value) => value === 'В' ? 'freeDay' : '';
 
     /********************** обработчики для событий ********************/
     const onClickRow = (event, type) => {
-        if (event.target.classList.contains('s') || event.target.classList.contains('menu') || event.target.classList.contains('hours-field')) return;
         const currentRow = event.currentTarget.parentNode;
         if (type === 1) {
             currentRow.nextElementSibling.classList.remove('d-none');
@@ -19,10 +23,22 @@ const TableBodyRemote = ({items}) => {
         }
     }
 
-    const onContextCell = (event) => {
+    const onContextCell = (event, item, date, itemIndex, indexDate) => {
         event.preventDefault();
         event.currentTarget.lastElementChild.classList.toggle('active-cell');
-        event.currentTarget.querySelector('.menu').classList.toggle('d-none');
+
+        const userData = {
+            employee_id:item.employee_id,
+            status_id: 4,
+            date: date,
+            hours: null
+        }
+
+        item.days[indexDate].value = "У"
+        remotesList[itemIndex] = item;
+
+        dispatch({ type:SET_MAIN_SCHEDULE_INPUT, payload:remotesList })
+        dispatch({ type:SET_MAIN_SCHEDULE_OUTPUT, payload:userData })
     }
 
     /********************** доп. компоненты ********************/
@@ -103,7 +119,7 @@ const TableBodyRemote = ({items}) => {
                                 {
                                     item.days.map((d, indexD) => {
                                         return (
-                                            <div key={indexD} className={classNames('d', styles.square, styles[freeDayClass(d.value)])}>
+                                            <div key={indexD} onContextMenu={ (event) => onContextCell(event, item, d.date, index, indexD) } className={classNames('d', styles.square, styles[freeDayClass(d.value)])}>
                                                 <span className="d">{getDay(d.date)}</span>
                                                 <div/>
                                             </div>

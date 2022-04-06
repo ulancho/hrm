@@ -150,7 +150,7 @@ export function getMainSchedule(pagination, inner = false, options='', is_remote
 }
 
 /************* сохранение таблицы основной график *************/
-export function saveMainSchedule(data, pagination) {
+export function saveMainSchedule(data, pagination, queryParams, is_remote) {
     return dispatch => {
         dispatch({type: SHOW_PRELOADER});
         const options = {
@@ -171,7 +171,7 @@ export function saveMainSchedule(data, pagination) {
             .then((responseJson) => {
                 toast.success('Данные успешно сохранены', {position: 'top-right',});
                 dispatch({ type:RESET_MAIN_SCHEDULE_OUTPUT});
-                dispatch(getMainSchedule(pagination, true));
+                dispatch(getMainSchedule(pagination, true, queryParams, is_remote));
             })
             .catch((error) => {
                 dispatch({type: HIDE_PRELOADER, payload: {preloader: 'hide', backdropModal: 'hide'}})

@@ -14,6 +14,7 @@ const SearchBar = ({is_remote}) => {
     const mainScheduleOutput = useSelector(state => state.sheet.mainScheduleOutput);
     const mainScheduleInput = useSelector(state => state.sheet.mainScheduleInput);
     const mainSchedulePagination = useSelector(state => state.sheet.mainSchedulePagination);
+    const mainScheduleQueryParams = useSelector(state => state.sheet.queryParams);
     const departmentsList = useSelector(state => state.staff.departmentsList);
     const [searchBtnActive,setSearchBtnActive] = useState(false);
     const [paramMonth,setParamMonth] = useState('');
@@ -28,7 +29,13 @@ const SearchBar = ({is_remote}) => {
     }
 
     const clickSave = () => {
-        dispatch(saveMainSchedule(mainScheduleOutput,mainSchedulePagination));
+        dispatch(saveMainSchedule(mainScheduleOutput, mainSchedulePagination, mainScheduleQueryParams, is_remote));
+
+        const activeCell = document.querySelectorAll('.active-cell');
+
+        for (let i = 0; i < activeCell.length; i ++){
+            activeCell[i].classList.remove('active-cell');
+        }
     }
 
     const clickSaveToExcel = () => {
@@ -55,7 +62,6 @@ const SearchBar = ({is_remote}) => {
         const departments = paramDepartments ? '&department_id=' +  paramDepartments : '';
         return  month + search + departments;
     }
-
 
     /********************** хуки ********************/
     useEffect(() => {

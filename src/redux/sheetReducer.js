@@ -15,7 +15,7 @@ const initialState = {
         limit:10,
         offset:0
     },
-    queryParams:{}
+    queryParams:''
 };
 
 export const sheetReducer = (state = initialState, action) => {
