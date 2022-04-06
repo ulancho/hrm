@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from "./TableBodyRemote.module.css";
 import {getDay} from "../../../../helpers";
-import {ContextMenu} from "../../../../components/contextMenu/ContextMenu";
+import classNames from "classnames";
 
 const TableBodyRemote = ({items}) => {
     const freeDayClass = (value) => value === 'В' ? 'freeDay' : '';
@@ -26,11 +26,18 @@ const TableBodyRemote = ({items}) => {
     }
 
     /********************** доп. компоненты ********************/
-    const OverallCell = ({day = 0, hour = 0}) => {
+    const OverallCell = () => {
         return (
             <div className={styles.allSum}>
-                <div className={styles.square2}><span>{day}</span></div>
-                <div className={styles.square2}><span>{hour}</span></div>
+                <div className={styles.square2}><span></span></div>
+            </div>
+        )
+    }
+
+    const OverallHours = ({hours}) => {
+        return (
+            <div className={styles.allSum}>
+                <div className={styles.square2}><span>{hours}</span></div>
             </div>
         )
     }
@@ -73,9 +80,9 @@ const TableBodyRemote = ({items}) => {
                                 }
                             </div>
                             {/*Часы*/}
-                            <OverallCell day={item.overall?.total_days} hour={item.overall?.total_hours}/>
+                            <OverallHours hours={item.overall?.remote_hours}/>
                             {/*Все*/}
-                            <OverallCell day={item.overall?.secondment} hour={item.overall?.secondment_hours}/>
+                            <OverallCell/>
                             {/*Дни*/}
                             <RationCell ratio={item.overall?.ratio}/>
                         </div>
@@ -96,27 +103,19 @@ const TableBodyRemote = ({items}) => {
                                 {
                                     item.days.map((d, indexD) => {
                                         return (
-                                            <div key={indexD} onContextMenu={onContextCell}
-                                                 className={`d ${styles.square} ${styles[freeDayClass(d.value)]}`}>
+                                            <div key={indexD} className={classNames('d', styles.square, styles[freeDayClass(d.value)])}>
                                                 <span className="d">{getDay(d.date)}</span>
-                                                <ContextMenu allData={item} indexData={index}
-                                                             employeeId={item.employee_id} indexDate={indexD}
-                                                             date={d.date}/>
                                                 <div/>
                                             </div>
                                         )
                                     })
                                 }
                             </div>
-                            {/*Отработано*/}
-                            <OverallCell day={item.overall?.total_days} hour={item.overall?.total_hours}/>
-                            {/*Командировачные*/}
-                            <OverallCell day={item.overall?.secondment} hour={item.overall?.secondment_hours}/>
-                            {/*Больничные*/}
-                            <OverallCell day={item.overall?.sick} hour={item.overall?.sick_hours}/>
-                            {/*Отпуск*/}
-                            <OverallCell day={item.overall?.vacation} hour={item.overall?.vacation_hours}/>
-                            {/*Коэффициент*/}
+                            {/*Часы*/}
+                            <OverallHours hours={item.overall?.remote_hours}/>
+                            {/*Все*/}
+                            <OverallCell/>
+                            {/*Дни*/}
                             <RationCell ratio={item.overall?.ratio}/>
                         </div>
                     </React.Fragment>
