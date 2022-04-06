@@ -50,7 +50,7 @@ const TableBodyRemote = ({items}) => {
         )
     }
 
-    const OverallHours = ({hours}) => {
+    const OverallHours = ({hours = 0}) => {
         return (
             <div className={styles.allSum}>
                 <div className={styles.square2}><span>{hours}</span></div>
@@ -58,10 +58,10 @@ const TableBodyRemote = ({items}) => {
         )
     }
 
-    const RationCell = ({ratio = 0}) => {
+    const OverallDays = ({days = 0}) => {
         return (
             <div className={`${styles.coefficient}`}>
-                <span>{ratio}</span>
+                <span>{days}</span>
             </div>
         )
     }
@@ -100,7 +100,7 @@ const TableBodyRemote = ({items}) => {
                             {/*Все*/}
                             <OverallCell/>
                             {/*Дни*/}
-                            <RationCell ratio={item.overall?.ratio}/>
+                            <OverallDays days={item.overall?.remote}/>
                         </div>
                         {/*После клика*/}
                         <div className={`${styles.tableBarBody} ${styles.table2} ${styles.tableBarBody2} d-none`}>
@@ -132,7 +132,7 @@ const TableBodyRemote = ({items}) => {
                             {/*Все*/}
                             <OverallCell/>
                             {/*Дни*/}
-                            <RationCell ratio={item.overall?.ratio}/>
+                            <OverallDays days={item.overall?.remote}/>
                         </div>
                     </React.Fragment>
                 )
