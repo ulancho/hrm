@@ -4,6 +4,7 @@ import {getDay} from "../../../../helpers";
 import classNames from "classnames";
 import {useDispatch, useSelector} from "react-redux";
 import {SET_MAIN_SCHEDULE_INPUT, SET_MAIN_SCHEDULE_OUTPUT} from "../../../../redux/types";
+import {ReactComponent as CheckMarkIcon} from "./../../../../media/icons/check_mark.svg";
 
 const TableBodyRemote = ({items}) => {
     const remotesList = useSelector(state => state.sheet.mainScheduleInput);
@@ -45,7 +46,7 @@ const TableBodyRemote = ({items}) => {
     const OverallCell = () => {
         return (
             <div className={styles.allSum}>
-                <div className={styles.square2}><span></span></div>
+                <div className={styles.square2}><CheckMarkIcon/></div>
             </div>
         )
     }
