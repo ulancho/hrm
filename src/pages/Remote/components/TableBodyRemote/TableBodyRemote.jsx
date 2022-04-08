@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styles from "./TableBodyRemote.module.css";
 import {getDay} from "../../../../helpers";
 import classNames from "classnames";
@@ -42,11 +42,31 @@ const TableBodyRemote = ({items}) => {
         dispatch({ type:SET_MAIN_SCHEDULE_OUTPUT, payload:userData })
     }
 
+
+
     /********************** доп. компоненты ********************/
-    const OverallCell = () => {
+    const OverallCell = ({item,itemIndex,allRemote}) => {
+        const checkDays = () => {
+            console.log(item);
+            console.log(itemIndex);
+            console.log(allRemote);
+
+            item.days.forEach(i => {
+                i.value = "У";
+            })
+
+            item.overall.all_remote = true;
+            remotesList[itemIndex] = item;
+            dispatch({ type:SET_MAIN_SCHEDULE_INPUT, payload:remotesList })
+        }
+
+        const onClickCheckMark = () => {
+            checkDays();
+        }
+
         return (
-            <div className={styles.allSum}>
-                <div className={styles.square2}><CheckMarkIcon/></div>
+            <div onClick={onClickCheckMark} className={classNames(styles.allSum)}>
+                <div className={classNames(styles.square2, styles.checkMark)}>{allRemote ? <CheckMarkIcon/> : null}</div>
             </div>
         )
     }
@@ -99,7 +119,7 @@ const TableBodyRemote = ({items}) => {
                             {/*Часы*/}
                             <OverallHours hours={item.overall?.remote_hours}/>
                             {/*Все*/}
-                            <OverallCell/>
+                            <OverallCell item={item} itemIndex={index} allRemote={item.overall?.all_remote}/>
                             {/*Дни*/}
                             <OverallDays days={item.overall?.remote}/>
                         </div>
