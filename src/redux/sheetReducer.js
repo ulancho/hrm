@@ -23,7 +23,7 @@ export const sheetReducer = (state = initialState, action) => {
         case SET_MAIN_SCHEDULE_INPUT:
             return { ...state, mainScheduleInput:{...action.payload} }
         case SET_MAIN_SCHEDULE_OUTPUT:
-            return { ...state, mainScheduleOutput:[...state.mainScheduleOutput, action.payload] }
+            return { ...state, mainScheduleOutput:[...state.mainScheduleOutput, ...action.payload] }
         case RESET_MAIN_SCHEDULE_OUTPUT:
             return { ...state, mainScheduleOutput:[] }
         case SET_MAIN_SCHEDULE_PAGINATION:

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import styles from "./TableBodyRemote.module.css";
 import {getDay} from "../../../../helpers";
 import classNames from "classnames";
@@ -29,7 +29,7 @@ const TableBodyRemote = ({items}) => {
         event.currentTarget.lastElementChild.classList.toggle('active-cell');
 
         const userData = {
-            employee_id:item.employee_id,
+            employee_id: item.employee_id,
             status_id: 4,
             date: date,
             hours: null
@@ -38,35 +38,70 @@ const TableBodyRemote = ({items}) => {
         item.days[indexDate].value = "У"
         remotesList[itemIndex] = item;
 
-        dispatch({ type:SET_MAIN_SCHEDULE_INPUT, payload:remotesList })
-        dispatch({ type:SET_MAIN_SCHEDULE_OUTPUT, payload:userData })
+        dispatch({type: SET_MAIN_SCHEDULE_INPUT, payload: remotesList})
+        dispatch({type: SET_MAIN_SCHEDULE_OUTPUT, payload: [userData]})
     }
 
 
-
     /********************** доп. компоненты ********************/
-    const OverallCell = ({item,itemIndex,allRemote}) => {
-        const checkDays = () => {
-            console.log(item);
-            console.log(itemIndex);
-            console.log(allRemote);
+    const OverallCell = ({item, itemIndex, allRemote = 0}) => {
 
+        const markDays = () => {
             item.days.forEach(i => {
                 i.value = "У";
             })
 
+            if (allRemote === 0) {
+                item.overall = {};
+            }
+
+            const userData = item.days.map(i => {
+                return {
+                    employee_id: item.employee_id,
+                    status_id: 4,
+                    date: i.date,
+                    hours: null
+                }
+            })
+
             item.overall.all_remote = true;
             remotesList[itemIndex] = item;
-            dispatch({ type:SET_MAIN_SCHEDULE_INPUT, payload:remotesList })
+            dispatch({type: SET_MAIN_SCHEDULE_INPUT, payload: remotesList});
+            dispatch({type: SET_MAIN_SCHEDULE_OUTPUT, payload: userData});
+        }
+
+        const unMarkDays = () => {
+            item.days.forEach(i => {
+                i.value = "";
+            })
+
+            const userData = item.days.map(i => {
+                return {
+                    employee_id: item.employee_id,
+                    status_id: null,
+                    date: i.date,
+                    hours: null
+                }
+            })
+
+            item.overall.all_remote = false;
+            remotesList[itemIndex] = item;
+            dispatch({type: SET_MAIN_SCHEDULE_INPUT, payload: remotesList});
+            dispatch({type: SET_MAIN_SCHEDULE_OUTPUT, payload: userData});
         }
 
         const onClickCheckMark = () => {
-            checkDays();
+            if (allRemote) { //убрать галочку и снять отметку дней
+                unMarkDays();
+            } else { //поставить галочку и поставить отметку дней
+                markDays();
+            }
         }
 
         return (
             <div onClick={onClickCheckMark} className={classNames(styles.allSum)}>
-                <div className={classNames(styles.square2, styles.checkMark)}>{allRemote ? <CheckMarkIcon/> : null}</div>
+                <div className={classNames(styles.square2, styles.checkMark)}>{allRemote ?
+                    <CheckMarkIcon/> : null}</div>
             </div>
         )
     }
@@ -140,7 +175,9 @@ const TableBodyRemote = ({items}) => {
                                 {
                                     item.days.map((d, indexD) => {
                                         return (
-                                            <div key={indexD} onContextMenu={ (event) => onContextCell(event, item, d.date, index, indexD) } className={classNames('d', styles.square, styles[freeDayClass(d.value)])}>
+                                            <div key={indexD}
+                                                 onContextMenu={(event) => onContextCell(event, item, d.date, index, indexD)}
+                                                 className={classNames('d', styles.square, styles[freeDayClass(d.value)])}>
                                                 <span className="d">{getDay(d.date)}</span>
                                                 <div/>
                                             </div>
