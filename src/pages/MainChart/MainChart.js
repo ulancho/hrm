@@ -18,23 +18,23 @@ const SearchBar = () => {
     const mainScheduleOutput = useSelector(state => state.sheet.mainScheduleOutput);
     const mainSchedulePagination = useSelector(state => state.sheet.mainSchedulePagination);
     const departmentsList = useSelector(state => state.staff.departmentsList);
-    const [searchBtnActive,setSearchBtnActive] = useState(false);
-    const [paramMonth,setParamMonth] = useState('');
-    const [paramSearch,setParamSearch] = useState('');
-    const [paramDepartments,setParamDepartments] = useState(0);
+    const [searchBtnActive, setSearchBtnActive] = useState(false);
+    const [paramMonth, setParamMonth] = useState('');
+    const [paramSearch, setParamSearch] = useState('');
+    const [paramDepartments, setParamDepartments] = useState(0);
 
     /********************** обработчики для событий ********************/
     const clickSearch = () => {
-        const pagination = { offset: 0, limit: 10 };
-        const month = paramMonth ? '&month_number=' +  paramMonth : '';
-        const search = paramSearch ? '&search=' +  paramSearch : '';
-        const departments = paramDepartments ? '&department_id=' +  paramDepartments : '';
+        const pagination = {offset: 0, limit: 10};
+        const month = paramMonth ? '&month_number=' + paramMonth : '';
+        const search = paramSearch ? '&search=' + paramSearch : '';
+        const departments = paramDepartments ? '&department_id=' + paramDepartments : '';
         const queryParams = month + search + departments;
-        dispatch(getMainSchedule(pagination,false, queryParams));
+        dispatch(getMainSchedule(pagination, false, queryParams));
     }
 
     const clickSave = () => {
-        dispatch(saveMainSchedule(mainScheduleOutput,mainSchedulePagination));
+        dispatch(saveMainSchedule(mainScheduleOutput, mainSchedulePagination));
     }
 
     const clickSaveToExcel = () => {
@@ -43,7 +43,7 @@ const SearchBar = () => {
     }
 
     const changeMonth = (event) => {
-        setParamMonth(event.currentTarget.value.slice(5,8));
+        setParamMonth(event.currentTarget.value.slice(5, 8));
     }
 
     const changeSearch = (event) => {
@@ -64,33 +64,33 @@ const SearchBar = () => {
     }
 
     const SearchButton = () => {
-            if(searchBtnActive){
-                return (
-                    <button onClick={clickSearch} className="btn btn-main">
-                        <SearchIcon className={styleSearchBar.searchIcon}/>
-                        Поиск
-                    </button>
-                )
-            } else {
-                return (
-                    <button className="btn btn-main btn-not-allowed">
-                        <SearchIcon className={styleSearchBar.searchIcon}/>
-                        Поиск
-                    </button>
-                )
-            }
+        if (searchBtnActive) {
+            return (
+                <button onClick={clickSearch} className="btn btn-main">
+                    <SearchIcon className={styleSearchBar.searchIcon}/>
+                    Поиск
+                </button>
+            )
+        } else {
+            return (
+                <button className="btn btn-main btn-not-allowed">
+                    <SearchIcon className={styleSearchBar.searchIcon}/>
+                    Поиск
+                </button>
+            )
+        }
     }
 
     /********************** хуки ********************/
     useEffect(() => {
-        if (paramMonth || paramSearch || paramDepartments){
+        if (paramMonth || paramSearch || paramDepartments) {
             setSearchBtnActive(true);
         } else {
             setSearchBtnActive(false);
         }
-    }, [paramMonth,paramSearch,paramDepartments]);
+    }, [paramMonth, paramSearch, paramDepartments]);
 
-    useEffect(()=>{
+    useEffect(() => {
         dispatch(getDepartments())
     }, [])
 
@@ -107,7 +107,7 @@ const SearchBar = () => {
                     <legend>Отдел</legend>
                     <select onChange={changeDepartments}>
                         <option value="0">Выбрать</option>
-                        { departmentsList.data.map(item => <option key={item.id} value={item.id}>{item.title}</option>) }
+                        {departmentsList.data.map(item => <option key={item.id} value={item.id}>{item.title}</option>)}
                     </select>
                 </fieldset>
             </div>
@@ -219,7 +219,7 @@ const TableBarBody = ({items}) => {
     }
 
     /********************** доп. компоненты ********************/
-    const OverallCell = ({day=0, hour=0}) => {
+    const OverallCell = ({day = 0, hour = 0}) => {
         return (
             <div className={styleTableBarBody.allSum}>
                 <div className={styleTableBarBody.square}><span>{day}</span></div>
@@ -228,10 +228,11 @@ const TableBarBody = ({items}) => {
         )
     }
 
-    const RationCell = ({ratio=0}) => {
+    const RationCell = ({ratio = 0}) => {
         return (
             <div>
-                <div className={`${styleTableBarBody.coefficient} ${styleHelpBar.helpsBlock} ${styleHelpBar.coefficient}`}>
+                <div
+                    className={`${styleTableBarBody.coefficient} ${styleHelpBar.helpsBlock} ${styleHelpBar.coefficient}`}>
                     <span className={styleHelpBar.commonSign}>{ratio}</span>
                 </div>
             </div>
@@ -242,17 +243,21 @@ const TableBarBody = ({items}) => {
         items.count > 0 ?
             items.data.map((item, index) => {
                 return (
-                    <React.Fragment key={item.employee_id}>
+                    <div className="animate__animated animate__zoomIn animate__fast" key={item.employee_id}>
                         {/*До клика*/}
                         <div className={styleTableBarBody.tableBarBody}>
                             <div className={styleTableBarBody.num}>
                                 <span>{index + 1}</span>
                             </div>
-                            <div onClick={(e) => {onClickRow(e, 1)}} className={styleTableBarBody.name}>
+                            <div onClick={(e) => {
+                                onClickRow(e, 1)
+                            }} className={styleTableBarBody.name}>
                                 <p>{item.full_name}</p>
                                 <p>{item.position?.title}</p>
                             </div>
-                            <div onClick={(e) => {onClickRow(e, 1)}} className={`${styleTableBarBody.calendar} ${styleTableBarBody.table1}`}>
+                            <div onClick={(e) => {
+                                onClickRow(e, 1)
+                            }} className={`${styleTableBarBody.calendar} ${styleTableBarBody.table1}`}>
                                 {
                                     item.days.map((d, indexD) => {
                                         return (
@@ -275,15 +280,20 @@ const TableBarBody = ({items}) => {
                             <RationCell ratio={item.overall?.ratio}/>
                         </div>
                         {/*После клика*/}
-                        <div className={`${styleTableBarBody.tableBarBody} ${styleTableBarBody.table2} ${styleTableBarBody.tableBarBody2} d-none`}>
+                        <div
+                            className={`${styleTableBarBody.tableBarBody} ${styleTableBarBody.table2} ${styleTableBarBody.tableBarBody2} d-none`}>
                             <div className={styleTableBarBody.num}>
                                 <span>{index + 1}</span>
                             </div>
-                            <div onClick={(e) => {onClickRow(e, 2)}} className={styleTableBarBody.name}>
+                            <div onClick={(e) => {
+                                onClickRow(e, 2)
+                            }} className={styleTableBarBody.name}>
                                 <p>{item.full_name}</p>
                                 <p>{item.position?.title}</p>
                             </div>
-                            <div onClick={(e) => {onClickRow(e, 2)}} className={`${styleTableBarBody.calendar}`}>
+                            <div onClick={(e) => {
+                                onClickRow(e, 2)
+                            }} className={`${styleTableBarBody.calendar}`}>
                                 {
                                     item.days.map((d, indexD) => {
                                         return (
@@ -310,7 +320,7 @@ const TableBarBody = ({items}) => {
                             {/*Коэффициент*/}
                             <RationCell ratio={item.overall?.ratio}/>
                         </div>
-                    </React.Fragment>
+                    </div>
                 )
             }) : <h3 className="text-center">Данные не найдены</h3>
     )
@@ -389,7 +399,7 @@ const TableBar = () => {
 /********************** главный компонент ********************/
 export const MainChart = () => {
     return (
-        <div className={`${styles.mainChart}`}>
+        <div className={`${styles.mainChart} animate__animated animate__fadeIn animate__fast`}>
             <SearchBar/>
             <div className="wrapper">
                 <HelpBar/>

@@ -12,6 +12,7 @@ import styleSearchBar from "../MainChart/SearchBar.module.css";
 import {RESET_EMPLOYEES_PAGINATION} from "../../redux/types";
 import {isEmptyObject, saveFile} from "../../helpers";
 import UserPhotoModal from "./Components/UserPhotoModal/UserPhotoModal";
+import classNames from "classnames";
 
 const AddUserModal = ({close}) => {
     const dispatch = useDispatch();
@@ -90,7 +91,7 @@ const EmployeesList = ({items}) => {
     return (
         <>
             {items && items.data.map((item) => (
-                <div key={item.id} className={styles.emplCard}>
+                <div key={item.id} className={classNames(styles.emplCard,'animate__animated animate__zoomIn animate__fast')}>
                     <Popup
                         trigger={
                             <div className={styles.photo}>
@@ -315,11 +316,11 @@ const TableBar = () => {
 /********************** главный компонент ********************/
 export const Employees = () => {
     return (
-        <>
+        <div className="animate__animated animate__fadeIn animate__fast">
             <SearchBar/>
             <div className={`wrapper ${styles.tableBar}`}>
                 <TableBar/>
             </div>
-        </>
+        </div>
     )
 };

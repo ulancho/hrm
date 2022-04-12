@@ -10,6 +10,7 @@ import {BackdropModal, ErrorApiModal} from "./components/modal/Modal";
 import {SideBar} from "./components/sideBar/SideBar";
 import {Toaster} from "react-hot-toast";
 import Remote from "./pages/Remote/Remote";
+import 'animate.css';
 
 function App() {
     return (
@@ -19,18 +20,18 @@ function App() {
                 <SideBar/>
                 <MainContent>
                     <Routes>
-                        <Route path="/main_chart" element={<MainChart/>}/> /*стр. основной график*/
-                        <Route path="/employees" element={<Employees/>}/> /*стр. список сотрудников*/
-                        <Route path="/remote" element={<Remote/>}/> /*стр. удаленка*/
+                        <Route path="/main_chart" element={<MainChart/>}/>
+                        <Route path="/employees" element={<Employees/>}/>
+                        <Route path="/remote" element={<Remote/>}/>
                     </Routes>
                 </MainContent>
             </div>
             <Preloader/>
             <BackdropModal/>
             <ErrorApiModal/>
-            <Toaster />
+            <Toaster/>
         </BrowserRouter>
-    );
+    )
 }
 
 export default App;

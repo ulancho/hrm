@@ -126,7 +126,7 @@ const TableBodyRemote = ({items}) => {
         items.count > 0 ?
             items.data.map((item, index) => {
                 return (
-                    <React.Fragment key={item.employee_id}>
+                    <div className="animate__animated animate__zoomIn animate__fast" key={item.employee_id}>
                         {/*До клика*/}
                         <div className={styles.tableBarBody}>
                             <div className={styles.num}>
@@ -192,7 +192,7 @@ const TableBodyRemote = ({items}) => {
                             {/*Дни*/}
                             <OverallDays days={item.overall?.remote}/>
                         </div>
-                    </React.Fragment>
+                    </div>
                 )
             }) : <h3 id="not-found" className="text-center">Данные не найдены</h3>
     )
