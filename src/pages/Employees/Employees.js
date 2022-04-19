@@ -88,6 +88,11 @@ const UserCard = ({id1c}) => {
 }
 
 const EmployeesList = ({items}) => {
+
+    const addDefaultSrc = (event) => {
+        event.target.src = notImage;
+    }
+
     return (
         <>
             {items && items.data.map((item) => (
@@ -95,7 +100,7 @@ const EmployeesList = ({items}) => {
                     <Popup
                         trigger={
                             <div className={styles.photo}>
-                                <img src={item.image ? IMAGE_URL + item.image : notImage} alt={item.full_name ||= ''}/>
+                                <img src={item.image ? IMAGE_URL + item.image : notImage} alt={item.full_name ||= ''} onError={addDefaultSrc}/>
                                 {
                                     item.image ? <div className={`${styles.camera} ${styles.updatePhoto}`}>
                                         <CameraIcon/>
