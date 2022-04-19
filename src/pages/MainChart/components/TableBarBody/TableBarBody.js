@@ -3,6 +3,7 @@ import styleHelpBar from "../HelpBar/HelpBar.module.css";
 import {getDay} from "../../../../helpers";
 import {ContextMenu} from "../../../../components/contextMenu/ContextMenu";
 import React from "react";
+import classNames from "classnames";
 
 const TableBarBody = ({items}) => {
     const freeDayClass = (value) => value === 'В' ? 'freeDay' : '';
@@ -51,9 +52,9 @@ const TableBarBody = ({items}) => {
         items.count > 0 ?
             items.data.map((item, index) => {
                 return (
-                    <div className="animate__animated animate__zoomIn animate__fast" key={item.employee_id}>
+                    <div key={item.employee_id}>
                         {/*До клика*/}
-                        <div className={styleTableBarBody.tableBarBody}>
+                        <div className={classNames(styleTableBarBody.tableBarBody, 'animate__animated animate__zoomIn animate__fast')}>
                             <div className={styleTableBarBody.num}>
                                 <span>{index + 1}</span>
                             </div>
@@ -88,8 +89,7 @@ const TableBarBody = ({items}) => {
                             <RationCell ratio={item.overall?.ratio}/>
                         </div>
                         {/*После клика*/}
-                        <div
-                            className={`${styleTableBarBody.tableBarBody} ${styleTableBarBody.table2} ${styleTableBarBody.tableBarBody2} d-none`}>
+                        <div className={`${styleTableBarBody.tableBarBody} ${styleTableBarBody.table2} ${styleTableBarBody.tableBarBody2} d-none`}>
                             <div className={styleTableBarBody.num}>
                                 <span>{index + 1}</span>
                             </div>
