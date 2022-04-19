@@ -47,7 +47,6 @@ export const ContextMenu = ({allData, employeeId, indexData, date, indexDate}) =
 
 
     /********************** обработчики для событий ********************/
-
     //вызов идет для статусов:Командировочные,Больничные,Отпуск
     const clickItemStatus1 = (event,type) => {
         setActive(type);
