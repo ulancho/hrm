@@ -90,7 +90,6 @@ export function getEmployees(pagination, queryParams='') {
     return dispatch => {
         dispatch({type:SET_EMPLOYEES_PAGINATION, payload:pagination});
         dispatch({type:SET_EMPLOYEES_QUERY_PARAMS, payload:queryParams});
-        dispatch({type: SHOW_PRELOADER});
 
         const options = {
             method: 'get',
@@ -107,7 +106,6 @@ export function getEmployees(pagination, queryParams='') {
         })
             .then((responseJson) => {
                 dispatch({type: GET_EMPLOYEES, payload: responseJson})
-                dispatch({type: HIDE_PRELOADER})
             })
             .catch((error) => {
                 dispatch({type: HIDE_PRELOADER, payload: {preloader: 'hide', backdropModal: 'hide'}})
