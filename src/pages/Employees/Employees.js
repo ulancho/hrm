@@ -8,7 +8,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {addEmployeeBy1c, getDepartments, getEmployeeBy1c, getEmployees} from "../../redux/actions";
 import {BASE_URL, EMPLOYEES_PAGINATION, IMAGE_URL} from "../../constants";
 import ReactPaginate from "react-paginate";
-import styleSearchBar from "../MainChart/SearchBar.module.css";
+import styleSearchBar from "../MainChart/components/SearchBar/SearchBar.module.css";
 import {RESET_EMPLOYEES_PAGINATION} from "../../redux/types";
 import {isEmptyObject, saveFile} from "../../helpers";
 import UserPhotoModal from "./Components/UserPhotoModal/UserPhotoModal";
