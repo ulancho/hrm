@@ -9,6 +9,7 @@ import TableBarBody from "../TableBarBody/TableBarBody";
 const TableBar = () => {
     const dispatch = useDispatch();
     const employeesList = useSelector(state => state.sheet.mainScheduleInput);
+    const queryParams = useSelector(state => state.sheet.queryParams);
     const itemsPerPage = 10;
     const [pageCount, setPageCount] = useState(0);
     const [itemOffset, setItemOffset] = useState(0);
@@ -38,7 +39,7 @@ const TableBar = () => {
     }, [employeesList]);
 
     useEffect(() => {
-        dispatch(getMainSchedule({offset: itemOffset, limit: itemsPerPage}));
+        dispatch(getMainSchedule({offset: itemOffset, limit: itemsPerPage}, false, queryParams, 0));
     }, [itemOffset]);
 
     useEffect(() => {
