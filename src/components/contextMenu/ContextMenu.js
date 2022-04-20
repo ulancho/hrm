@@ -42,7 +42,7 @@ export const ContextMenu = ({allData, employeeId, indexData, date, indexDate}) =
             date:date,
             hours:hours ? hours : null
         }
-        dispatch({ type:SET_MAIN_SCHEDULE_OUTPUT, payload:userData })
+        dispatch({ type:SET_MAIN_SCHEDULE_OUTPUT, payload:[userData] })
     }
 
 
