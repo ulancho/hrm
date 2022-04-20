@@ -47,7 +47,7 @@ export const SideBar = () => {
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="form_ke"
+                    <NavLink to="staff_rate"
                              className={({isActive}) => (isActive ? styles.active : '')}>
                         <FormKeLightIcon className={styles.lightIcon}/>
                         <FormKeDarkIcon className={styles.darkIcon}/>

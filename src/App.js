@@ -9,6 +9,8 @@ import {BackdropModal, ErrorApiModal} from "./components/modal/Modal";
 import {SideBar} from "./components/sideBar/SideBar";
 import {Toaster} from "react-hot-toast";
 import Remote from "./pages/Remote/Remote";
+import StaffRate from "./pages/StaffRate/StaffRate";
+
 import "normalize.css";
 import 'animate.css';
 
@@ -23,6 +25,7 @@ function App() {
                         <Route path="/main_chart" element={<MainChart/>}/>
                         <Route path="/employees" element={<Employees/>}/>
                         <Route path="/remote" element={<Remote/>}/>
+                        <Route path="/staff_rate" element={<StaffRate/>}/>
                     </Routes>
                 </MainContent>
             </div>
