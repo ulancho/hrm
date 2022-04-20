@@ -5,7 +5,7 @@ import TableStaffRate from "./components/TableStaffRate/TableStaffRate";
 const StaffRate = () => {
     return (
         <div className="animate__animated animate__fadeIn animate__fast">
-            <SearchBar is_remote="1"/>
+            <SearchBar/>
             <div className="wrapper">
                 <TableStaffRate/>
             </div>

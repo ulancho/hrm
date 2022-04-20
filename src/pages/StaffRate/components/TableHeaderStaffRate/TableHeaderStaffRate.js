@@ -3,7 +3,7 @@ import styles from "./TableHeaderStaffRate.module.css";
 
 const TableHeaderStaffRate = () => {
     return (
-        <div className={styles.TableBarHeader}>
+        <div className={styles.tableHeader}>
             <div/>
             <div>
                 <span className={styles.title}>Фамилия, инициалы, должность</span>
