@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./MainChart.module.css";
 
-import SearchBar from "../../components/searchBar/SearchBar";
+import SearchBar from "./components/SearchBar/SearchBar";
 import HelpBar from "./components/HelpBar/HelpBar";
 import TableBar from "./components/TableBar/TableBar";
 
