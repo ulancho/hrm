@@ -20,11 +20,13 @@ const TableBodyStaffRate = () => {
                     <span className={classNames(styles.ratioNum1)}>0.2</span>
                 </div>
                 <div className={classNames(styles.comment, styles.border)}>
-                    <textarea></textarea>
+                    <textarea placeholder="Отчет о проделанной работе за месяц"></textarea>
                 </div>
-                <div>
+                <div className={classNames(styles.ratio1, styles.border)}>
+                    <span className={classNames(styles.ratioNum1)}>0.2</span>
                 </div>
-                <div>
+                <div className={classNames(styles.ratio3, styles.border)}>
+                    <span className={classNames(styles.ratioNum2)}>0.2</span>
                 </div>
             </div>
         </div>
