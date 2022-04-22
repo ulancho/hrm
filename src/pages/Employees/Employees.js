@@ -13,6 +13,9 @@ import {RESET_EMPLOYEES_PAGINATION} from "../../redux/types";
 import {isEmptyObject, saveFile} from "../../helpers";
 import UserPhotoModal from "./Components/UserPhotoModal/UserPhotoModal";
 import classNames from "classnames";
+import {Profile} from "../../components/profile/Profile";
+import {SideBar} from "../../components/sideBar/SideBar";
+import {MainContent} from "../../components/mainContent/MainContent";
 
 const AddUserModal = ({close}) => {
     const dispatch = useDispatch();
@@ -96,11 +99,13 @@ const EmployeesList = ({items}) => {
     return (
         <>
             {items && items.data.map((item) => (
-                <div key={item.id} className={classNames(styles.emplCard,'animate__animated animate__zoomIn animate__fast')}>
+                <div key={item.id}
+                     className={classNames(styles.emplCard, 'animate__animated animate__zoomIn animate__fast')}>
                     <Popup
                         trigger={
                             <div className={styles.photo}>
-                                <img src={item.image ? IMAGE_URL + item.image : notImage} alt={item.full_name ||= ''} onError={addDefaultSrc}/>
+                                <img src={item.image ? IMAGE_URL + item.image : notImage} alt={item.full_name ||= ''}
+                                     onError={addDefaultSrc}/>
                                 {
                                     item.image ? <div className={`${styles.camera} ${styles.updatePhoto}`}>
                                         <CameraIcon/>
@@ -321,11 +326,19 @@ const TableBar = () => {
 /********************** главный компонент ********************/
 export const Employees = () => {
     return (
-        <div className="animate__animated animate__fadeIn animate__fast">
-            <SearchBar/>
-            <div className={`wrapper ${styles.tableBar}`}>
-                <TableBar/>
+        <>
+            <Profile/>
+            <div className="d-flex">
+                <SideBar/>
+                <MainContent>
+                    <div className="animate__animated animate__fadeIn animate__fast">
+                        <SearchBar/>
+                        <div className={`wrapper ${styles.tableBar}`}>
+                            <TableBar/>
+                        </div>
+                    </div>
+                </MainContent>
             </div>
-        </div>
+        </>
     )
 };

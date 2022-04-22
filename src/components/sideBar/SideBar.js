@@ -22,7 +22,7 @@ export const SideBar = () => {
         <nav className={styles.nav}>
             <ul className={styles.sidebarMenu}>
                 <li>
-                    <NavLink to="main_chart"
+                    <NavLink to="/main_chart"
                              className={({isActive}) => (isActive ? styles.active : '')}
                     >
                         <MainChartLightIcon className={styles.lightIcon}/>
@@ -31,7 +31,7 @@ export const SideBar = () => {
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="remote"
+                    <NavLink to="/remote"
                              className={({isActive}) => (isActive ? styles.active : '')}>
                         <RemoteLightIcon className={styles.lightIcon}/>
                         <RemoteDarkIcon className={styles.darkIcon}/>
@@ -39,7 +39,7 @@ export const SideBar = () => {
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="processing"
+                    <NavLink to="/processing"
                              className={({isActive}) => (isActive ? styles.active : '')}>
                         <ProcessingLightIcon className={styles.lightIcon}/>
                         <ProcessingDarkIcon className={styles.darkIcon}/>
@@ -47,7 +47,7 @@ export const SideBar = () => {
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="staff_rate"
+                    <NavLink to="/staff_rate"
                              className={({isActive}) => (isActive ? styles.active : '')}>
                         <FormKeLightIcon className={styles.lightIcon}/>
                         <FormKeDarkIcon className={styles.darkIcon}/>
@@ -55,7 +55,7 @@ export const SideBar = () => {
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="employees"
+                    <NavLink to="/employees"
                              className={({isActive}) => (isActive ? styles.active : '')}>
                         <StaffLightIcon className={styles.lightIcon}/>
                         <StaffDarkIcon className={styles.darkIcon}/>
