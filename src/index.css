@@ -17,6 +17,16 @@ body{
     background: #F7F7FA;
 }
 
+/************* внешние отступы ************/
+
+.mr-16{
+    margin-right: 16px;
+}
+
+.mt-32{
+    margin-top: 32px;
+}
+
 .my-container{
     padding: 0 56px;
 }
@@ -28,10 +38,6 @@ body{
     backdrop-filter: blur(2px);
     border-radius: 8px;
     margin-bottom: 40px;
-}
-
-.mr-16{
-    margin-right: 16px;
 }
 
 .d-flex{
@@ -103,6 +109,10 @@ input:focus-visible{
 /*************  кнопка-2 ************/
 .btn-secondary{
     background: #472F91;
+}
+
+.btn-not-active{
+    background: #E0E0E0;
 }
 
 /*************  fieldset ************/
