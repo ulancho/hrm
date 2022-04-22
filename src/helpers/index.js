@@ -23,3 +23,8 @@ export const isEmptyObject = (obj) => {
     }
     return true;
 }
+
+export const auto_grow = (element) => {
+    element.target.style.height = "5px";
+    element.target.style.height = (element.target.scrollHeight)+"px";
+}

@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from "./TableBodyStaffRate.module.css"
 import classNames from "classnames";
+import {auto_grow} from "../../../../helpers";
 
 const TableBodyStaffRate = () => {
     return (
@@ -20,7 +21,7 @@ const TableBodyStaffRate = () => {
                     <span className={classNames(styles.ratioNum1)}>0.2</span>
                 </div>
                 <div className={classNames(styles.comment, styles.border)}>
-                    <textarea placeholder="Отчет о проделанной работе за месяц"></textarea>
+                    <textarea placeholder="Отчет о проделанной работе за месяц" onInput={auto_grow}/>
                 </div>
                 <div className={classNames(styles.ratio1, styles.border)}>
                     <span className={classNames(styles.ratioNum1)}>0.2</span>
