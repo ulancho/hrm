@@ -5,11 +5,9 @@ import styles from './Preloader.module.css'
 export const Preloader = () => {
     const state = useSelector(state => state.modal.preloader);
 
-    return (
-        <div className={`${styles.loader} ${styles[state]}`}>
-            <div className={styles.outer}/>
-            <div className={styles.middle}/>
-            <div className={styles.inner}/>
-        </div>
-    )
+    return ( state === 'show' ? <div className={`${styles.loader} ${styles[state]}`}>
+        <div className={styles.outer}/>
+        <div className={styles.middle}/>
+        <div className={styles.inner}/>
+    </div>  : null )
 };
