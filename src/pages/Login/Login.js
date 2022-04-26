@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import styles from './Login.module.css';
 import {ReactComponent as Logo} from "../../media/icons/logo_white.svg";
 import classNames from "classnames";
-import spinner from "../../media/1495.gif";
+import spinner from "../../media/gifs/1495.gif";
 
 const Login = () => {
     const [activeBtn, setActiveBtn] = useState('btn-not-active');
