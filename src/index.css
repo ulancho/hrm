@@ -113,7 +113,13 @@ input:focus-visible{
 
 /*************  кнопка-3 ************/
 .btn-not-active{
-    background: #E0E0E0;
+    background: rgba(224, 224, 224, 1);
+}
+
+.btn-not-active:hover{
+    pointer-events: none;
+    cursor: default!important;
+    box-shadow: none!important;
 }
 
 /*************  fieldset ************/
