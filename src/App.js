@@ -10,6 +10,7 @@ import {Toaster} from "react-hot-toast";
 import Remote from "./pages/Remote/Remote";
 import StaffRate from "./pages/StaffRate/StaffRate";
 import Login from "./pages/Login/Login";
+import LoginPassword from "./pages/LoginPassword/LoginPassword";
 
 function App() {
     return (
@@ -20,6 +21,7 @@ function App() {
                 <Route path="/remote" element={<Remote/>}/>
                 <Route path="/staff_rate" element={<StaffRate/>}/>
                 <Route path="/login" element={<Login/>}/>
+                <Route path="/login/password" element={<LoginPassword/>}/>
             </Routes>
             <Preloader/>
             <BackdropModal/>
