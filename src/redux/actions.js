@@ -5,7 +5,7 @@ import {
     SET_MAIN_SCHEDULE_INPUT,
     SET_MAIN_SCHEDULE_PAGINATION, SET_EMPLOYEES_QUERY_PARAMS,
     SHOW_FAIL_API_MODAL,
-    SHOW_PRELOADER, NOT_FOUND_EMPLOYEE, SET_SCHEDULE_QUERY_PARAMS
+    SHOW_PRELOADER, NOT_FOUND_EMPLOYEE, SET_SCHEDULE_QUERY_PARAMS, SET_STAFF_RATE_DATA
 } from "./types";
 import {BASE_URL, TOKEN} from "../constants";
 import toast from 'react-hot-toast';
@@ -197,6 +197,33 @@ export function getDepartments() {
             .then((responseJson) => {
                 dispatch({type: GET_DEPARTMENTS, payload: responseJson})
                 dispatch({type: HIDE_PRELOADER})
+            })
+            .catch((error) => {
+                dispatch({type: HIDE_PRELOADER, payload: {preloader: 'hide', backdropModal: 'hide'}})
+                dispatch({type: SHOW_FAIL_API_MODAL, payload: {failApiTxt: error.message}})
+            });
+    }
+}
+
+/************* получение данных о выполненных работах и коэффициенты *************/
+export function getStaffRate(pagination, queryParams='') {
+    const params = '?limit=' + pagination.limit + '&offset=' + pagination.offset + queryParams;
+    return dispatch => {
+        const options = {
+            method: 'get',
+            headers: {
+                'Authorization': 'Bearer ' + TOKEN
+            }
+        };
+        fetch(BASE_URL + 'staff_rate/rate/get-rate-table' + params, options).then((response) => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error(response.status);
+            }
+        })
+            .then((responseJson) => {
+                dispatch({type: SET_STAFF_RATE_DATA, payload: responseJson})
             })
             .catch((error) => {
                 dispatch({type: HIDE_PRELOADER, payload: {preloader: 'hide', backdropModal: 'hide'}})
