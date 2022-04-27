@@ -73,6 +73,9 @@
     font-size: 16px;
     line-height: 18px;
     color: #000000;
+    background-color: transparent;
+    border: 0;
+    width: 100%;
 }
 
  .ratio2{
@@ -94,6 +97,9 @@
      font-size: 16px;
      line-height: 18px;
      color: #FFFFFF;
+     background-color: transparent;
+     border: 0;
+     width: 100%;
  }
 
 .comment{
