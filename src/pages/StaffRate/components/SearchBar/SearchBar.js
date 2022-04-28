@@ -11,6 +11,7 @@ import UnloadButton from "../../../../components/searchBar/components/UnloadButt
 const SearchBar = () => {
     const dispatch = useDispatch();
     const departmentsList = useSelector(state => state.staff.departmentsList);
+    const dataOutput = useSelector(state => state.staff_rate.data_output);
     const [searchBtnActive,setSearchBtnActive] = useState(false);
     const [paramMonth,setParamMonth] = useState('');
     const [paramSearch,setParamSearch] = useState('');
@@ -23,7 +24,7 @@ const SearchBar = () => {
     }
 
     const clickSave = () => {
-
+        console.log(dataOutput);
     }
 
     const clickSaveToExcel = () => {
@@ -91,7 +92,7 @@ const SearchBar = () => {
                 <SearchButton handleClick={clickSearch} active={searchBtnActive}/>
             </div>
             <div className={classNames(styleSearchBar.buttonBlock)}>
-                <SaveButton handleClick={clickSave} active={0}/>
+                <SaveButton handleClick={clickSave} active={Object.keys(dataOutput).length}/>
             </div>
             <div className={classNames(styleSearchBar.buttonBlock)}>
                 <UnloadButton handleClick={clickSaveToExcel} active={0}/>
