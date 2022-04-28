@@ -2,14 +2,19 @@ import React, {useState} from 'react';
 import styles from "./TableBodyStaffRate.module.css"
 import classNames from "classnames";
 import {auto_grow} from "../../../../helpers";
+import {useDispatch} from "react-redux";
+import {SET_STAFF_RATE_DATA_OUTPUT} from "../../../../redux/types";
 
 const TableRow = ({item, index}) => {
+    const dispatch = useDispatch();
     const [i, setI] = useState(item);
 
     const changeRatio = (event) => {
        i[event.target.name] = event.target.value;
        setI({...i});
+       dispatch({ type:SET_STAFF_RATE_DATA_OUTPUT, payload:{ [i.employee_id]:i } })
     }
+
 
     return (
         <div className={styles.tableBody}>
@@ -36,8 +41,9 @@ const TableRow = ({item, index}) => {
             </div>
             <div className={classNames(styles.comment, styles.border)}>
                 <textarea
+                    name="comment"
                     placeholder="Отчет о проделанной работе за месяц"
-                    onBlur={() => console.log('123')}
+                    onBlur={changeRatio}
                     onInput={auto_grow}/>
             </div>
             <div className={classNames(styles.ratio1, styles.border)}>
