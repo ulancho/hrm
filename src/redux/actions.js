@@ -232,4 +232,29 @@ export function getStaffRate(pagination, queryParams='') {
     }
 }
 
+/************* получение id месяцев *************/
+export function getIdMonth() {
+    return dispatch => {
+        const options = {
+            method: 'get',
+            headers: {
+                'Authorization': 'Bearer ' + TOKEN
+            }
+        };
+        fetch(BASE_URL + 'schedule/months/', options).then((response) => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error(response.status);
+            }
+        })
+            .then((responseJson) => {
+                dispatch({type: SET_STAFF_RATE_DATA, payload: responseJson})
+            })
+            .catch((error) => {
+                dispatch({type: SHOW_FAIL_API_MODAL, payload: {failApiTxt: 'При получении ID месяцев произошла ошибка'}})
+            });
+    }
+}
+
 

@@ -24,7 +24,7 @@ const SearchBar = () => {
     }
 
     const clickSave = () => {
-        console.log(dataOutput);
+        console.log(Object.values(dataOutput));
     }
 
     const clickSaveToExcel = () => {
@@ -34,7 +34,8 @@ const SearchBar = () => {
     }
 
     const changeMonth = (event) => {
-        setParamMonth(event.currentTarget.value.slice(5,8));
+        console.log(event.currentTarget.value);
+        // setParamMonth(event.currentTarget.value.slice(5,8));
     }
 
     const changeSearch = (event) => {

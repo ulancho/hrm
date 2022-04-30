@@ -9,9 +9,14 @@ const TableRow = ({item, index}) => {
     const dispatch = useDispatch();
     const [i, setI] = useState(item);
 
+    const getItemOutput = (item) => {
+        delete item.full_name
+    }
+
     const changeRatio = (event) => {
        i[event.target.name] = event.target.value;
        setI({...i});
+       getItemOutput(i);
        dispatch({ type:SET_STAFF_RATE_DATA_OUTPUT, payload:{ [i.employee_id]:i } })
     }
 
