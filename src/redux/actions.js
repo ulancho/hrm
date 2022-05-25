@@ -5,7 +5,7 @@ import {
     SET_MAIN_SCHEDULE_INPUT,
     SET_MAIN_SCHEDULE_PAGINATION, SET_EMPLOYEES_QUERY_PARAMS,
     SHOW_FAIL_API_MODAL,
-    SHOW_PRELOADER, NOT_FOUND_EMPLOYEE, SET_SCHEDULE_QUERY_PARAMS, SET_STAFF_RATE_DATA
+    SHOW_PRELOADER, NOT_FOUND_EMPLOYEE, SET_SCHEDULE_QUERY_PARAMS, SET_STAFF_RATE_DATA, SET_MONTH
 } from "./types";
 import {BASE_URL, TOKEN} from "../constants";
 import toast from 'react-hot-toast';
@@ -249,7 +249,7 @@ export function getIdMonth() {
             }
         })
             .then((responseJson) => {
-                dispatch({type: SET_STAFF_RATE_DATA, payload: responseJson})
+                dispatch({type: SET_MONTH, payload: responseJson})
             })
             .catch((error) => {
                 dispatch({type: SHOW_FAIL_API_MODAL, payload: {failApiTxt: 'При получении ID месяцев произошла ошибка'}})
