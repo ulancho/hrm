@@ -1,11 +1,20 @@
 import {
-    GET_DEPARTMENTS, SET_EMPLOYEE,
+    GET_DEPARTMENTS,
+    SET_EMPLOYEE,
     GET_EMPLOYEES,
-    HIDE_PRELOADER, RESET_MAIN_SCHEDULE_OUTPUT, SET_EMPLOYEES_PAGINATION,
+    HIDE_PRELOADER,
+    RESET_MAIN_SCHEDULE_OUTPUT,
+    SET_EMPLOYEES_PAGINATION,
     SET_MAIN_SCHEDULE_INPUT,
-    SET_MAIN_SCHEDULE_PAGINATION, SET_EMPLOYEES_QUERY_PARAMS,
+    SET_MAIN_SCHEDULE_PAGINATION,
+    SET_EMPLOYEES_QUERY_PARAMS,
     SHOW_FAIL_API_MODAL,
-    SHOW_PRELOADER, NOT_FOUND_EMPLOYEE, SET_SCHEDULE_QUERY_PARAMS, SET_STAFF_RATE_DATA, SET_MONTH
+    SHOW_PRELOADER,
+    NOT_FOUND_EMPLOYEE,
+    SET_SCHEDULE_QUERY_PARAMS,
+    SET_STAFF_RATE_DATA,
+    SET_MONTH,
+    SET_STAFF_RATE_QUERY_PARAMS
 } from "./types";
 import {BASE_URL, TOKEN} from "../constants";
 import toast from 'react-hot-toast';
@@ -209,6 +218,8 @@ export function getDepartments() {
 export function getStaffRate(pagination, queryParams='') {
     const params = '?limit=' + pagination.limit + '&offset=' + pagination.offset + queryParams;
     return dispatch => {
+        dispatch({type:SET_STAFF_RATE_QUERY_PARAMS, payload:queryParams});
+
         const options = {
             method: 'get',
             headers: {

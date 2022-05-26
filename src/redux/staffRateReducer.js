@@ -1,11 +1,12 @@
-import {SET_STAFF_RATE_DATA, SET_STAFF_RATE_DATA_OUTPUT} from "./types";
+import {SET_STAFF_RATE_DATA, SET_STAFF_RATE_DATA_OUTPUT, SET_STAFF_RATE_QUERY_PARAMS} from "./types";
 
 const initialState = {
     data:{
         count:0,
         data:[]
     },
-    data_output:{}
+    data_output:{},
+    queryParams:''
 };
 
 export const staffRateReducer = (state = initialState, action) => {
@@ -14,6 +15,8 @@ export const staffRateReducer = (state = initialState, action) => {
             return { ...state, data:action.payload }
         case SET_STAFF_RATE_DATA_OUTPUT:
             return { ...state, data_output:{...state.data_output, ...action.payload} }
+        case SET_STAFF_RATE_QUERY_PARAMS:
+            return { ...state, queryParams:action.payload }
         default: return state;
     }
 };

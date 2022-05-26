@@ -8,7 +8,7 @@ import ReactPaginate from "react-paginate";
 const TableStaffRate = () => {
     const dispatch = useDispatch();
     const items = useSelector(state => state.staff_rate.data);
-    const firstDepartment = useSelector(state => state.staff.departmentsList).data[0];
+    const queryParams = useSelector(state => state.staff_rate.queryParams);
     const itemsPerPage = 10;
     const [pageCount, setPageCount] = useState(0);
     const [itemOffset, setItemOffset] = useState(0);
@@ -22,12 +22,14 @@ const TableStaffRate = () => {
 
     /********************** хуки ********************/
     useEffect(() => {
+        console.log(1);
+        console.log(items);
         setPageCount(Math.ceil(items.count / itemsPerPage));
     }, [items]);
 
     useEffect(() => {
-        //const queryParams = '&department_id=1&month_id=1'
-        //dispatch(getStaffRate({limit:itemsPerPage,offset:itemOffset},queryParams));
+        console.log(2);
+        if (queryParams) dispatch(getStaffRate({limit:itemsPerPage,offset:itemOffset},queryParams));
     }, [itemOffset]);
 
     return (
