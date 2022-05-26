@@ -1,6 +1,6 @@
 import {useDispatch, useSelector} from "react-redux";
 import React, {useEffect, useState} from "react";
-import {getDepartments, getIdMonth} from "../../../../redux/actions";
+import {getDepartments, getIdMonth, getStaffRate} from "../../../../redux/actions";
 import styleSearchBar from "./../../../../components/searchBar/SearchBar.module.css";
 import classNames from "classnames";
 import toast from 'react-hot-toast';
@@ -16,16 +16,15 @@ const SearchBar = () => {
     const months = useSelector(state => state.months.months.data);
     const [monthsId, setMonthsId] = useState(0);
     const [searchBtnActive,setSearchBtnActive] = useState(false);
-    const [paramMonth,setParamMonth] = useState('');
     const [paramSearch,setParamSearch] = useState('');
     const [paramDepartments,setParamDepartments] = useState(0);
 
-    const checkIdMonth = (numberMonth) => months.find(item => item.number === numberMonth);
 
     /********************** обработчики для событий ********************/
     const clickSearch = () => {
         const pagination = { offset: 0, limit: 10 };
         const queryParams = getQueryParams();
+        dispatch(getStaffRate(pagination,queryParams));
     }
 
     const clickSave = () => {
@@ -44,6 +43,7 @@ const SearchBar = () => {
 
         if(result === undefined){
             toast.error('Данные по выбранному месяцу отсутствуют');
+            setSearchBtnActive(false);
         } else {
             setMonthsId(result.id);
         }
@@ -57,8 +57,11 @@ const SearchBar = () => {
         setParamDepartments(parseInt(event.currentTarget.value));
     }
 
+    /********************** функции ********************/
+    const checkIdMonth = (numberMonth) => months.find(item => item.number === numberMonth);
+
     const getQueryParams = () => {
-        const month = paramMonth ? '&month_number=' +  paramMonth : '';
+        const month = monthsId ? '&month_id=' +  monthsId : '';
         const search = paramSearch ? '&search=' +  paramSearch : '';
         const departments = paramDepartments ? '&department_id=' +  paramDepartments : '';
         return  month + search + departments;
@@ -66,12 +69,12 @@ const SearchBar = () => {
 
     /********************** хуки ********************/
     useEffect(() => {
-        if (paramMonth || paramSearch || paramDepartments){
+        if ( (monthsId && paramDepartments) || (paramSearch && monthsId && paramDepartments) ){
             setSearchBtnActive(true);
         } else {
             setSearchBtnActive(false);
         }
-    }, [paramMonth,paramSearch,paramDepartments]);
+    }, [monthsId,paramSearch,paramDepartments]);
 
     useEffect(() => {
         dispatch(getDepartments());

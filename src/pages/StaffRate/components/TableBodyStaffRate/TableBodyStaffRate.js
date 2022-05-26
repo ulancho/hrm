@@ -49,7 +49,7 @@ const TableRow = ({item, index}) => {
                     name="comment"
                     placeholder="Отчет о проделанной работе за месяц"
                     onBlur={changeRatio}
-                    onInput={auto_grow}/>
+                    onInput={auto_grow}>{i.comment}</textarea>
             </div>
             <div className={classNames(styles.ratio1, styles.border)}>
                 <input
