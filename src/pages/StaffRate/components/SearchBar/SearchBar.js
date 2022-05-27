@@ -1,6 +1,6 @@
 import {useDispatch, useSelector} from "react-redux";
 import React, {useEffect, useState} from "react";
-import {getDepartments, getIdMonth, getStaffRate} from "../../../../redux/actions";
+import {getDepartments, getIdMonth, getStaffRate, saveStaffRate} from "../../../../redux/actions";
 import styleSearchBar from "./../../../../components/searchBar/SearchBar.module.css";
 import classNames from "classnames";
 import toast from 'react-hot-toast';
@@ -28,7 +28,7 @@ const SearchBar = () => {
     }
 
     const clickSave = () => {
-        console.log(Object.values(dataOutput));
+        dispatch(saveStaffRate(Object.values(dataOutput)))
     }
 
     const clickSaveToExcel = () => {

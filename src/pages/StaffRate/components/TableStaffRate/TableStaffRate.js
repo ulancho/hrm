@@ -22,13 +22,10 @@ const TableStaffRate = () => {
 
     /********************** хуки ********************/
     useEffect(() => {
-        console.log(1);
-        console.log(items);
         setPageCount(Math.ceil(items.count / itemsPerPage));
     }, [items]);
 
     useEffect(() => {
-        console.log(2);
         if (queryParams) dispatch(getStaffRate({limit:itemsPerPage,offset:itemOffset},queryParams));
     }, [itemOffset]);
 

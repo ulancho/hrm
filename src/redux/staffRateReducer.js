@@ -1,4 +1,9 @@
-import {SET_STAFF_RATE_DATA, SET_STAFF_RATE_DATA_OUTPUT, SET_STAFF_RATE_QUERY_PARAMS} from "./types";
+import {
+    RESET_STAFF_RATE_DATA_OUTPUT,
+    SET_STAFF_RATE_DATA,
+    SET_STAFF_RATE_DATA_OUTPUT, SET_STAFF_RATE_PAGINATION,
+    SET_STAFF_RATE_QUERY_PARAMS
+} from "./types";
 
 const initialState = {
     data:{
@@ -6,7 +11,8 @@ const initialState = {
         data:[]
     },
     data_output:{},
-    queryParams:''
+    queryParams:'',
+    pagination:{}
 };
 
 export const staffRateReducer = (state = initialState, action) => {
@@ -15,8 +21,12 @@ export const staffRateReducer = (state = initialState, action) => {
             return { ...state, data:action.payload }
         case SET_STAFF_RATE_DATA_OUTPUT:
             return { ...state, data_output:{...state.data_output, ...action.payload} }
+        case RESET_STAFF_RATE_DATA_OUTPUT:
+            return { ...state, data_output: {} }
         case SET_STAFF_RATE_QUERY_PARAMS:
             return { ...state, queryParams:action.payload }
+        case SET_STAFF_RATE_PAGINATION:
+            return { ...state, pagination:action.payload }
         default: return state;
     }
 };

@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import SearchBar from "./components/SearchBar/SearchBar";
 import TableStaffRate from "./components/TableStaffRate/TableStaffRate";
 import {Profile} from "../../components/profile/Profile";
@@ -6,12 +6,6 @@ import {SideBar} from "../../components/sideBar/SideBar";
 import {MainContent} from "../../components/mainContent/MainContent";
 
 const StaffRate = () => {
-
-
-    useEffect(() => {
-
-    },[]);
-
     return (
         <>
             <Profile/>

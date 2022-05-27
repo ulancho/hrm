@@ -14,7 +14,7 @@ import {
     SET_SCHEDULE_QUERY_PARAMS,
     SET_STAFF_RATE_DATA,
     SET_MONTH,
-    SET_STAFF_RATE_QUERY_PARAMS
+    SET_STAFF_RATE_QUERY_PARAMS, RESET_STAFF_RATE_DATA_OUTPUT, SET_STAFF_RATE_PAGINATION
 } from "./types";
 import {BASE_URL, TOKEN} from "../constants";
 import toast from 'react-hot-toast';
@@ -219,6 +219,8 @@ export function getStaffRate(pagination, queryParams='') {
     const params = '?limit=' + pagination.limit + '&offset=' + pagination.offset + queryParams;
     return dispatch => {
         dispatch({type:SET_STAFF_RATE_QUERY_PARAMS, payload:queryParams});
+        dispatch({type:SET_STAFF_RATE_PAGINATION, payload:pagination});
+
 
         const options = {
             method: 'get',
@@ -226,7 +228,7 @@ export function getStaffRate(pagination, queryParams='') {
                 'Authorization': 'Bearer ' + TOKEN
             }
         };
-        fetch(BASE_URL + 'staff_rate/rate/get-rate-table' + params, options).then((response) => {
+        fetch(BASE_URL + 'staff_rate/rate/get-rate-table/' + params, options).then((response) => {
             if (response.ok) {
                 return response.json();
             } else {
@@ -264,6 +266,37 @@ export function getIdMonth() {
             })
             .catch((error) => {
                 dispatch({type: SHOW_FAIL_API_MODAL, payload: {failApiTxt: 'При получении ID месяцев произошла ошибка'}})
+            });
+    }
+}
+
+/************* сохранение данных о выполненных работах и коэффициенты *************/
+export function saveStaffRate(data, pagination, queryParams) {
+    return dispatch => {
+        dispatch({type: SHOW_PRELOADER});
+        const options = {
+            method: 'post',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + TOKEN
+            }
+        };
+        fetch(BASE_URL + 'staff_rate/rate/batch-create/', options).then((response) => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error(response.status);
+            }
+        })
+            .then((responseJson) => {
+                toast.success('Данные успешно сохранены', {position: 'top-right',});
+                dispatch({ type:RESET_STAFF_RATE_DATA_OUTPUT});
+                //dispatch(getStaffRate({limit:10,offset:0}));
+            })
+            .catch((error) => {
+                dispatch({type: HIDE_PRELOADER, payload: {preloader: 'hide', backdropModal: 'hide'}})
+                dispatch({type: SHOW_FAIL_API_MODAL, payload: {failApiTxt: error.message}})
             });
     }
 }
