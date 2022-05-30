@@ -14,6 +14,8 @@ const SearchBar = () => {
     const departmentsList = useSelector(state => state.staff.departmentsList);
     const dataOutput = useSelector(state => state.staff_rate.data_output);
     const months = useSelector(state => state.months.months.data);
+    const pagination = useSelector(state => state.staff_rate.pagination);
+    const queryParams = useSelector(state => state.staff_rate.queryParams);
     const [monthsId, setMonthsId] = useState(0);
     const [searchBtnActive,setSearchBtnActive] = useState(false);
     const [paramSearch,setParamSearch] = useState('');
@@ -28,7 +30,7 @@ const SearchBar = () => {
     }
 
     const clickSave = () => {
-        dispatch(saveStaffRate(Object.values(dataOutput)))
+        dispatch(saveStaffRate(Object.values(dataOutput), pagination,queryParams))
     }
 
     const clickSaveToExcel = () => {

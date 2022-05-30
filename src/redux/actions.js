@@ -221,7 +221,6 @@ export function getStaffRate(pagination, queryParams='') {
         dispatch({type:SET_STAFF_RATE_QUERY_PARAMS, payload:queryParams});
         dispatch({type:SET_STAFF_RATE_PAGINATION, payload:pagination});
 
-
         const options = {
             method: 'get',
             headers: {
@@ -237,6 +236,7 @@ export function getStaffRate(pagination, queryParams='') {
         })
             .then((responseJson) => {
                 dispatch({type: SET_STAFF_RATE_DATA, payload: responseJson})
+                dispatch({type: HIDE_PRELOADER})
             })
             .catch((error) => {
                 dispatch({type: HIDE_PRELOADER, payload: {preloader: 'hide', backdropModal: 'hide'}})
@@ -292,7 +292,7 @@ export function saveStaffRate(data, pagination, queryParams) {
             .then((responseJson) => {
                 toast.success('Данные успешно сохранены', {position: 'top-right',});
                 dispatch({ type:RESET_STAFF_RATE_DATA_OUTPUT});
-                //dispatch(getStaffRate({limit:10,offset:0}));
+                dispatch(getStaffRate(pagination,queryParams));
             })
             .catch((error) => {
                 dispatch({type: HIDE_PRELOADER, payload: {preloader: 'hide', backdropModal: 'hide'}})
