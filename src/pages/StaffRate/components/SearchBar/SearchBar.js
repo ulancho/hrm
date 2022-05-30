@@ -7,12 +7,15 @@ import toast from 'react-hot-toast';
 import SearchButton from "../../../../components/searchBar/components/SearchButton/SearchButton";
 import SaveButton from "../../../../components/searchBar/components/SaveButton/SaveButton";
 import UnloadButton from "../../../../components/searchBar/components/UnloadButton/UnloadButton";
+import {saveFile} from "../../../../helpers";
+import {BASE_URL} from "../../../../constants";
 
 
 const SearchBar = () => {
     const dispatch = useDispatch();
     const departmentsList = useSelector(state => state.staff.departmentsList);
     const dataOutput = useSelector(state => state.staff_rate.data_output);
+    const dataInput = useSelector(state => state.staff_rate.data);
     const months = useSelector(state => state.months.months.data);
     const pagination = useSelector(state => state.staff_rate.pagination);
     const queryParams = useSelector(state => state.staff_rate.queryParams);
@@ -35,8 +38,8 @@ const SearchBar = () => {
 
     const clickSaveToExcel = () => {
         const queryParams = getQueryParams();
-        // const url = BASE_URL + 'schedule/sheet/?is_remote=' + is_remote + '&to_excel=true' + queryParams;
-        // saveFile(url, 'xlsx');
+        const url = BASE_URL + 'staff_rate/rate/?' + 'to_excel=true' + queryParams;
+        saveFile(url, 'xlsx');
     }
 
     const changeMonth = (event) => {
@@ -113,7 +116,7 @@ const SearchBar = () => {
                 <SaveButton handleClick={clickSave} active={Object.keys(dataOutput).length}/>
             </div>
             <div className={classNames(styleSearchBar.buttonBlock)}>
-                <UnloadButton handleClick={clickSaveToExcel} active={0}/>
+                <UnloadButton handleClick={clickSaveToExcel} active={dataInput.count}/>
             </div>
         </div>
     )

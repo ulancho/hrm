@@ -1,9 +1,17 @@
+import {TOKEN} from "../constants";
+
 export const getDay = (date) => {
     return new Date(date).getDate();
 }
 
 export const saveFile = (url,typeFile) => {
-    fetch(url).then((response) => {
+    const options = {
+        method:"GET",
+        headers: {
+            'Authorization': 'Bearer ' + TOKEN
+        }
+    }
+    fetch(url,options).then((response) => {
         return response.blob();
     }).then((blob) => {
         const url = window.URL.createObjectURL(new Blob([blob]));
