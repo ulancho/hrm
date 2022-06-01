@@ -1,6 +1,15 @@
 stages:
   - build
 
+variables:
+  TAG_LATEST: $CI_REGISTRY_IMAGE/web:latest
+  DOCKER_DRIVER: overlay2
+  DOCKER_TLS_CERTDIR: ""
+  GIT_SSL_NO_VERIFY: "1"
+  HTTPS_PROXY: "http://10.230.143.15:3128"
+  HTTP_PROXY: "http://10.230.143.15:3128"
+  NO_PROXY: "docker"
+
 build:
   stage: build
   image: docker:latest
