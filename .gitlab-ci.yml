@@ -1,11 +1,5 @@
-# services:
-#   - name: docker:20.10.12-dind
-#     command: ["--mtu=1440"]
-#     alias: docker
-
 stages:
   - build
-  - deploy
 
 build:
   stage: docker-build
