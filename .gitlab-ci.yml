@@ -11,13 +11,14 @@ variables:
   HTTP_PROXY: "http://10.230.143.15:3128"
   NO_PROXY: "docker"
 
+before_script:
+  - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+
 build:
   stage: build
   image: docker:latest
   services:
     - name: docker:20.10.12-dind
-  before_script:
-    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   script:
     - docker build --pull -t "$CI_REGISTRY_IMAGE" --build-arg HTTP_PROXY=$HTTP_PROXY --build-arg HTTPS_PROXY=$HTTPS_PROXY .
     - docker push "$CI_REGISTRY_IMAGE"
