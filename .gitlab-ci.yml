@@ -1,3 +1,8 @@
+services:
+  - name: docker:20.10.12-dind
+    command: ["--mtu=1440"]
+    alias: docker
+
 stages:
   - build
   - deploy
@@ -16,9 +21,6 @@ before_script:
 
 build:
   stage: build
-  image: docker:latest
-  services:
-    - name: docker:20.10.12-dind
   script:
     - docker build --pull -t "$CI_REGISTRY_IMAGE" --build-arg HTTP_PROXY=$HTTP_PROXY --build-arg HTTPS_PROXY=$HTTPS_PROXY .
     - docker push "$CI_REGISTRY_IMAGE"
