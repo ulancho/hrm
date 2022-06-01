@@ -32,4 +32,4 @@ deploy:
     - chmod 400 $DEPLOY_KEY
     - ssh -o StrictHostKeyChecking=no -i $DEPLOY_KEY $SERVER_USER@$SERVER_IP "docker pull registry.megacom.local:4567/hrm/frontend:latest"
     - ssh -o StrictHostKeyChecking=no -i $DEPLOY_KEY $SERVER_USER@$SERVER_IP "docker stop frontend || true && docker rm frontend || true"
-    - ssh -o StrictHostKeyChecking=no -i $DEPLOY_KEY $SERVER_USER@$SERVER_IP "docker run -p 3000:80 -d --name frontend registry.megacom.local:4567/hrm/frontend:latest"
+    - ssh -o StrictHostKeyChecking=no -i $DEPLOY_KEY $SERVER_USER@$SERVER_IP "docker run -p 3030:80 -d --name frontend registry.megacom.local:4567/hrm/frontend:latest"
