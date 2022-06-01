@@ -20,3 +20,17 @@ build:
   script:
     - docker build --pull -t "$CI_REGISTRY_IMAGE" --build-arg HTTP_PROXY=$HTTP_PROXY --build-arg HTTPS_PROXY=$HTTPS_PROXY .
     - docker push "$CI_REGISTRY_IMAGE"
+
+deploy:
+  stage: deploy
+  before_script:
+    - apk update && apk add --no-cache openssh openssh-client bash curl
+  script:
+    - eval $(ssh-agent -s)
+    - echo "$DEPLOY_KEY" | tr -d '\r' | ssh-add - > /dev/null
+    - mkdir -p ~/.ssh
+    - chmod +x ./deploy.sh
+    - sh ./deploy.sh
+    # - docker-compose -f docker-compose.prod.yml --env-file .env.docker run --rm -T api pipenv run python telegram.py
+  only:
+    - main
