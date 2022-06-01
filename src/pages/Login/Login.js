@@ -3,10 +3,16 @@ import styles from './Login.module.css';
 import {ReactComponent as Logo} from "../../media/icons/logo_white.svg";
 import classNames from "classnames";
 import spinner from "../../media/gifs/1495.gif";
+import {_checkAccount} from "../../api";
+import {useNavigate} from "react-router-dom";
+import {toast} from "react-hot-toast";
+import {useDispatch} from "react-redux";
 
 const Login = () => {
+    const navigate = useNavigate();
     const [activeBtn, setActiveBtn] = useState('btn-not-active');
-    const [isPending, setIsPending] = useState(false)
+    const [isPending, setIsPending] = useState(false);
+    const [email, setEmail] = useState('');
 
     //проверка на наличие в конце @megacom.kg
     const checkEmail = (email) => {
@@ -15,6 +21,7 @@ const Login = () => {
     }
 
     const changeEmail = (e) => {
+        setEmail(e.target.value);
         if(checkEmail(e.target.value)){
             setActiveBtn('btn-main');
         }
@@ -22,6 +29,20 @@ const Login = () => {
 
     const clickOnwards = () => {
         setIsPending(true);
+        if(email){
+            _checkAccount(email)
+                .then(data => {
+                    setIsPending(false);
+                    if(data.status === 200){
+                        navigate('password',{state:data.responseJson});
+                    } else if(data.status === 404){
+                        toast.error('Email не существует');
+                    } else{
+                        toast.error('Произошла ошибка. Код ошибки: ' + data.status);
+                    }
+                })
+        }
+
     }
 
     return (
