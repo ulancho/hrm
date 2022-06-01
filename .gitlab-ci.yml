@@ -27,6 +27,6 @@ deploy:
   image: kroniak/ssh-client
   script:
     - chmod 400 $DEPLOY_KEY
-    - ssh -o StrictHostKeyChecking=no -i $DEPLOY_KEY $SERVER_USER@$SERVER_IP "docker pull $CI_REGISTRY_IMAGE/hrm/frontend:latest"
+    - ssh -o StrictHostKeyChecking=no -i $DEPLOY_KEY $SERVER_USER@$SERVER_IP "docker pull $CI_REGISTRY_IMAGE:latest"
     - ssh -o StrictHostKeyChecking=no -i $DEPLOY_KEY $SERVER_USER@$SERVER_IP "docker stop frontend || true && docker rm frontend || true"
-    - ssh -o StrictHostKeyChecking=no -i $DEPLOY_KEY $SERVER_USER@$SERVER_IP "docker run -p 3000:80 -d --name frontend $CI_REGISTRY_IMAGE/hrm/frontend:latest"
+    - ssh -o StrictHostKeyChecking=no -i $DEPLOY_KEY $SERVER_USER@$SERVER_IP "docker run -p 3000:80 -d --name frontend $CI_REGISTRY_IMAGE:latest"
