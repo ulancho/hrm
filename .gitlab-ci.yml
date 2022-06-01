@@ -2,7 +2,7 @@ stages:
   - build
 
 build:
-  stage: docker-build
+  stage: build
   image: docker:latest
   services:
     - name: docker:20.10.12-dind
