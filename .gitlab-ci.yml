@@ -1,5 +1,6 @@
 stages:
   - build
+  - deploy
 
 variables:
   TAG_LATEST: $CI_REGISTRY_IMAGE/web:latest
@@ -31,6 +32,3 @@ deploy:
     - mkdir -p ~/.ssh
     - chmod +x ./deploy.sh
     - sh ./deploy.sh
-    # - docker-compose -f docker-compose.prod.yml --env-file .env.docker run --rm -T api pipenv run python telegram.py
-  only:
-    - main
