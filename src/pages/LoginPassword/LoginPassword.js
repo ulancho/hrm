@@ -7,9 +7,19 @@ import testUser from '../../media/images/test_user.jpg';
 
 const LoginPassword = () => {
     const [view, setView] = useState(false);
+    const [activeBtn, setActiveBtn] = useState('btn-not-active');
+
 
     const clickPasswordView = () => {
+        setView(!view);
+    }
 
+    const changePassword = (event) => {
+        if(event.target.value > 0){
+            setActiveBtn('btn-main')
+        } else{
+            setActiveBtn('btn-not-active')
+        }
     }
 
     return (
@@ -27,8 +37,9 @@ const LoginPassword = () => {
                     <div className={styles.password}>
                         <input
                             id="password"
-                            type="password"
+                            type={view ? 'text' : 'password'}
                             placeholder="Введите пароль"
+                            onChange={changePassword}
                         />
                         <a
                             href="#"
@@ -36,7 +47,10 @@ const LoginPassword = () => {
                             onClick={clickPasswordView}
                         />
                     </div>
-                    {/*<a href="#">Забыли пароль?</a>*/}
+                    <a href="#" className={styles.forgot_password}>Забыли пароль?</a>
+                    <button className={classNames('btn mt-32', activeBtn)}>
+                        Далее
+                    </button>
                 </div>
             </div>
         </div>
