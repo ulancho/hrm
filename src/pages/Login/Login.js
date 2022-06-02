@@ -6,7 +6,6 @@ import spinner from "../../media/gifs/1495.gif";
 import {_checkAccount} from "../../api";
 import {useNavigate} from "react-router-dom";
 import {toast} from "react-hot-toast";
-import {useDispatch} from "react-redux";
 
 const Login = () => {
     const navigate = useNavigate();
@@ -34,7 +33,7 @@ const Login = () => {
                 .then(data => {
                     setIsPending(false);
                     if(data.status === 200){
-                        navigate('password',{state:data.responseJson});
+                        navigate('password',{state:{email:email, ...data.responseJson}});
                     } else if(data.status === 404){
                         toast.error('Email не существует');
                     } else{
@@ -42,7 +41,6 @@ const Login = () => {
                     }
                 })
         }
-
     }
 
     return (
