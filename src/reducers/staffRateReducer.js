@@ -3,7 +3,7 @@ import {
     SET_STAFF_RATE_DATA,
     SET_STAFF_RATE_DATA_OUTPUT, SET_STAFF_RATE_PAGINATION,
     SET_STAFF_RATE_QUERY_PARAMS
-} from "./types";
+} from "../actions/types";
 
 const initialState = {
     data:{

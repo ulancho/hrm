@@ -1,6 +1,6 @@
 import {useDispatch, useSelector} from "react-redux";
 import React, {useEffect, useState} from "react";
-import {getMainSchedule} from "../../../../redux/actions";
+import {getMainSchedule} from "../../../../actions/actions";
 import styles from "../../MainChart.module.css";
 import ReactPaginate from "react-paginate";
 import TableBarHeader from "../TableBarHeader/TableBarHeader";

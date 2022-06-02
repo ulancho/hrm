@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import styles from "./ContextMenu.module.css";
 import {useDispatch, useSelector} from "react-redux";
 import {SHIFT_STATUSES} from "../../constants";
-import {SET_MAIN_SCHEDULE_INPUT, SET_MAIN_SCHEDULE_OUTPUT} from "../../redux/types";
+import {SET_MAIN_SCHEDULE_INPUT, SET_MAIN_SCHEDULE_OUTPUT} from "../../actions/types";
 
 
 export const ContextMenu = ({allData, employeeId, indexData, date, indexDate}) => {

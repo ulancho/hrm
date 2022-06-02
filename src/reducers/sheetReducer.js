@@ -3,7 +3,7 @@ import {
     SET_MAIN_SCHEDULE_INPUT,
     SET_MAIN_SCHEDULE_OUTPUT,
     SET_MAIN_SCHEDULE_PAGINATION, SET_SCHEDULE_QUERY_PARAMS
-} from "./types";
+} from "../actions/types";
 
 const initialState = {
     mainScheduleInput:{

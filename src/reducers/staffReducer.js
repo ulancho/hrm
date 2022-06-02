@@ -3,7 +3,7 @@ import {
     GET_EMPLOYEES, NOT_FOUND_EMPLOYEE,
     RESET_EMPLOYEES_PAGINATION, SET_EMPLOYEE,
     SET_EMPLOYEES_PAGINATION, SET_EMPLOYEES_QUERY_PARAMS
-} from "./types";
+} from "../actions/types";
 
 const initialState = {
     employeesList:{

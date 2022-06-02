@@ -1,6 +1,6 @@
 import {
     SET_MONTH,
-} from "./types";
+} from "../actions/types";
 
 const initialState = {
     months:{

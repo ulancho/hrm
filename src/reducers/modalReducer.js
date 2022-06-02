@@ -1,6 +1,6 @@
 import {
     SHOW_PRELOADER, HIDE_PRELOADER, SHOW_FAIL_API_MODAL,
-} from "./types";
+} from "../actions/types";
 
 const initialState = {
     backdropModal: 'fade',

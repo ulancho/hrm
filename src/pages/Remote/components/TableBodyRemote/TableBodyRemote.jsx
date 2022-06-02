@@ -3,7 +3,7 @@ import styles from "./TableBodyRemote.module.css";
 import {getDay} from "../../../../helpers";
 import classNames from "classnames";
 import {useDispatch, useSelector} from "react-redux";
-import {SET_MAIN_SCHEDULE_INPUT, SET_MAIN_SCHEDULE_OUTPUT} from "../../../../redux/types";
+import {SET_MAIN_SCHEDULE_INPUT, SET_MAIN_SCHEDULE_OUTPUT} from "../../../../actions/types";
 import {ReactComponent as CheckMarkIcon} from "./../../../../media/icons/check_mark.svg";
 
 const TableBodyRemote = ({items}) => {
