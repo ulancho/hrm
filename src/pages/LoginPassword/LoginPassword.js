@@ -4,6 +4,9 @@ import classNames from 'classnames';
 import {ReactComponent as Logo} from '../../media/icons/logo_white.svg';
 import {useLocation} from "react-router-dom";
 import {IMAGE_URL} from "../../constants";
+import spinner from "../../media/gifs/1495.gif";
+import {_checkAccount} from "../../api";
+import {toast} from "react-hot-toast";
 
 
 const LoginPassword = () => {
@@ -12,6 +15,7 @@ const LoginPassword = () => {
     const [activeBtn, setActiveBtn] = useState('btn-not-active');
     const [userData, setUserData] = useState(location.state);
     const [password, setPassword] = useState('');
+    const [isPending, setIsPending] = useState(false);
 
     const clickPasswordView = () => {
         setView(!view);
@@ -60,7 +64,7 @@ const LoginPassword = () => {
                         className={classNames('btn mt-32', activeBtn)}
                         onClick={clickLogin}
                     >
-                        Далее
+                        {!isPending ? 'Далее' : <img className={styles.spinner} src={spinner} alt="...загрузка"/>}
                     </button>
                 </div>
             </div>
