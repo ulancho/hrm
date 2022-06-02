@@ -31,6 +31,23 @@ const LoginPassword = () => {
     }
 
     const clickLogin = () => {
+        setIsPending(true);
+
+
+        if(userData.email && password){
+            _checkAccount(email)
+                .then(data => {
+                    setIsPending(false);
+                    if(data.status === 200){
+                        navigate('password',{state:{email:email, ...data.responseJson}});
+                    } else if(data.status === 404){
+                        toast.error('Email не существует');
+                    } else{
+                        toast.error('Произошла ошибка. Код ошибки: ' + data.status);
+                    }
+                })
+        }
+
 
     }
 
