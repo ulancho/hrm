@@ -3,9 +3,9 @@ import styles from './Login.module.css';
 import {ReactComponent as Logo} from "../../media/icons/logo_white.svg";
 import classNames from "classnames";
 import spinner from "../../media/gifs/1495.gif";
-import {_checkAccount} from "../../api";
 import {useNavigate} from "react-router-dom";
 import {toast} from "react-hot-toast";
+import AuthService from "./../../services/auth.service";
 
 const Login = () => {
     const navigate = useNavigate();
@@ -29,7 +29,7 @@ const Login = () => {
     const clickOnwards = () => {
         setIsPending(true);
         if(email){
-            _checkAccount(email)
+            AuthService.checkEmail(email)
                 .then(data => {
                     setIsPending(false);
                     if(data.status === 200){

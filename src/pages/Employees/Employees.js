@@ -10,7 +10,7 @@ import {BASE_URL, EMPLOYEES_PAGINATION, IMAGE_URL} from "../../constants";
 import ReactPaginate from "react-paginate";
 import styleSearchBar from "../MainChart/components/SearchBar/SearchBar.module.css";
 import {RESET_EMPLOYEES_PAGINATION} from "../../actions/types";
-import {isEmptyObject, saveFile} from "../../helpers";
+import {addDefaultSrc, isEmptyObject, saveFile} from "../../helpers";
 import UserPhotoModal from "./Components/UserPhotoModal/UserPhotoModal";
 import classNames from "classnames";
 import {Profile} from "../../components/profile/Profile";
@@ -91,11 +91,6 @@ const UserCard = ({id1c}) => {
 }
 
 const EmployeesList = ({items}) => {
-
-    const addDefaultSrc = (event) => {
-        event.target.src = notImage;
-    }
-
     return (
         <>
             {items && items.data.map((item) => (

@@ -1,7 +1,7 @@
 import {BASE_URL, TOKEN} from "../constants";
 
 class AuthService {
-    login(email, password) {
+    login(email, password){
         const url = BASE_URL + 'access-token/';
         const options = {
             method: 'POST',
@@ -19,6 +19,7 @@ class AuthService {
             }
         })
             .then((responseJson) => {
+                localStorage.setItem("user",JSON.stringify(responseJson.access))
                 return { status:200, responseJson };
             })
             .catch((errorStatus) => {
@@ -26,8 +27,23 @@ class AuthService {
             });
     }
 
-    logout() {
+    /*************************** проверка аккаунта  ***************************/
+    checkEmail(email){
+        const url = BASE_URL + 'staff/login-search/?email=' + email;
 
+        return fetch(url).then((response) => {
+            if (response.status === 200) {
+                return response.json();
+            } else {
+                throw response.status;
+            }
+        })
+            .then((responseJson) => {
+                return { status:200, responseJson };
+            })
+            .catch((errorStatus) => {
+                return { status:errorStatus };
+            });
     }
 }
 

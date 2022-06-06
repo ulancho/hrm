@@ -1,4 +1,9 @@
 import {TOKEN} from "../constants";
+import notImage from "../media/images/not_image.png";
+
+export const addDefaultSrc = (event) => {
+    event.target.src = notImage;
+}
 
 export const getDay = (date) => {
     return new Date(date).getDate();

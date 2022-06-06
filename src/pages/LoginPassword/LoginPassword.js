@@ -5,12 +5,15 @@ import {ReactComponent as Logo} from '../../media/icons/logo_white.svg';
 import {useLocation} from "react-router-dom";
 import {IMAGE_URL} from "../../constants";
 import spinner from "../../media/gifs/1495.gif";
-import {_checkAccount} from "../../api";
+import {login} from "../../actions/auth.action";
 import {toast} from "react-hot-toast";
+import {useDispatch} from "react-redux";
+import {addDefaultSrc} from "../../helpers";
 
 
 const LoginPassword = () => {
     const location = useLocation();
+    const dispatch = useDispatch();
     const [view, setView] = useState(false);
     const [activeBtn, setActiveBtn] = useState('btn-not-active');
     const [userData, setUserData] = useState(location.state);
@@ -23,7 +26,7 @@ const LoginPassword = () => {
 
     const changePassword = (event) => {
         setPassword(event.target.value);
-        if(event.target.value > 0){
+        if(event.target.value.length > 0){
             setActiveBtn('btn-main');
         } else{
             setActiveBtn('btn-not-active');
@@ -33,18 +36,17 @@ const LoginPassword = () => {
     const clickLogin = () => {
         setIsPending(true);
 
-
         if(userData.email && password){
-            _checkAccount(email)
+           dispatch(login(userData.email, password))
                 .then(data => {
-                    setIsPending(false);
-                    if(data.status === 200){
-                        navigate('password',{state:{email:email, ...data.responseJson}});
-                    } else if(data.status === 404){
-                        toast.error('Email не существует');
-                    } else{
-                        toast.error('Произошла ошибка. Код ошибки: ' + data.status);
-                    }
+                    // setIsPending(false);
+                    // if(data.status === 200){
+                    //     navigate('password',{state:{email:email, ...data.responseJson}});
+                    // } else if(data.status === 404){
+                    //     toast.error('Email не существует');
+                    // } else{
+                    //     toast.error('Произошла ошибка. Код ошибки: ' + data.status);
+                    // }
                 })
         }
 
@@ -56,7 +58,11 @@ const LoginPassword = () => {
             <div className={styles.container}>
                 <Logo className={styles.logo}/>
                 <div className={styles.myself}>
-                    <img src={IMAGE_URL + userData.image} className={classNames(styles.user_img, 'mb-24')} alt="Пользователь"/>
+                    <img
+                        src={IMAGE_URL + userData.image}
+                        className={classNames(styles.user_img, 'mb-24')}
+                        onError={addDefaultSrc}
+                        alt="Пользователь"/>
                     <p className={classNames(styles.title)}>{userData.full_name}</p>
                     <p className={classNames(styles.title, 'mt-8')}>{userData.position}</p>
                     <p className={classNames(styles.title, 'mt-8')}>{userData.department}</p>
