@@ -1,16 +1,13 @@
-
+import {LOGIN_SUCCESS} from "../actions/types";
 
 const initialState = {
-    user:{
-        count:0,
-        data:[]
-    }
+    user:null
 };
 
-export const staffReducer = (state = initialState, action) => {
+export const loginReducer = (state = initialState, action) => {
     switch (action.type) {
-        case GET_EMPLOYEES:
-            return { ...state, isLoggedIn:true, user:action.payload };
+        case LOGIN_SUCCESS:
+            return { ...state, isLoggedIn:true, user:{...action.payload} };
         default: return state;
     }
 };
