@@ -1,6 +1,7 @@
-import {BASE_URL, TOKEN} from "../constants";
+import {BASE_URL} from "../constants";
 
 class AuthService {
+    /*************************** вход, получение прав  ***************************/
     login(email, password){
         const url = BASE_URL + 'access-token/';
         const options = {
@@ -23,7 +24,7 @@ class AuthService {
                 return { status:200, responseJson };
             })
             .catch((errorStatus) => {
-                return { status:errorStatus };
+                return Promise.reject({ status:errorStatus });
             });
     }
 

@@ -4,34 +4,14 @@ import {LOGIN_SUCCESS} from "./types";
 export const login = (username, password) => (dispatch) => {
     return AuthService.login(username, password).then(
         (data) => {
-            console.log(data);
+            if (data.status !== 200) return Promise.reject(data.status);
 
             dispatch({
                 type: LOGIN_SUCCESS,
-                payload: { user: data },
+                payload: data.responseJson,
             });
 
-            // return Promise.resolve();
-        },
-        (error) => {
-            console.log({error})
-            // const message =
-            //     (error.response &&
-            //         error.response.data &&
-            //         error.response.data.message) ||
-            //     error.message ||
-            //     error.toString();
-            //
-            // dispatch({
-            //     type: LOGIN_FAIL,
-            // });
-            //
-            // dispatch({
-            //     type: SET_MESSAGE,
-            //     payload: message,
-            // });
-            //
-            // return Promise.reject();
+            return Promise.resolve();
         }
     );
 };

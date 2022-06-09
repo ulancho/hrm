@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import styles from './LoginPassword.module.css'
 import classNames from 'classnames';
 import {ReactComponent as Logo} from '../../media/icons/logo_white.svg';
-import {useLocation} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import {IMAGE_URL} from "../../constants";
 import spinner from "../../media/gifs/1495.gif";
 import {login} from "../../actions/auth.action";
@@ -14,6 +14,7 @@ import {addDefaultSrc} from "../../helpers";
 const LoginPassword = () => {
     const location = useLocation();
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [view, setView] = useState(false);
     const [activeBtn, setActiveBtn] = useState('btn-not-active');
     const [userData, setUserData] = useState(location.state);
@@ -39,15 +40,17 @@ const LoginPassword = () => {
         if(userData.email && password){
            dispatch(login(userData.email, password))
                 .then(data => {
-                    // setIsPending(false);
-                    // if(data.status === 200){
-                    //     navigate('password',{state:{email:email, ...data.responseJson}});
-                    // } else if(data.status === 404){
-                    //     toast.error('Email не существует');
-                    // } else{
-                    //     toast.error('Произошла ошибка. Код ошибки: ' + data.status);
-                    // }
+                    setIsPending(false);
+                    navigate('/password');
                 })
+               .catch(statusError => {
+                   if (statusError.status === 401){
+                       toast.error('Пароль введен неверно');
+                   } else {
+                       toast.error('Ошибка сервера.');
+                   }
+                   setIsPending(false);
+               })
         }
 
 
