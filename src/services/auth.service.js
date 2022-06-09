@@ -20,7 +20,7 @@ class AuthService {
             }
         })
             .then((responseJson) => {
-                localStorage.setItem("user",JSON.stringify(responseJson.access))
+                localStorage.setItem("user",JSON.stringify(responseJson))
                 return { status:200, responseJson };
             })
             .catch((errorStatus) => {

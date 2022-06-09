@@ -1,8 +1,11 @@
 import {LOGIN_SUCCESS} from "../actions/types";
 
-const initialState = {
-    user:null
-};
+const user = JSON.parse(localStorage.getItem("user"));
+
+const initialState = user
+    ? { isLoggedIn: true, user }
+    : { isLoggedIn: false, user: null };
+
 
 export const loginReducer = (state = initialState, action) => {
     switch (action.type) {
