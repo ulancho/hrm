@@ -41,7 +41,7 @@ const LoginPassword = () => {
            dispatch(login(userData.email, password))
                 .then(data => {
                     setIsPending(false);
-                    navigate('/password');
+                    navigate('/welcome');
                 })
                .catch(statusError => {
                    if (statusError.status === 401){

@@ -11,6 +11,7 @@ import Remote from "./pages/Remote/Remote";
 import StaffRate from "./pages/StaffRate/StaffRate";
 import Login from "./pages/Login/Login";
 import LoginPassword from "./pages/LoginPassword/LoginPassword";
+import Welcome from "./pages/Welcome/Welcome";
 
 function App() {
     return (
@@ -22,6 +23,7 @@ function App() {
                 <Route path="/staff_rate" element={<StaffRate/>}/>
                 <Route path="/login" element={<Login/>}/>
                 <Route path="/login/password" element={<LoginPassword/>}/>
+                <Route path="/welcome" element={<Welcome/>}/>
             </Routes>
             <Preloader/>
             <BackdropModal/>
