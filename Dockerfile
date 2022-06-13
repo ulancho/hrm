@@ -1,9 +1,6 @@
 # Set the base image to node:12-alpine
 FROM node:12-alpine AS build
 
-# ENV HTTP_PROXY http://digisinov:786Dinmukhamet%21%5E%21%21@megaproxy.megacom.local:3128
-# ENV HTTPS_PROXY http://digisinov:786Dinmukhamet%21%5E%21%21@megaproxy.megacom.local:3128
-
 ARG HTTP_PROXY
 ARG HTTPS_PROXY
 
@@ -26,3 +23,4 @@ COPY nginx/nginx.conf /etc/nginx/conf.d
 # Fire up nginx
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
+
