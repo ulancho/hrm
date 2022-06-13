@@ -21,14 +21,31 @@ function App() {
                 <Route path="/main_chart" element={
                     <RequireAuth>
                         <MainChart/>
-                    </RequireAuth>
-                }/>
-                <Route path="/employees" element={<Employees/>}/>
-                <Route path="/remote" element={<Remote/>}/>
-                <Route path="/staff_rate" element={<StaffRate/>}/>
-                <Route path="/login" element={<Login/>}/>
-                <Route path="/login/password" element={<LoginPassword/>}/>
-                <Route path="/welcome" element={<Welcome/>}/>
+                    </RequireAuth>}/>
+                <Route path="/employees" element={
+                    <RequireAuth>
+                        <Employees/>
+                    </RequireAuth>}/>
+                <Route path="/remote" element={
+                    <RequireAuth>
+                        <Remote/>
+                    </RequireAuth>}/>
+                <Route path="/staff_rate" element={
+                    <RequireAuth>
+                        <StaffRate/>
+                    </RequireAuth>}/>
+                <Route path="/login" element={
+                    <RequireAuth>
+                        <Login/>
+                    </RequireAuth>}/>
+                <Route path="/login/password" element={
+                    <RequireAuth>
+                        <LoginPassword/>
+                    </RequireAuth>}/>
+                <Route path="/welcome" element={
+                    <RequireAuth>
+                        <Welcome/>
+                    </RequireAuth>}/>
             </Routes>
             <Preloader/>
             <BackdropModal/>
