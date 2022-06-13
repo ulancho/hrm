@@ -6,7 +6,6 @@ import {routes} from "./routes";
 
 export const SideBar = () => {
     const pages = JSON.parse(localStorage.getItem('user')).pages;
-    console.log(pages);
 
     return (
         <nav className={styles.nav}>

@@ -19,6 +19,9 @@ import {
 import {BASE_URL, TOKEN} from "../constants";
 import toast from 'react-hot-toast';
 
+function getAccessToken(){
+    return JSON.parse(localStorage.getItem('user')).access_token;
+}
 
 /************* добавление сотрудника по 1с идентификтатору *************/
 export function addEmployeeBy1c(id) {
@@ -27,7 +30,7 @@ export function addEmployeeBy1c(id) {
         const options = {
             method: 'GET',
             headers: {
-                'Authorization': 'Bearer ' + TOKEN
+                'Authorization': 'Bearer ' + getAccessToken()
             }
         };
         fetch(BASE_URL + 'staff/employees/add-employee/?id_1c=' + id, options).then((response) => {
@@ -64,7 +67,7 @@ export function getEmployeeBy1c(id) {
         const options = {
             method: 'GET',
             headers: {
-                'Authorization': 'Bearer ' + TOKEN
+                'Authorization': 'Bearer ' + getAccessToken()
             }
         };
         fetch(BASE_URL + 'staff/employees/search-1c/?id_1c=' + id, options).then((response) => {
@@ -103,7 +106,7 @@ export function getEmployees(pagination, queryParams='') {
         const options = {
             method: 'get',
             headers: {
-                'Authorization': 'Bearer ' + TOKEN
+                'Authorization': 'Bearer ' + getAccessToken()
             }
         };
         fetch(BASE_URL + 'staff/employees/' + params, options).then((response) => {
@@ -133,7 +136,7 @@ export function getMainSchedule(pagination, inner = false, options='', is_remote
         const opt = {
             method: 'get',
             headers: {
-                'Authorization': 'Bearer ' + TOKEN
+                'Authorization': 'Bearer ' + getAccessToken()
             }
         };
         fetch(BASE_URL + 'schedule/sheet/' + params, opt).then((response) => {
@@ -165,7 +168,7 @@ export function saveMainSchedule(data, pagination, queryParams, is_remote) {
             body: JSON.stringify(data),
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + TOKEN
+                'Authorization': 'Bearer ' + getAccessToken()
             }
         };
         fetch(BASE_URL + 'schedule/shift-data/batch-create/', options).then((response) => {
@@ -193,7 +196,7 @@ export function getDepartments() {
         const options = {
             method: 'get',
             headers: {
-                'Authorization': 'Bearer ' + TOKEN
+                'Authorization': 'Bearer ' + getAccessToken()
             }
         };
         fetch(BASE_URL + 'staff/departments/', options).then((response) => {
@@ -224,7 +227,7 @@ export function getStaffRate(pagination, queryParams='') {
         const options = {
             method: 'get',
             headers: {
-                'Authorization': 'Bearer ' + TOKEN
+                'Authorization': 'Bearer ' + getAccessToken()
             }
         };
         fetch(BASE_URL + 'staff_rate/rate/get-rate-table/' + params, options).then((response) => {
@@ -251,7 +254,7 @@ export function getIdMonth() {
         const options = {
             method: 'get',
             headers: {
-                'Authorization': 'Bearer ' + TOKEN
+                'Authorization': 'Bearer ' + getAccessToken()
             }
         };
         fetch(BASE_URL + 'schedule/months/', options).then((response) => {
@@ -279,7 +282,7 @@ export function saveStaffRate(data, pagination, queryParams) {
             body: JSON.stringify(data),
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + TOKEN
+                'Authorization': 'Bearer ' + getAccessToken()
             }
         };
         fetch(BASE_URL + 'staff_rate/rate/batch-create/', options).then((response) => {

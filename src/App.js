@@ -12,12 +12,17 @@ import StaffRate from "./pages/StaffRate/StaffRate";
 import Login from "./pages/Login/Login";
 import LoginPassword from "./pages/LoginPassword/LoginPassword";
 import Welcome from "./pages/Welcome/Welcome";
+import {RequireAuth} from "./components/hoc/RequireAuth";
 
 function App() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/main_chart" element={<MainChart/>}/>
+                <Route path="/main_chart" element={
+                    <RequireAuth>
+                        <MainChart/>
+                    </RequireAuth>
+                }/>
                 <Route path="/employees" element={<Employees/>}/>
                 <Route path="/remote" element={<Remote/>}/>
                 <Route path="/staff_rate" element={<StaffRate/>}/>
