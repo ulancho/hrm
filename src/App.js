@@ -34,18 +34,12 @@ function App() {
                     <RequireAuth>
                         <StaffRatePage/>
                     </RequireAuth>}/>
-                <Route path="/login" element={
-                    <RequireAuth>
-                        <LoginPage/>
-                    </RequireAuth>}/>
-                <Route path="/login/password" element={
-                    <RequireAuth>
-                        <LoginPasswordPage/>
-                    </RequireAuth>}/>
                 <Route path="/welcome" element={
                     <RequireAuth>
                         <WelcomePage/>
                     </RequireAuth>}/>
+                <Route path="/login" element={<LoginPage/>}/>
+                <Route path="/login/password" element={<LoginPasswordPage/>}/>
             </Routes>
             <Preloader/>
             <BackdropModal/>
