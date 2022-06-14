@@ -16,12 +16,11 @@ import {
     SET_MONTH,
     SET_STAFF_RATE_QUERY_PARAMS, RESET_STAFF_RATE_DATA_OUTPUT, SET_STAFF_RATE_PAGINATION
 } from "./types";
-import {BASE_URL, TOKEN} from "../constants";
+import {BASE_URL} from "../constants";
 import toast from 'react-hot-toast';
 
-function getAccessToken(){
-    return JSON.parse(localStorage.getItem('user')).access_token;
-}
+function getAccessToken() { return JSON.parse(localStorage.getItem('user')).access_token; }
+
 
 /************* добавление сотрудника по 1с идентификтатору *************/
 export function addEmployeeBy1c(id) {
@@ -202,6 +201,8 @@ export function getDepartments() {
         fetch(BASE_URL + 'staff/departments/', options).then((response) => {
             if (response.ok) {
                 return response.json();
+            } else if(response.status === 401){
+                window.location.href = '/login';
             } else {
                 throw new Error(response.status);
             }
