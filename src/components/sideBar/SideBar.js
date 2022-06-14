@@ -12,9 +12,9 @@ export const SideBar = () => {
             <ul className={styles.sidebarMenu}>
                 <li>
                     {
-                        pages.map(item => {
+                        pages.map((item, index) => {
                             return (
-                                    routes[item.name] ? <NavLink to={`/${routes[item.name].route}`}
+                                    routes[item.name] ? <NavLink key={index} to={`/${routes[item.name].route}`}
                                                                   className={({isActive}) => (isActive ? styles.active : '')}
                                     >
                                         {routes[item.name].lightIcon}
