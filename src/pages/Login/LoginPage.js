@@ -1,13 +1,14 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from './Login.module.css';
 import {ReactComponent as Logo} from "../../media/icons/logo_white.svg";
 import classNames from "classnames";
 import spinner from "../../media/gifs/1495.gif";
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useSearchParams} from "react-router-dom";
 import {toast} from "react-hot-toast";
 import AuthService from "./../../services/auth.service";
 
 const LoginPage = () => {
+    let [searchParams, setSearchParams] = useSearchParams();
     const navigate = useNavigate();
     const [activeBtn, setActiveBtn] = useState('btn-not-active');
     const [isPending, setIsPending] = useState(false);
@@ -25,6 +26,15 @@ const LoginPage = () => {
             setActiveBtn('btn-main');
         }
     }
+
+    const checkStatus = () => {
+        let status = searchParams.get("status");
+        if(+status === 1){
+            toast.error('Текущий сеанс истек');
+        }
+    }
+
+    useEffect(checkStatus,[])
 
     const clickOnwards = () => {
         setIsPending(true);
