@@ -2,16 +2,16 @@ import React from 'react';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import "normalize.css";
 import 'animate.css';
-import {MainChart} from "./pages/MainChart/MainChart";
-import {Employees} from "./pages/Employees/Employees";
+import {MainChartPage} from "./pages/MainChart/MainChartPage";
+import {EmployeesPage} from "./pages/Employees/EmployeesPage";
 import {Preloader} from "./components/preloader/Preloader";
 import {BackdropModal, ErrorApiModal} from "./components/modal/Modal";
 import {Toaster} from "react-hot-toast";
-import Remote from "./pages/Remote/Remote";
-import StaffRate from "./pages/StaffRate/StaffRate";
-import Login from "./pages/Login/Login";
-import LoginPassword from "./pages/LoginPassword/LoginPassword";
-import Welcome from "./pages/Welcome/Welcome";
+import RemotePage from "./pages/Remote/RemotePage";
+import StaffRatePage from "./pages/StaffRate/StaffRatePage";
+import LoginPage from "./pages/Login/LoginPage";
+import LoginPasswordPage from "./pages/LoginPassword/LoginPasswordPage";
+import WelcomePage from "./pages/Welcome/WelcomePage";
 import {RequireAuth} from "./components/hoc/RequireAuth";
 
 function App() {
@@ -20,31 +20,31 @@ function App() {
             <Routes>
                 <Route path="/main_chart" element={
                     <RequireAuth>
-                        <MainChart/>
+                        <MainChartPage/>
                     </RequireAuth>}/>
                 <Route path="/employees" element={
                     <RequireAuth>
-                        <Employees/>
+                        <EmployeesPage/>
                     </RequireAuth>}/>
                 <Route path="/remote" element={
                     <RequireAuth>
-                        <Remote/>
+                        <RemotePage/>
                     </RequireAuth>}/>
                 <Route path="/staff_rate" element={
                     <RequireAuth>
-                        <StaffRate/>
+                        <StaffRatePage/>
                     </RequireAuth>}/>
                 <Route path="/login" element={
                     <RequireAuth>
-                        <Login/>
+                        <LoginPage/>
                     </RequireAuth>}/>
                 <Route path="/login/password" element={
                     <RequireAuth>
-                        <LoginPassword/>
+                        <LoginPasswordPage/>
                     </RequireAuth>}/>
                 <Route path="/welcome" element={
                     <RequireAuth>
-                        <Welcome/>
+                        <WelcomePage/>
                     </RequireAuth>}/>
             </Routes>
             <Preloader/>

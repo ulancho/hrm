@@ -7,7 +7,7 @@ import {useNavigate} from "react-router-dom";
 import {toast} from "react-hot-toast";
 import AuthService from "./../../services/auth.service";
 
-const Login = () => {
+const LoginPage = () => {
     const navigate = useNavigate();
     const [activeBtn, setActiveBtn] = useState('btn-not-active');
     const [isPending, setIsPending] = useState(false);
@@ -65,4 +65,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default LoginPage;

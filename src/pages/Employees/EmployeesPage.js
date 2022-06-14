@@ -319,7 +319,7 @@ const TableBar = () => {
 }
 
 /********************** главный компонент ********************/
-export const Employees = () => {
+export const EmployeesPage = () => {
     return (
         <>
             <Profile/>

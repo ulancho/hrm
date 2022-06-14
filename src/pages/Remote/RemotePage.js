@@ -5,7 +5,7 @@ import {Profile} from "../../components/profile/Profile";
 import {SideBar} from "../../components/sideBar/SideBar";
 import {MainContent} from "../../components/mainContent/MainContent";
 
-const Remote = () => {
+const RemotePage = () => {
     return (
         <>
             <Profile/>
@@ -24,4 +24,4 @@ const Remote = () => {
     )
 };
 
-export default Remote;
+export default RemotePage;

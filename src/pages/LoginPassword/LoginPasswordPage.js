@@ -11,7 +11,7 @@ import {useDispatch} from "react-redux";
 import {addDefaultSrc} from "../../helpers";
 
 
-const LoginPassword = () => {
+const LoginPasswordPage = () => {
     const location = useLocation();
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -98,4 +98,4 @@ const LoginPassword = () => {
     );
 };
 
-export default LoginPassword;
+export default LoginPasswordPage;

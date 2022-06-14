@@ -9,7 +9,7 @@ import {SideBar} from "../../components/sideBar/SideBar";
 import {MainContent} from "../../components/mainContent/MainContent";
 
 
-export const MainChart = () => {
+export const MainChartPage = () => {
     return (
         <>
             <Profile/>

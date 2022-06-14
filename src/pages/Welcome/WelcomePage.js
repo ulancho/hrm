@@ -5,7 +5,7 @@ import {MainContent} from "../../components/mainContent/MainContent";
 import styles from "../MainChart/MainChart.module.css";
 import {useSelector} from "react-redux";
 
-const Welcome = () => {
+const WelcomePage = () => {
     const userData = useSelector(state => state.login.user);
     console.log(userData);
 
@@ -26,4 +26,4 @@ const Welcome = () => {
     )
 }
 
-export default Welcome;
+export default WelcomePage;
