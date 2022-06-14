@@ -41,3 +41,11 @@ export const auto_grow = (element) => {
     element.target.style.height = "5px";
     element.target.style.height = (element.target.scrollHeight)+"px";
 }
+
+export const parseJwt = (token) => {
+    try {
+        return JSON.parse(atob(token.split('.')[1]));
+    } catch (e) {
+        return null;
+    }
+};
