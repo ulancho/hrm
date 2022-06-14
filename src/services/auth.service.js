@@ -46,6 +46,11 @@ class AuthService {
                 return { status:errorStatus };
             });
     }
+
+    /*************************** выход  ***************************/
+    logout(){
+        localStorage.removeItem("user");
+    }
 }
 
 export default new AuthService();
