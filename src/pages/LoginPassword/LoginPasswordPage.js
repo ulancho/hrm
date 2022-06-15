@@ -52,8 +52,6 @@ const LoginPasswordPage = () => {
                    setIsPending(false);
                })
         }
-
-
     }
 
     return (
@@ -78,6 +76,11 @@ const LoginPasswordPage = () => {
                             type={view ? 'text' : 'password'}
                             placeholder="Введите пароль"
                             onChange={changePassword}
+                            onKeyPress={(e)=>{
+                                if (e.key === 'Enter') {
+                                    clickLogin();
+                                }
+                            }}
                         />
                         <a
                             href="#"
