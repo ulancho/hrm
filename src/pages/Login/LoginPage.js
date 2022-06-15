@@ -22,34 +22,36 @@ const LoginPage = () => {
 
     const changeEmail = (e) => {
         setEmail(e.target.value);
-        if(checkEmail(e.target.value)){
+        if (checkEmail(e.target.value)) {
             setActiveBtn('btn-main');
         }
     }
 
     const checkStatus = () => {
         let status = searchParams.get("status");
-        if(+status === 1){
+        if (+status === 1) {
             toast.error('Текущий сеанс истек');
         }
     }
 
-    useEffect(checkStatus,[])
+    useEffect(checkStatus, [])
 
     const clickOnwards = () => {
-        setIsPending(true);
-        if(email){
-            AuthService.checkEmail(email)
-                .then(data => {
-                    setIsPending(false);
-                    if(data.status === 200){
-                        navigate('password',{state:{email:email, ...data.responseJson}});
-                    } else if(data.status === 404){
-                        toast.error('Email не существует');
-                    } else{
-                        toast.error('Произошла ошибка. Код ошибки: ' + data.status);
-                    }
-                })
+        if (checkEmail(email)) {
+            setIsPending(true);
+            if (email) {
+                AuthService.checkEmail(email)
+                    .then(data => {
+                        setIsPending(false);
+                        if (data.status === 200) {
+                            navigate('password', {state: {email: email, ...data.responseJson}});
+                        } else if (data.status === 404) {
+                            toast.error('Email не существует');
+                        } else {
+                            toast.error('Произошла ошибка. Код ошибки: ' + data.status);
+                        }
+                    })
+            }
         }
     }
 
@@ -63,9 +65,15 @@ const LoginPage = () => {
                         id="email"
                         type="text"
                         placeholder="Введите Email"
-                        onChange={changeEmail}/>
+                        onChange={changeEmail}
+                        onKeyPress={(e) => {
+                            if (e.key === 'Enter') {
+                                clickOnwards();
+                            }
+                        }}
+                    />
                     <button
-                        className={classNames('btn mt-32',activeBtn)}
+                        className={classNames('btn mt-32', activeBtn)}
                         onClick={clickOnwards}>
                         {!isPending ? 'Далее' : <img className={styles.spinner} src={spinner} alt="...загрузка"/>}
                     </button>
