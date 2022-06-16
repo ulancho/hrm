@@ -318,7 +318,6 @@ const TableBar = () => {
     )
 }
 
-/********************** главный компонент ********************/
 export const EmployeesPage = () => {
     return (
         <>
