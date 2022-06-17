@@ -105,7 +105,8 @@ export function getEmployees(pagination, queryParams='') {
         const options = {
             method: 'get',
             headers: {
-                'Authorization': 'Bearer ' + getAccessToken()
+                'Authorization': 'Bearer ' + getAccessToken(),
+                'X-PAGE-ROUTE':'employees'
             }
         };
         fetch(BASE_URL + 'staff/employees/' + params, options).then((response) => {
