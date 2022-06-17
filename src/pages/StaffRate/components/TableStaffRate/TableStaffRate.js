@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import TableHeaderStaffRate from "../TableHeaderStaffRate/TableHeaderStaffRate";
 import TableBodyStaffRate from "../TableBodyStaffRate/TableBodyStaffRate";
-import {getStaffRate} from "../../../../actions/actions";
+import {getStaffRate} from "../../../../store/actions/actions";
 import {useDispatch, useSelector} from "react-redux";
 import ReactPaginate from "react-paginate";
 

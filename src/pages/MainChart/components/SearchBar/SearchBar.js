@@ -1,6 +1,6 @@
 import {useDispatch, useSelector} from "react-redux";
 import React, {useEffect, useState} from "react";
-import {getDepartments, getMainSchedule, saveMainSchedule} from "../../../../actions/actions";
+import {getDepartments, getMainSchedule, saveMainSchedule} from "../../../../store/actions/actions";
 import {BASE_URL} from "../../../../constants";
 import {saveFile} from "../../../../helpers";
 import {ReactComponent as SearchIcon} from "../../../../media/icons/search.svg";

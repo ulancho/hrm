@@ -5,7 +5,7 @@ import classNames from "classnames";
 import spinner from "../../media/gifs/1495.gif";
 import {useNavigate, useSearchParams} from "react-router-dom";
 import {toast} from "react-hot-toast";
-import AuthService from "./../../services/auth.service";
+import AuthService from "../../services/auth.service";
 
 const LoginPage = () => {
     let [searchParams, setSearchParams] = useSearchParams();

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {getMainSchedule} from "../../../../actions/actions";
+import {getMainSchedule} from "../../../../store/actions/actions";
 import styles from "./TableRemote.module.css";
 import ReactPaginate from "react-paginate";
 import TableBodyRemote from "../TableBodyRemote/TableBodyRemote";

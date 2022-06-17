@@ -1,4 +1,4 @@
-import AuthService from "../services/auth.service";
+import AuthService from "../../services/auth.service";
 import {LOGIN_SUCCESS} from "./types";
 
 export const login = (username, password) => (dispatch) => {

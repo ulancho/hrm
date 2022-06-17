@@ -3,7 +3,7 @@ import styles from "./TableBodyStaffRate.module.css"
 import classNames from "classnames";
 import {auto_grow} from "../../../../helpers";
 import {useDispatch} from "react-redux";
-import {SET_STAFF_RATE_DATA_OUTPUT} from "../../../../actions/types";
+import {SET_STAFF_RATE_DATA_OUTPUT} from "../../../../store/actions/types";
 
 const TableRow = ({item, index}) => {
     const dispatch = useDispatch();

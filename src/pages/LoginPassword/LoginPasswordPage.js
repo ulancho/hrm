@@ -5,7 +5,7 @@ import {ReactComponent as Logo} from '../../media/icons/logo_white.svg';
 import {useLocation, useNavigate} from "react-router-dom";
 import {IMAGE_URL} from "../../constants";
 import spinner from "../../media/gifs/1495.gif";
-import {login} from "../../actions/auth.action";
+import {login} from "../../store/actions/auth.action";
 import {toast} from "react-hot-toast";
 import {useDispatch} from "react-redux";
 import {addDefaultSrc} from "../../helpers";
