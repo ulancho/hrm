@@ -211,10 +211,8 @@ export function getDepartments() {
         })
             .then((responseJson) => {
                 dispatch({type: GET_DEPARTMENTS, payload: responseJson})
-                dispatch({type: HIDE_PRELOADER})
             })
             .catch((error) => {
-                dispatch({type: HIDE_PRELOADER, payload: {preloader: 'hide', backdropModal: 'hide'}})
                 dispatch({type: SHOW_FAIL_API_MODAL, payload: {failApiTxt: error.message}})
             });
     }
