@@ -5,7 +5,7 @@ import 'animate.css';
 import {MainChartPage} from "./pages/MainChart/MainChartPage";
 import {EmployeesPage} from "./pages/Employees/EmployeesPage";
 import {Preloader} from "./components/preloader/Preloader";
-import {BackdropModal, ErrorApiModal} from "./components/modal/Modal";
+import {BackdropModal, ErrorApiModal, FailPermissionModal} from "./components/modal/Modal";
 import {Toaster} from "react-hot-toast";
 import RemotePage from "./pages/Remote/RemotePage";
 import StaffRatePage from "./pages/StaffRate/StaffRatePage";
@@ -44,6 +44,7 @@ function App() {
             <Preloader/>
             <BackdropModal/>
             <ErrorApiModal/>
+            <FailPermissionModal/>
             <Toaster/>
         </BrowserRouter>
     )

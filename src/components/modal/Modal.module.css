@@ -67,3 +67,10 @@
     color:white;
     margin: 7px;
 }
+
+/**************** внизу с красным фоном, если нет доступов *****************/
+.link{
+
+    color:#472F91;
+    text-decoration: underline;
+}

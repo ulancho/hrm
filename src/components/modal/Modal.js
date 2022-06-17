@@ -28,3 +28,21 @@ export const ErrorApiModal = () => {
         </div>
     )
 };
+
+/**************** внизу с красным фоном, если нет к ресурсу доступов *****************/
+export const FailPermissionModal = () => {
+    const state = useSelector(state => state.modal.failPermissionModal);
+    const txt = useSelector(state => state.modal.failPermissionTxt);
+
+    return (
+        <div className={`${styles.errorModal} ${styles[state]}`}>
+            <div className={styles.errorModalContent}>
+                <div className={styles.errorApiModalContainer}>
+                    <h3>Перезагрузите или обратитесь к администратору.</h3>
+                    <h3>{txt}</h3>
+                    <a className={styles.link} href="/welcome">Вернуться на главную страницу</a>
+                </div>
+            </div>
+        </div>
+    )
+}

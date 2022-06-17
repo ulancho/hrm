@@ -14,9 +14,9 @@ import {
     SET_SCHEDULE_QUERY_PARAMS,
     SET_STAFF_RATE_DATA,
     SET_MONTH,
-    SET_STAFF_RATE_QUERY_PARAMS, RESET_STAFF_RATE_DATA_OUTPUT, SET_STAFF_RATE_PAGINATION
+    SET_STAFF_RATE_QUERY_PARAMS, RESET_STAFF_RATE_DATA_OUTPUT, SET_STAFF_RATE_PAGINATION, SHOW_FAIL_PERMISSION
 } from "./types";
-import {BASE_URL} from "../constants";
+import {BASE_URL} from "../../constants";
 import toast from 'react-hot-toast';
 
 function getAccessToken() { return JSON.parse(localStorage.getItem('user')).access_token; }
@@ -109,8 +109,10 @@ export function getEmployees(pagination, queryParams='') {
             }
         };
         fetch(BASE_URL + 'staff/employees/' + params, options).then((response) => {
-            if (response.ok) {
+            if (response.status === 200) {
                 return response.json();
+            } else if(response.status === 403){
+                dispatch({type: SHOW_FAIL_PERMISSION, payload: { txt:'У вас нет доступов к данному ресурсу' }})
             } else {
                 throw new Error(response.status);
             }
