@@ -211,7 +211,7 @@ const SearchBar = () => {
 
     /********************** хуки ********************/
     useEffect(() => {
-        // dispatch(getDepartments())
+         dispatch(getDepartments())
     }, [])
 
     useEffect(() => {
