@@ -29,7 +29,8 @@ export function addEmployeeBy1c(id) {
         const options = {
             method: 'GET',
             headers: {
-                'Authorization': 'Bearer ' + getAccessToken()
+                'Authorization': 'Bearer ' + getAccessToken(),
+                'X-PAGE-ROUTE':'employees'
             }
         };
         fetch(BASE_URL + 'staff/employees/add-employee/?id_1c=' + id, options).then((response) => {
@@ -66,7 +67,8 @@ export function getEmployeeBy1c(id) {
         const options = {
             method: 'GET',
             headers: {
-                'Authorization': 'Bearer ' + getAccessToken()
+                'Authorization': 'Bearer ' + getAccessToken(),
+                'X-PAGE-ROUTE':'employees'
             }
         };
         fetch(BASE_URL + 'staff/employees/search-1c/?id_1c=' + id, options).then((response) => {

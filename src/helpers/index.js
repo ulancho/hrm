@@ -13,7 +13,8 @@ export const saveFile = (url,typeFile) => {
     const options = {
         method:"GET",
         headers: {
-            'Authorization': 'Bearer ' + TOKEN
+            'Authorization': 'Bearer ' + TOKEN,
+            'X-PAGE-ROUTE': 'employees'
         }
     }
     fetch(url,options).then((response) => {
