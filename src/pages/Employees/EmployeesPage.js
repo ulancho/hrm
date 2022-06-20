@@ -95,8 +95,7 @@ const UserCard = ({id1c}) => {
 const EmployeesList = ({items}) => {
     return (
         <>
-            {
-                items.count > 0 ? items.data.map((item) => (
+            {items.data.map((item) => (
                 <div key={item.id}
                      className={classNames(styles.emplCard, 'animate__animated animate__zoomIn animate__fast')}>
                     <Popup
@@ -147,8 +146,7 @@ const EmployeesList = ({items}) => {
                         </ul>
                     </div>
                 </div>
-            )) : <h3 className="text-center">Данные не найдены</h3>
-            }
+            ))}
         </>
     )
 }
@@ -172,7 +170,7 @@ const SearchBar = () => {
     }
 
     const clickSearch = () => {
-        const departments = paramDepartments ? ( (paramDepartments === -1) ? '' : '&department_id=' + paramDepartments ) : '';
+        const departments = paramDepartments ? ((paramDepartments === -1) ? '' : '&department_id=' + paramDepartments) : '';
         const search = paramSearch ? '&search=' + paramSearch : '';
         const queryParams = departments + search;
         dispatch(getEmployees({offset: EMPLOYEES_PAGINATION.offset, limit: EMPLOYEES_PAGINATION.limit}, queryParams));
@@ -223,7 +221,7 @@ const SearchBar = () => {
 
     /********************** хуки ********************/
     useEffect(() => {
-         dispatch(getDepartments());
+        dispatch(getDepartments());
     }, [])
 
     useEffect(() => {
@@ -266,7 +264,8 @@ const SearchBar = () => {
                     {close => (<AddUserModal close={close}/>)}
                 </Popup>
                 <button onClick={clickSaveToExcel} className="btn btn-secondary">
-                    {!isPending ? 'Выгрузить в excel' : <img className={styles.spinner} src={spinner} alt="...загрузка"/>}
+                    {!isPending ? 'Выгрузить в excel' :
+                        <img className={styles.spinner} src={spinner} alt="...загрузка"/>}
                 </button>
             </div>
         </div>
@@ -293,13 +292,13 @@ const TableBar = () => {
 
     /********************** хуки ********************/
     useEffect(() => {
-        if (employeesList){
+        if (employeesList) {
             setPageCount(Math.ceil(employeesList.count / itemsPerPage));
         }
     }, [employeesList]);
 
     useEffect(() => {
-       dispatch(getEmployees({offset: itemOffset, limit: EMPLOYEES_PAGINATION.limit}, queryParams));
+        dispatch(getEmployees({offset: itemOffset, limit: EMPLOYEES_PAGINATION.limit}, queryParams));
     }, [itemOffset]);
 
     useEffect(() => {
@@ -309,7 +308,7 @@ const TableBar = () => {
 
     return (
         <>
-            <EmployeesList items={employeesList}/>
+            { employeesList.count > 0 ? <EmployeesList items={employeesList}/> : <h3 className="text-center">Данные не найдены</h3> }
             {
                 employeesList.count ? <ReactPaginate
                     previousLabel="Назад"
