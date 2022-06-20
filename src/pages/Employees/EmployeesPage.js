@@ -96,7 +96,7 @@ const EmployeesList = ({items}) => {
     return (
         <>
             {
-                items && items.data.map((item) => (
+                items.count > 0 ? items.data.map((item) => (
                 <div key={item.id}
                      className={classNames(styles.emplCard, 'animate__animated animate__zoomIn animate__fast')}>
                     <Popup
@@ -147,7 +147,7 @@ const EmployeesList = ({items}) => {
                         </ul>
                     </div>
                 </div>
-            ))
+            )) : <h3 className="text-center">Данные не найдены</h3>
             }
         </>
     )
@@ -310,27 +310,29 @@ const TableBar = () => {
     return (
         <>
             <EmployeesList items={employeesList}/>
-            <ReactPaginate
-                previousLabel="Назад"
-                nextLabel="Следующий"
-                pageCount={pageCount}
-                forcePage={pageNumber}
-                onPageChange={handlePageClick}
-                breakLabel="..."
-                pageRangeDisplayed={3}
-                marginPagesDisplayed={2}
-                pageClassName="page-item"
-                pageLinkClassName="page-link"
-                previousClassName="page-item"
-                previousLinkClassName="page-link"
-                nextClassName="page-item"
-                nextLinkClassName="page-link"
-                breakClassName="page-item"
-                breakLinkClassName="page-link"
-                containerClassName="pagination"
-                activeClassName="active"
-                renderOnZeroPageCount={null}
-            />
+            {
+                employeesList.count ? <ReactPaginate
+                    previousLabel="Назад"
+                    nextLabel="Следующий"
+                    pageCount={pageCount}
+                    forcePage={pageNumber}
+                    onPageChange={handlePageClick}
+                    breakLabel="..."
+                    pageRangeDisplayed={3}
+                    marginPagesDisplayed={2}
+                    pageClassName="page-item"
+                    pageLinkClassName="page-link"
+                    previousClassName="page-item"
+                    previousLinkClassName="page-link"
+                    nextClassName="page-item"
+                    nextLinkClassName="page-link"
+                    breakClassName="page-item"
+                    breakLinkClassName="page-link"
+                    containerClassName="pagination"
+                    activeClassName="active"
+                    renderOnZeroPageCount={null}
+                /> : null
+            }
         </>
     )
 }
