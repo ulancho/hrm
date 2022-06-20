@@ -153,6 +153,8 @@ const EmployeesList = ({items}) => {
 
 const SearchBar = () => {
     const dispatch = useDispatch();
+    const pages = useSelector(state => state.login.user.pages);
+    const page_settings = pages.find(item => item.name === 'employees');
     const [searchBtnActive, setSearchBtnActive] = useState(false);
     const departmentsList = useSelector(state => state.staff.departmentsList);
     const [paramDepartments, setParamDepartments] = useState(0);
@@ -220,9 +222,6 @@ const SearchBar = () => {
     }
 
     const AddButton = () => {
-        const pages = useSelector(state => state.login.user.pages);
-        const page_settings = pages.find(item => item.name === 'employees');
-
         if (page_settings && page_settings.operation_type === 'view') {
             return <button className="btn btn-main mr-16 btn-not-allowed">Добавить сотрудника</button>
         } else {
@@ -234,7 +233,17 @@ const SearchBar = () => {
                 {close => (<AddUserModal close={close}/>)}
             </Popup>
         }
+    }
 
+    const DownloadButton = () => {
+        if (page_settings && page_settings.operation_type === 'view') {
+            return <button  className="btn btn-secondary btn-not-allowed">Выгрузить в excel</button>
+        } else {
+            return <button onClick={clickSaveToExcel} className="btn btn-secondary">
+                {!isPending ? 'Выгрузить в excel' :
+                    <img className={styles.spinner} src={spinner} alt="...загрузка"/>}
+            </button>
+        }
     }
 
     /********************** хуки ********************/
@@ -278,10 +287,7 @@ const SearchBar = () => {
             <div className={styles.buttonBlock}>
                 <SearchButton/>
                 <AddButton/>
-                <button onClick={clickSaveToExcel} className="btn btn-secondary">
-                    {!isPending ? 'Выгрузить в excel' :
-                        <img className={styles.spinner} src={spinner} alt="...загрузка"/>}
-                </button>
+                <DownloadButton/>
             </div>
         </div>
     )
