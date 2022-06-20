@@ -1,5 +1,6 @@
-import {TOKEN} from "../constants";
 import notImage from "../media/images/not_image.png";
+
+export const getAccessToken = () => JSON.parse(localStorage.getItem('user')).access_token;
 
 export const addDefaultSrc = (event) => {
     event.target.src = notImage;
@@ -13,12 +14,17 @@ export const saveFile = (url,typeFile) => {
     const options = {
         method:"GET",
         headers: {
-            'Authorization': 'Bearer ' + TOKEN,
+            'Authorization': 'Bearer ' + getAccessToken(),
             'X-PAGE-ROUTE': 'employees'
         }
     }
-    fetch(url,options).then((response) => {
-        return response.blob();
+    return fetch(url,options).then((response) => {
+        if (response.ok){
+            return response.blob();
+        } else {
+            throw response.status;
+        }
+
     }).then((blob) => {
         const url = window.URL.createObjectURL(new Blob([blob]));
         const link = document.createElement('a');
@@ -26,7 +32,9 @@ export const saveFile = (url,typeFile) => {
         link.setAttribute('download', `${Date.now()}.${typeFile}`);
         document.body.appendChild(link);
         link.click();
-    });
+        link.remove();
+        return Promise.resolve();
+    }).catch(error => Promise.reject(error.message))
 }
 
 export const isEmptyObject = (obj) => {

@@ -16,6 +16,8 @@ import classNames from "classnames";
 import {Profile} from "../../components/profile/Profile";
 import {SideBar} from "../../components/sideBar/SideBar";
 import {MainContent} from "../../components/mainContent/MainContent";
+import spinner from "../../media/gifs/1495.gif";
+import {toast} from "react-hot-toast";
 
 const AddUserModal = ({close}) => {
     const dispatch = useDispatch();
@@ -93,7 +95,8 @@ const UserCard = ({id1c}) => {
 const EmployeesList = ({items}) => {
     return (
         <>
-            {items && items.data.map((item) => (
+            {
+                items && items.data.map((item) => (
                 <div key={item.id}
                      className={classNames(styles.emplCard, 'animate__animated animate__zoomIn animate__fast')}>
                     <Popup
@@ -144,7 +147,8 @@ const EmployeesList = ({items}) => {
                         </ul>
                     </div>
                 </div>
-            ))}
+            ))
+            }
         </>
     )
 }
@@ -155,6 +159,8 @@ const SearchBar = () => {
     const departmentsList = useSelector(state => state.staff.departmentsList);
     const [paramDepartments, setParamDepartments] = useState(0);
     const [paramSearch, setParamSearch] = useState('');
+    const [isPending, setIsPending] = useState(false);
+
 
     /********************** обработчики для событий ********************/
     const changeDepartments = (event) => {
@@ -166,11 +172,11 @@ const SearchBar = () => {
     }
 
     const clickSearch = () => {
-        const departments = paramDepartments ? '&department_id=' + paramDepartments : '';
-        const search = paramSearch ? '&search=' + paramSearch : '';
-        const queryParams = departments + search;
-        dispatch(getEmployees({offset: EMPLOYEES_PAGINATION.offset, limit: EMPLOYEES_PAGINATION.limit}, queryParams));
-        dispatch({type: RESET_EMPLOYEES_PAGINATION, payload: Date.now()});
+        // const departments = paramDepartments ? (paramDepartments === -1)   '&department_id=' + paramDepartments : '';
+        // const search = paramSearch ? '&search=' + paramSearch : '';
+        // const queryParams = departments + search;
+        // dispatch(getEmployees({offset: EMPLOYEES_PAGINATION.offset, limit: EMPLOYEES_PAGINATION.limit}, queryParams));
+        // dispatch({type: RESET_EMPLOYEES_PAGINATION, payload: Date.now()});
     }
 
     const clickSaveToExcel = () => {
@@ -187,7 +193,13 @@ const SearchBar = () => {
         }
 
         const url = BASE_URL + 'staff/employees/upload?' + queryParams;
-        saveFile(url, 'xlsx');
+        setIsPending(true);
+        saveFile(url, 'xlsx')
+            .then(() => setIsPending(false))
+            .catch(status => {
+                toast.error('Произошла ошибка. ' + status);
+                setIsPending(false);
+            })
     }
 
     /********************** доп.компоненты ********************/
@@ -211,7 +223,7 @@ const SearchBar = () => {
 
     /********************** хуки ********************/
     useEffect(() => {
-         dispatch(getDepartments())
+         dispatch(getDepartments());
     }, [])
 
     useEffect(() => {
@@ -229,6 +241,7 @@ const SearchBar = () => {
                     <legend>Отдел</legend>
                     <select onChange={changeDepartments}>
                         <option value="0">Выбрать</option>
+                        <option value="-1" selected>Все</option>
                         {departmentsList.data.map(item => <option key={item.id} value={item.id}>{item.title}</option>)}
                     </select>
                 </fieldset>
@@ -252,7 +265,9 @@ const SearchBar = () => {
                 >
                     {close => (<AddUserModal close={close}/>)}
                 </Popup>
-                <button onClick={clickSaveToExcel} className="btn btn-secondary">Выгрузить в excel</button>
+                <button onClick={clickSaveToExcel} className="btn btn-secondary">
+                    {!isPending ? 'Выгрузить в excel' : <img className={styles.spinner} src={spinner} alt="...загрузка"/>}
+                </button>
             </div>
         </div>
     )

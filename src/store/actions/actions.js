@@ -18,9 +18,7 @@ import {
 } from "./types";
 import {BASE_URL} from "../../constants";
 import toast from 'react-hot-toast';
-
-function getAccessToken() { return JSON.parse(localStorage.getItem('user')).access_token; }
-
+import {getAccessToken} from "../../helpers";
 
 /************* добавление сотрудника по 1с идентификтатору *************/
 export function addEmployeeBy1c(id) {
