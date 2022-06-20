@@ -25,6 +25,7 @@ const AddUserModal = ({close}) => {
     const [disableBtn, setDisableBtn] = useState(true);
     const notFoundEmployee = useSelector(state => state.staff.notFoundEmployee);
 
+    /********************** обработчики для событий ********************/
     const clickSearch = () => {
         dispatch(getEmployeeBy1c(id))
     }
@@ -34,6 +35,7 @@ const AddUserModal = ({close}) => {
         setDisableBtn(!e.currentTarget.value);
     }
 
+    /********************** доп.компоненты ********************/
     const NotFound = () => {
         return (
             notFoundEmployee ? <div className={styles.notFoundUserBar}>
