@@ -172,11 +172,11 @@ const SearchBar = () => {
     }
 
     const clickSearch = () => {
-        // const departments = paramDepartments ? (paramDepartments === -1)   '&department_id=' + paramDepartments : '';
-        // const search = paramSearch ? '&search=' + paramSearch : '';
-        // const queryParams = departments + search;
-        // dispatch(getEmployees({offset: EMPLOYEES_PAGINATION.offset, limit: EMPLOYEES_PAGINATION.limit}, queryParams));
-        // dispatch({type: RESET_EMPLOYEES_PAGINATION, payload: Date.now()});
+        const departments = paramDepartments ? ( (paramDepartments === -1) ? '' : '&department_id=' + paramDepartments ) : '';
+        const search = paramSearch ? '&search=' + paramSearch : '';
+        const queryParams = departments + search;
+        dispatch(getEmployees({offset: EMPLOYEES_PAGINATION.offset, limit: EMPLOYEES_PAGINATION.limit}, queryParams));
+        dispatch({type: RESET_EMPLOYEES_PAGINATION, payload: Date.now()});
     }
 
     const clickSaveToExcel = () => {
