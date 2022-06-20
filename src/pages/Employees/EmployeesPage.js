@@ -219,6 +219,24 @@ const SearchBar = () => {
         }
     }
 
+    const AddButton = () => {
+        const pages = useSelector(state => state.login.user.pages);
+        const page_settings = pages.find(item => item.name === 'employees');
+
+        if (page_settings && page_settings.operation_type === 'view') {
+            return <button className="btn btn-main mr-16 btn-not-allowed">Добавить сотрудника</button>
+        } else {
+            return <Popup
+                trigger={<button className="btn btn-main mr-16">Добавить сотрудника</button>}
+                modal
+                nested
+            >
+                {close => (<AddUserModal close={close}/>)}
+            </Popup>
+        }
+
+    }
+
     /********************** хуки ********************/
     useEffect(() => {
         dispatch(getDepartments());
@@ -237,9 +255,12 @@ const SearchBar = () => {
             <div className={`${styles.fieldBlock} ${styles.fieldBlock1}`}>
                 <fieldset>
                     <legend>Отдел</legend>
-                    <select onChange={changeDepartments}>
+                    <select
+                        onChange={changeDepartments}
+                        defaultValue="-1"
+                    >
                         <option value="0">Выбрать</option>
-                        <option value="-1" selected>Все</option>
+                        <option value="-1">Все</option>
                         {departmentsList.data.map(item => <option key={item.id} value={item.id}>{item.title}</option>)}
                     </select>
                 </fieldset>
@@ -256,13 +277,7 @@ const SearchBar = () => {
             </div>
             <div className={styles.buttonBlock}>
                 <SearchButton/>
-                <Popup
-                    trigger={<button className="btn btn-main mr-16">Добавить сотрудника</button>}
-                    modal
-                    nested
-                >
-                    {close => (<AddUserModal close={close}/>)}
-                </Popup>
+                <AddButton/>
                 <button onClick={clickSaveToExcel} className="btn btn-secondary">
                     {!isPending ? 'Выгрузить в excel' :
                         <img className={styles.spinner} src={spinner} alt="...загрузка"/>}
@@ -308,7 +323,8 @@ const TableBar = () => {
 
     return (
         <>
-            { employeesList.count > 0 ? <EmployeesList items={employeesList}/> : <h3 className="text-center">Данные не найдены</h3> }
+            {employeesList.count > 0 ? <EmployeesList items={employeesList}/> :
+                <h3 className="text-center">Данные не найдены</h3>}
             {
                 employeesList.count ? <ReactPaginate
                     previousLabel="Назад"
