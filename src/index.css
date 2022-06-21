@@ -299,3 +299,37 @@ legend{
 .s:not(.active-status):hover{
     background: #cfd1d5dc;
 }
+
+/*****************************************/
+.date-field:after {
+    content: url("./media/icons/arrow_bottom.svg");
+    transform: rotate(180deg);
+}
+
+/* adjust increase/decrease button */
+.date-field::-webkit-inner-spin-button {
+    z-index: 1;
+}
+
+/* adjust clear button */
+.date-field::-webkit-clear-button {
+    z-index: 1;
+}
+
+.date-field{
+    position: relative;
+}
+
+.date-field::-webkit-calendar-picker-indicator {
+    background: transparent;
+    bottom: 0;
+    color: transparent;
+    cursor: pointer;
+    height: auto;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: auto;
+}
+/*****************************************/
