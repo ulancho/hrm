@@ -51,7 +51,10 @@ const SearchBar = () => {
         setParamDepartments(parseInt(event.currentTarget.value));
     }
 
-    const resetSearchField = () => setParamSearch('');
+    const resetSearchField = () => {
+        setParamSearch('');
+        setSearchIconActive('show');
+    }
 
 
     /********************** доп.компоненты ********************/
