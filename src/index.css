@@ -2,6 +2,7 @@
     font-family: 'Nunito';
     src: url('./media/fonts/Nunito-Regular.ttf') format('truetype');
     font-weight: normal;
+    font-weight: 400;
     font-style: normal;
 }
 
@@ -150,12 +151,26 @@ legend{
 
 /*************  Модальное окошко ************/
 .modal {
+    border-radius: 16px;
+    padding: 17px;
 
 }
 
 .modal .close-bar{
     display: flex;
     justify-content: right;
+}
+.modal-btn{
+    background: #71BF44;
+    border-radius: 8px;
+    color: #FFFFFF;
+    border: none;
+    height: 48px;
+    font-size: 16px;
+    font-weight: 400;
+    padding: 0 12px;
+    width: 40%;
+
 }
 
 .modal .close {
@@ -299,3 +314,5 @@ legend{
 .s:not(.active-status):hover{
     background: #cfd1d5dc;
 }
+
+

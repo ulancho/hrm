@@ -23,9 +23,8 @@ function App() {
                         <MainChartPage/>
                     </RequireAuth>}/>
                 <Route path="/employees" element={
-                    <RequireAuth>
-                        <EmployeesPage/>
-                    </RequireAuth>}/>
+                        <EmployeesPage/> }
+                    />
                 <Route path="/remote" element={
                     <RequireAuth>
                         <RemotePage/>
@@ -34,10 +33,7 @@ function App() {
                     <RequireAuth>
                         <StaffRatePage/>
                     </RequireAuth>}/>
-                <Route path="/welcome" element={
-                    <RequireAuth>
-                        <WelcomePage/>
-                    </RequireAuth>}/>
+                <Route path="/welcome" element={<WelcomePage/>}/>
                 <Route path="/login" element={<LoginPage/>}/>
                 <Route path="/login/password" element={<LoginPasswordPage/>}/>
             </Routes>
