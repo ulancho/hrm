@@ -92,7 +92,7 @@ const SearchBar = () => {
             <div className={styleSearchBar.dateFieldBlock}>
                 <fieldset>
                     <legend>Дата</legend>
-                    <input onChange={changeMonth} type="month"/>
+                    <input className="date-field" onClick={changeMonth} type="month"/>
                 </fieldset>
             </div>
             <div className={styleSearchBar.selectFieldBlock}>
@@ -107,7 +107,14 @@ const SearchBar = () => {
             <div className={styleSearchBar.searchFieldBlock}>
                 <fieldset>
                     <legend>Поиск</legend>
-                    <input type="text" onChange={changeSearch} placeholder="ФИО, должность"/>
+                    <div className={styleSearchBar.iconInside}>
+                        <input
+                            onChange={changeSearch}
+                            className={styleSearchBar.input}
+                            type="text"
+                            placeholder="Имя, инициалы, должность"/>
+                        <SearchIcon className={styleSearchBar.icon}/>
+                    </div>
                 </fieldset>
             </div>
             <div className={styleSearchBar.buttonBlock}>
