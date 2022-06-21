@@ -5,6 +5,7 @@ import {BASE_URL} from "../../../../constants";
 import {saveFile} from "../../../../helpers";
 import {ReactComponent as SearchIcon} from "../../../../media/icons/search.svg";
 import styleSearchBar from "./SearchBar.module.css";
+import classNames from "classnames";
 
 const SearchBar = () => {
     const dispatch = useDispatch();
@@ -15,6 +16,7 @@ const SearchBar = () => {
     const [paramMonth, setParamMonth] = useState('');
     const [paramSearch, setParamSearch] = useState('');
     const [paramDepartments, setParamDepartments] = useState(0);
+    const [searchIconActive, setSearchIconActive] = useState('show');
 
     /********************** обработчики для событий ********************/
     const clickSearch = () => {
@@ -41,11 +43,16 @@ const SearchBar = () => {
 
     const changeSearch = (event) => {
         setParamSearch(event.currentTarget.value);
+        if (event.currentTarget.value.length > 0) setSearchIconActive('hide');
+        else setSearchIconActive('show');
     }
 
     const changeDepartments = (event) => {
         setParamDepartments(parseInt(event.currentTarget.value));
     }
+
+    const resetSearchField = () => setParamSearch('');
+
 
     /********************** доп.компоненты ********************/
     const SaveButton = () => {
@@ -108,12 +115,19 @@ const SearchBar = () => {
                 <fieldset>
                     <legend>Поиск</legend>
                     <div className={styleSearchBar.iconInside}>
-                        <input
-                            onChange={changeSearch}
-                            className={styleSearchBar.input}
-                            type="text"
-                            placeholder="Имя, инициалы, должность"/>
-                        <SearchIcon className={styleSearchBar.icon}/>
+                        <form>
+                            <SearchIcon className={classNames(styleSearchBar.icon, styleSearchBar[searchIconActive])}/>
+                            <input
+                                onChange={changeSearch}
+                                className={styleSearchBar.input}
+                                type="text"
+                                placeholder="Имя, инициалы, должность"/>
+                            <button
+                                type="reset"
+                                className={styleSearchBar.resetIcon}
+                                onClick={resetSearchField}
+                            >&times;</button>
+                        </form>
                     </div>
                 </fieldset>
             </div>

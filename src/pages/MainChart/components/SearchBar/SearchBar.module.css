@@ -72,11 +72,36 @@
     color: #000000;
 }
 
+.input:placeholder-shown+.resetIcon {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.icon.show{
+    opacity: 1;
+}
+
+.icon.hide{
+    opacity: 0;
+}
+
 .icon {
     position: absolute;
     right: 0;
     top: 7px;
 }
+
+.resetIcon {
+    background-color: transparent;
+    border: 0;
+    outline: 0;
+    font-size: 25px;
+    position: absolute;
+    right: 0;
+    padding: 0;
+    cursor: pointer;
+}
+
 
 /****************** start выпдающий список отделов *******************/
 .selectFieldBlock select {
