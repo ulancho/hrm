@@ -201,7 +201,7 @@ export function getDepartments() {
                 'Authorization': 'Bearer ' + getAccessToken()
             }
         };
-        fetch(BASE_URL + 'staff/departments/', options).then((response) => {
+        fetch(BASE_URL + 'staff/departments/?limit=500', options).then((response) => {
             if (response.ok) {
                 return response.json();
             } else if(response.status === 401){
