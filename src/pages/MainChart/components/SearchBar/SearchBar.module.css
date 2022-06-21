@@ -1,32 +1,33 @@
 /************* start блоки поисковой панели ************/
-.searchBar{
+.searchBar {
     margin: 10px 0 16px;
     display: flex;
 }
 
-.searchBar div:not(.searchBar div:last-child){
+.searchBar div:not(.searchBar div:last-child) {
     height: 56px;
     margin-right: 16px;
 }
 
-.dateFieldBlock{
+.dateFieldBlock {
     width: 15%;
 }
 
-.selectFieldBlock{
+.selectFieldBlock {
     width: 23%;
 }
 
-.searchFieldBlock{
+.searchFieldBlock {
     width: 32%;
 }
 
-.buttonBlock{
+.buttonBlock {
     width: 10%;
 }
+
 /************* end блоки поисковой панели ************/
 
-.searchBar input{
+.searchBar input {
     width: 100%;
     border: 0;
     font-weight: 600;
@@ -37,7 +38,7 @@
     padding: 5px 0;
 }
 
-.searchBar input:focus-visible{
+.searchBar input:focus-visible {
     border: 0;
     outline: 0;
 }
@@ -48,11 +49,11 @@
 
 
 /****************** текстовое поле для поиска по ФИО... *******************/
-.iconInside{
-    position:relative;
+.iconInside {
+    position: relative;
 }
 
-.input{
+.input {
     width: 100%;
     border: 0;
     font-weight: 600;
@@ -71,38 +72,35 @@
     color: #000000;
 }
 
-.icon{
+.icon {
     position: absolute;
     right: 0;
     top: 7px;
 }
 
 /****************** start выпдающий список отделов *******************/
-.selectFieldBlock select{
+.selectFieldBlock select {
     width: 100%;
     border: 0;
     font-weight: 600;
     font-size: 15px;
     line-height: 19px;
     color: #000000;
-    padding: 5px 0;
-    background-color: transparent;
-}
-
-.selectFieldBlock select:focus-visible, .selectFieldBlock input:focus-visible{
-    border: 0;
-    outline: 0;
-}
-
-.selectFieldBlock select{
+    padding: 5px 25px 5px 0;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
     background: url("/src/media/icons/arrow_top.svg") transparent no-repeat 100% !important;
 }
+
+.selectFieldBlock select:focus-visible, .selectFieldBlock input:focus-visible {
+    border: 0;
+    outline: 0;
+}
+
 /****************** end выпдающий список отделов *******************/
 
-.searchIcon{
+.searchIcon {
     filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7487%) hue-rotate(147deg) brightness(109%) contrast(102%);
     margin-right: 5px;
 }
