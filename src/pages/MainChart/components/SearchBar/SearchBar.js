@@ -124,7 +124,7 @@ const SearchBar = () => {
                 <SaveButton/>
             </div>
             <div className={styleSearchBar.buttonBlock}>
-                <button className="btn btn-secondary" onClick={clickSaveToExcel}>Сохранить в excel</button>
+                <button className="btn btn-secondary" onClick={clickSaveToExcel}>Выгрузить в excel</button>
             </div>
         </div>
     )
