@@ -302,8 +302,7 @@ legend{
 
 /*****************************************/
 .date-field:after {
-    content: url("./media/icons/arrow_bottom.svg");
-    transform: rotate(180deg);
+    content: url("./media/icons/arrow_top.svg");
 }
 
 /* adjust increase/decrease button */
