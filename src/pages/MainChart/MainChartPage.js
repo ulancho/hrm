@@ -1,5 +1,4 @@
 import React from "react";
-import styles from "./MainChart.module.css";
 
 import SearchBar from "./components/SearchBar/SearchBar";
 import HelpBar from "./components/HelpBar/HelpBar";
@@ -16,12 +15,10 @@ export const MainChartPage = () => {
             <div className="d-flex">
                 <SideBar/>
                 <MainContent>
-                    <div className={`${styles.mainChart} animate__animated animate__fadeIn animate__fast`}>
-                        <SearchBar/>
-                        <div className="wrapper">
-                            <HelpBar/>
-                            <TableBar/>
-                        </div>
+                    <SearchBar/>
+                    <div className="wrapper">
+                        <HelpBar/>
+                        <TableBar/>
                     </div>
                 </MainContent>
             </div>
