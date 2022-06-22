@@ -47,62 +47,6 @@
     margin-top: 8px;
 }
 
-
-/****************** текстовое поле для поиска по ФИО... *******************/
-.iconInside {
-    position: relative;
-}
-
-.input {
-    width: 100%;
-    border: 0;
-    font-weight: 600;
-    font-size: 15px;
-    line-height: 19px;
-    color: #000000;
-    padding: 5px 0;
-    box-sizing: border-box;
-    background-color: transparent;
-}
-
-.input::placeholder {
-    font-weight: 600;
-    font-size: 15px;
-    line-height: 19px;
-    color: #000000;
-}
-
-.input:placeholder-shown+.resetIcon {
-    opacity: 0;
-    pointer-events: none;
-}
-
-.icon.show{
-    opacity: 1;
-}
-
-.icon.hide{
-    opacity: 0;
-}
-
-.icon {
-    position: absolute;
-    right: 0;
-    top: 7px;
-}
-
-.resetIcon {
-    background-color: transparent;
-    border: 0;
-    outline: 0;
-    font-size: 25px;
-    position: absolute;
-    right: 0;
-    padding: 0;
-    cursor: pointer;
-}
-
-
 /****************** start выпдающий список отделов *******************/
 .selectFieldBlock select {
     width: 100%;

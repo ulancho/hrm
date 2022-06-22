@@ -5,7 +5,7 @@ import {BASE_URL} from "../../../../constants";
 import {saveFile} from "../../../../helpers";
 import {ReactComponent as SearchIcon} from "../../../../media/icons/search.svg";
 import styleSearchBar from "./SearchBar.module.css";
-import classNames from "classnames";
+import SearchField from "../../../../components/searchField";
 
 const SearchBar = () => {
     const dispatch = useDispatch();
@@ -115,24 +115,11 @@ const SearchBar = () => {
                 </fieldset>
             </div>
             <div className={styleSearchBar.searchFieldBlock}>
-                <fieldset>
-                    <legend>Поиск</legend>
-                    <div className={styleSearchBar.iconInside}>
-                        <form>
-                            <SearchIcon className={classNames(styleSearchBar.icon, styleSearchBar[searchIconActive])}/>
-                            <input
-                                onChange={changeSearch}
-                                className={styleSearchBar.input}
-                                type="text"
-                                placeholder="Имя, инициалы, должность"/>
-                            <button
-                                type="reset"
-                                className={styleSearchBar.resetIcon}
-                                onClick={resetSearchField}
-                            >&times;</button>
-                        </form>
-                    </div>
-                </fieldset>
+                <SearchField
+                    iconActive={searchIconActive}
+                    onChange={changeSearch}
+                    onReset={resetSearchField}
+                />
             </div>
             <div className={styleSearchBar.buttonBlock}>
                 <SearchButton/>
