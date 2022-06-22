@@ -299,3 +299,7 @@ legend{
 .s:not(.active-status):hover{
     background: #cfd1d5dc;
 }
+
+.pagination{
+    justify-content: center;
+}
