@@ -1,0 +1,31 @@
+.dateField{
+    position: relative;
+    width: 100%;
+}
+
+.dateField:after {
+    content: url("./../../media/icons/arrow_top.svg");
+}
+
+/* adjust increase/decrease button */
+.dateField::-webkit-inner-spin-button {
+    z-index: 1;
+}
+
+/* adjust clear button */
+.dateField::-webkit-clear-button {
+    z-index: 1;
+}
+
+.dateField::-webkit-calendar-picker-indicator {
+    background: transparent;
+    bottom: 0;
+    color: transparent;
+    cursor: pointer;
+    height: auto;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: auto;
+}

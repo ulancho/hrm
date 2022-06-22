@@ -7,6 +7,7 @@ import {ReactComponent as SearchIcon} from "../../../../media/icons/search.svg";
 import styleSearchBar from "./SearchBar.module.css";
 import SearchField from "../../../../components/searchField";
 import DepartmentsField from "../../../../components/departmentsField";
+import MonthField from "../../../../components/monthsField";
 
 const SearchBar = () => {
     const dispatch = useDispatch();
@@ -96,10 +97,9 @@ const SearchBar = () => {
     return (
         <div className={styleSearchBar.searchBar}>
             <div className={styleSearchBar.dateFieldBlock}>
-                <fieldset>
-                    <legend>Дата</legend>
-                    <input className="date-field" onClick={changeMonth} type="month"/>
-                </fieldset>
+                <MonthField
+                    onGetMonth={changeMonth}
+                />
             </div>
             <div className={styleSearchBar.selectFieldBlock}>
                 <DepartmentsField
