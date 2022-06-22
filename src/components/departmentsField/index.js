@@ -17,6 +17,7 @@ const DepartmentsField = ({onGetDepartment}) => {
             <select
                 onChange={onGetDepartment}
                 className={styles.select}
+                defaultValue="-1"
             >
                 <option value="0">Выбрать</option>
                 <option value="-1">Все</option>

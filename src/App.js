@@ -2,8 +2,9 @@ import React from 'react';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import "normalize.css";
 import 'animate.css';
-import {MainChartPage} from "./pages/MainChart/MainChartPage";
-import {EmployeesPage} from "./pages/Employees/EmployeesPage";
+import MainChartPage from "./pages/MainChart/MainChartPage";
+import EmployeesPage from "./pages/Employees/EmployeesPage";
+
 import {Preloader} from "./components/preloader/Preloader";
 import {BackdropModal, ErrorApiModal, FailPermissionModal} from "./components/modal/Modal";
 import {Toaster} from "react-hot-toast";

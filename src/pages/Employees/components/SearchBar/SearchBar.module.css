@@ -1,0 +1,31 @@
+/****************** поисковая панель *******************/
+.searchBar{
+    margin: 10px 0 16px;
+    display: flex;
+}
+
+.searchBar div:not(.searchBar div:last-child){
+    height: 56px;
+    margin-right: 16px;
+}
+
+.fieldBlock1{
+    width: 25%;
+}
+
+.fieldBlock2{
+    width: 40%;
+}
+
+.buttonBlock{
+    display: flex;
+    width: 35%;
+}
+
+.buttonBlock button {
+    margin-top: 8px;
+}
+
+.spinner{
+    width: 38px;
+}

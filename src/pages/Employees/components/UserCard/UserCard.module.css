@@ -1,0 +1,33 @@
+.emplCard{
+    display: flex;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.emplCard div{
+    box-sizing: border-box;
+}
+
+
+.emplCard div:not(.emplCard div:last-child){
+    margin-right: 16px;
+}
+
+.foundUserBar{
+    margin: -31px 24px 24px 24px;
+}
+
+.foundUserBar .labels {
+    width: 20% !important;
+}
+
+.data{
+    width: 35%;
+}
+
+.data ul li{
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 21px;
+    color: #1E1E1E;
+}
