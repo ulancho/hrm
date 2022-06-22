@@ -7,8 +7,7 @@ import {Profile} from "../../components/profile/Profile";
 import {SideBar} from "../../components/sideBar/SideBar";
 import {MainContent} from "../../components/mainContent/MainContent";
 
-
-export const MainChartPage = () => {
+const MainChartPage = () => {
     return (
         <>
             <Profile/>
@@ -25,3 +24,5 @@ export const MainChartPage = () => {
         </>
     )
 };
+
+export default MainChartPage;
