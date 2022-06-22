@@ -1,17 +1,17 @@
 import {useDispatch, useSelector} from "react-redux";
 import React, {useEffect, useState} from "react";
-import {getDepartments, getMainSchedule, saveMainSchedule} from "../../../../store/actions/actions";
+import {getMainSchedule, saveMainSchedule} from "../../../../store/actions/actions";
 import {BASE_URL} from "../../../../constants";
 import {saveFile} from "../../../../helpers";
 import {ReactComponent as SearchIcon} from "../../../../media/icons/search.svg";
 import styleSearchBar from "./SearchBar.module.css";
 import SearchField from "../../../../components/searchField";
+import DepartmentsField from "../../../../components/departmentsField";
 
 const SearchBar = () => {
     const dispatch = useDispatch();
     const mainScheduleOutput = useSelector(state => state.sheet.mainScheduleOutput);
     const mainSchedulePagination = useSelector(state => state.sheet.mainSchedulePagination);
-    const departmentsList = useSelector(state => state.staff.departmentsList);
     const [searchBtnActive, setSearchBtnActive] = useState(false);
     const [paramMonth, setParamMonth] = useState('');
     const [paramSearch, setParamSearch] = useState('');
@@ -93,10 +93,6 @@ const SearchBar = () => {
         }
     }, [paramMonth, paramSearch, paramDepartments]);
 
-    useEffect(() => {
-        dispatch(getDepartments())
-    }, [])
-
     return (
         <div className={styleSearchBar.searchBar}>
             <div className={styleSearchBar.dateFieldBlock}>
@@ -106,13 +102,9 @@ const SearchBar = () => {
                 </fieldset>
             </div>
             <div className={styleSearchBar.selectFieldBlock}>
-                <fieldset>
-                    <legend>Отдел</legend>
-                    <select onChange={changeDepartments}>
-                        <option value="0">Выбрать</option>
-                        {departmentsList.data.map(item => <option key={item.id} value={item.id}>{item.title}</option>)}
-                    </select>
-                </fieldset>
+                <DepartmentsField
+                    onGetDepartment={changeDepartments}
+                />
             </div>
             <div className={styleSearchBar.searchFieldBlock}>
                 <SearchField

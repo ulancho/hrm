@@ -47,27 +47,7 @@
     margin-top: 8px;
 }
 
-/****************** start выпдающий список отделов *******************/
-.selectFieldBlock select {
-    width: 100%;
-    border: 0;
-    font-weight: 600;
-    font-size: 15px;
-    line-height: 19px;
-    color: #000000;
-    padding: 5px 25px 5px 0;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    background: url("/src/media/icons/arrow_top.svg") transparent no-repeat 100% !important;
-}
 
-.selectFieldBlock select:focus-visible, .selectFieldBlock input:focus-visible {
-    border: 0;
-    outline: 0;
-}
-
-/****************** end выпдающий список отделов *******************/
 
 .searchIcon {
     filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7487%) hue-rotate(147deg) brightness(109%) contrast(102%);
