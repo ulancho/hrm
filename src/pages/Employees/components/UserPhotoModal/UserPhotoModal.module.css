@@ -12,6 +12,7 @@
     font-size: 16px;
     line-height: 22px;
     margin-bottom: 24px;
+    text-align: center;
 }
 
 /*************  кнопка выбрать файл ************/
@@ -59,4 +60,18 @@
 .inputfile1.has-focus + label,
 .inputfile1 + label:hover {
     opacity: 0.7;
+}
+
+.cropElements{
+    display: flex;
+}
+
+.cutBox{
+    max-height: 300px;
+    width: 100%;
+}
+
+.previewBox{
+    height: 300px;
+    width: 50%;
 }

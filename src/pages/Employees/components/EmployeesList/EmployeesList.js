@@ -32,6 +32,7 @@ const EmployeesList = ({items}) => {
                             }
                             modal
                             nested
+                            position="right right"
                         >
                             {close => (<UserPhotoModal close={close}/>)}
                         </Popup>

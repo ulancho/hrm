@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, {PureComponent} from 'react';
 import styles from "./UserPhotoModal.module.css";
 import ReactCrop from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
@@ -8,9 +8,11 @@ class UserPhotoModal extends PureComponent {
     state = {
         src: null,
         crop: {
-            unit: '%',
-            width: 30,
-            aspect: 16 / 9
+            unit: 'px',
+            width: 120,
+            height: 150,
+            x: 200,
+            y: 25,
         }
     };
 
@@ -18,7 +20,7 @@ class UserPhotoModal extends PureComponent {
         if (e.target.files && e.target.files.length > 0) {
             const reader = new FileReader();
             reader.addEventListener('load', () =>
-                this.setState({ src: reader.result })
+                this.setState({src: reader.result})
             );
             reader.readAsDataURL(e.target.files[0]);
         }
@@ -36,7 +38,7 @@ class UserPhotoModal extends PureComponent {
     onCropChange = (crop, percentCrop) => {
         // You could also use percentCrop:
         // this.setState({ crop: percentCrop });
-        this.setState({ crop });
+        this.setState({crop});
     };
 
     async makeClientCrop(crop) {
@@ -46,7 +48,7 @@ class UserPhotoModal extends PureComponent {
                 crop,
                 'newFile.jpeg'
             );
-            this.setState({ croppedImageUrl });
+            this.setState({croppedImageUrl});
         }
     }
 
@@ -95,7 +97,7 @@ class UserPhotoModal extends PureComponent {
     }
 
     render() {
-        const { crop, croppedImageUrl, src } = this.state;
+        const {crop, croppedImageUrl, src} = this.state;
 
         return (
             <div className="modal">
@@ -105,28 +107,47 @@ class UserPhotoModal extends PureComponent {
                 </span>
                 </div>
                 <div className="content">
-                    <div className={styles.addPhotoBar}>
-                        <p className={styles.title}>Вы можете загрузить изображение в формате JPG, GIF или PNG.</p>
-                        <div className="box">
-                            <input type="file" name="file" id="file-1" accept="image/*" onChange={this.onSelectFile} className={`${styles.inputfile} ${styles.inputfile1}`}/>
-                            <label htmlFor="file-1">
-                                <span>Выбрать файл&hellip;</span>
-                            </label>
-                        </div>
-                    </div>
-                    {src && (
-                        <ReactCrop
-                            src={src}
-                            crop={crop}
-                            ruleOfThirds
-                            onImageLoaded={this.onImageLoaded}
-                            onComplete={this.onCropComplete}
-                            onChange={this.onCropChange}
-                        />
-                    )}
-                    {croppedImageUrl && (
-                        <img alt="Crop" style={{ maxWidth: '100%' }} src={croppedImageUrl} />
-                    )}
+                    {
+                        !src && (
+                            <div className={styles.addPhotoBar}>
+                                <p className={styles.title}>Вы можете загрузить изображение в формате JPG, GIF или
+                                    PNG.</p>
+                                <div className="box">
+                                    <input
+                                        type="file"
+                                        name="file"
+                                        id="file-1"
+                                        accept="image/*"
+                                        onChange={this.onSelectFile}
+                                        className={`${styles.inputfile} ${styles.inputfile1}`}/>
+                                    <label htmlFor="file-1">
+                                        <span>Выбрать файл&hellip;</span>
+                                    </label>
+                                </div>
+                            </div>
+                        )
+                    }
+                    {
+                        src && (
+                            <div className={styles.cutBox}>
+                                <p className={styles.title}>Выбранная область будет показываться на фотографии</p>
+                                <ReactCrop
+                                    src={src}
+                                    crop={crop}
+                                    maxWidth="250"
+                                    maxHeight="300"
+                                    ruleOfThirds
+                                    keepSelection={true}
+                                    onImageLoaded={this.onImageLoaded}
+                                    onComplete={this.onCropComplete}
+                                    onChange={this.onCropChange}
+                                />
+                            </div>
+                        )
+                    }
+                    {/*{croppedImageUrl && (*/}
+                    {/*    <img alt="Crop" style={{ maxWidth: '100%' }} src={croppedImageUrl} />*/}
+                    {/*)}*/}
                 </div>
             </div>
         );
