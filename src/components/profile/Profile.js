@@ -5,6 +5,7 @@ import {ReactComponent as Logo} from "../../media/icons/logo.svg";
 import {ReactComponent as Arrows} from "../../media/icons/arrow_bottom.svg";
 import {ReactComponent as ClosePopup} from "../../media/icons/close-popup.svg";
 import {ReactComponent as LinkPopup} from "../../media/icons/link.svg";
+import {ReactComponent as CheckMark} from "../../media/icons/check_mark.svg";
 import AuthService from "../../services/auth.service";
 import {useNavigate} from "react-router-dom";
 import Popup from 'reactjs-popup';
@@ -14,6 +15,7 @@ export const Profile = () => {
     const navigate = useNavigate();
     const [toggle, setToggle] = useState({auth:false, popup:false, dropdown1:false, dropdown2:false,dropdown3:false})
     const [email, setEmail] = useState({value:'', validate: true});
+    const [roles, setRoles] = useState('Чтение');
     const [disableBtn, setDisableBtn] = useState(true);
 
 
@@ -63,7 +65,7 @@ export const Profile = () => {
                                             <div className={styles.modal_header}>
                                                 <div className={styles.input_box}>
                                                     <input placeholder="Email, имя" onChange={handleChange}/>
-                                                    <div className={styles.modal_dropdown} onClick={() => setToggle({...toggle,popup: !toggle.popup})}>Чтение
+                                                    <div className={styles.modal_dropdown} onClick={() => setToggle({...toggle,popup: !toggle.popup})}>{roles}
                                                         {
                                                             toggle.popup ? <Arrows className={styles.arrow} />
                                                             : <Arrows className={styles.arrow_reverse} />
@@ -71,17 +73,35 @@ export const Profile = () => {
                                                         {
                                                             toggle.popup ?
                                                                 <div className={styles.modal_dropdown_menu}>
-                                                                    <span>Редактировать</span>
-                                                                    <span>Чтение</span>
-                                                                    <span>Владелец</span>
-                                                                    <span>Удалить</span>
+                                                                    <span onClick={() => setRoles('Редактировать')}>
+                                                                        {
+                                                                            roles === 'Редактировать' ? <CheckMark className={styles.checkmark}/> : null
+                                                                        }
+                                                                        Редактировать
+                                                                    </span>
+                                                                    <span onClick={() => setRoles('Чтение')}>
+                                                                        {
+                                                                            roles === 'Чтение' ? <CheckMark className={styles.checkmark}/> : null
+                                                                        }
+                                                                        Чтение
+                                                                    </span><span onClick={() => setRoles('Владелец')}>
+                                                                        {
+                                                                            roles === 'Владелец' ? <CheckMark className={styles.checkmark}/> : null
+                                                                        }
+                                                                    Владелец
+                                                                    </span><span onClick={() => setRoles('Удалить')}>
+                                                                        {
+                                                                            roles === 'Удалить' ? <CheckMark className={styles.checkmark}/> : null
+                                                                        }
+                                                                    Удалить
+                                                                    </span>
                                                                 </div>
                                                                 : null
                                                         }
 
                                                     </div>
                                                 </div>
-                                                <button  className="btn btn-main" disabled={disableBtn}>Отправить приглашение</button>
+                                                <button onClick={()=>console.log('works')} className="btn btn-main" disabled={disableBtn}>Отправить приглашение</button>
                                             </div>
 
                                             <h3 className={styles.modal_subtitle}>Сотрудники</h3>
@@ -103,9 +123,9 @@ export const Profile = () => {
                                                     {
                                                         toggle.dropdown1 ?
                                                             <div className={styles.modal_dropdown_menu}>
+                                                                <span><CheckMark className={styles.checkmark}/>Редактировать</span>
                                                                 <span>Владелец</span>
                                                                 <span>Чтение</span>
-                                                                <span>Редактировать</span>
                                                                 <span>Удалить</span>
                                                             </div>
                                                             : null
