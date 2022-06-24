@@ -2,11 +2,8 @@ import React from "react";
 import classNames from "classnames";
 import Popup from "reactjs-popup";
 import styles from "./EmployeesList.module.css";
-import {IMAGE_URL} from "../../../../constants";
-import notImage from "../../../../media/images/not_image.png";
-import {addDefaultSrc} from "../../../../helpers";
-import {ReactComponent as CameraIcon} from "../../../../media/icons/camera.svg";
 import UserPhotoModal from "../UserPhotoModal/UserPhotoModal";
+import PhotoBox from "../PhotoBox/PhotoBox";
 
 const EmployeesList = ({items}) => {
     return (
@@ -16,20 +13,7 @@ const EmployeesList = ({items}) => {
                     <div key={item.id}
                          className={classNames(styles.emplCard, 'animate__animated animate__zoomIn animate__fast')}>
                         <Popup
-                            trigger={
-                                <div className={styles.photo}>
-                                    <img src={item.image ? IMAGE_URL + item.image : notImage}
-                                         alt={item.full_name ||= ''}
-                                         onError={addDefaultSrc}/>
-                                    {
-                                        item.image ? <div className={`${styles.camera} ${styles.updatePhoto}`}>
-                                            <CameraIcon/>
-                                        </div> : <div className={`${styles.camera} ${styles.addPhoto}`}>
-                                            <CameraIcon/>
-                                        </div>
-                                    }
-                                </div>
-                            }
+                            trigger={<PhotoBox user={item}/>}
                             modal
                             nested
                             position="right right"
