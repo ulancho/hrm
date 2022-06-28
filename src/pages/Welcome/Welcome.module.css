@@ -1,0 +1,83 @@
+.levels {
+     display: flex;
+    flex-direction: row;
+    margin-left: 180px;
+    margin-top: 100px;
+    
+} 
+
+input[type='radio']:after{
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    top: -2px;
+    left: -1px;
+    position: relative;
+    background-color: #CCCCCC;
+    content: '';
+    display: inline-block;
+}
+
+input[type='radio']:checked:after {
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    top: -2px;
+    left: -1px;
+    position: relative;
+    background-color:  #71BF44;;
+    content: '';
+    display: inline-block;
+}
+
+.flag{
+    display: flex;
+    list-style-type:none ;
+    justify-content:flex-start;
+    margin-left: 35px;
+    margin-top: -1px;
+    line-height: 10px;
+}
+
+.flag_list, .flag_list1, .flag_list2, .flag_list3{  
+    width: 40px;
+    height: 40px;
+    
+}
+
+.UserPhoto{
+    position: relative;
+    margin-top: 30px;
+    margin-left: 180px;
+}
+
+.infolist1{
+    color: rgba(30, 30, 30, 0.5);
+    font-size: 14px;
+    line-height: 19px;
+    margin-left: 340px;
+    margin-top: -12%;
+    
+}
+
+.infolist2{
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 19px;
+    margin-left: 580px;
+    margin-top: -10%;
+}
+
+.infolist3{
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 19px;
+    margin-left: 80%;
+    margin-top: -10%;
+}
+
+
+
+
+

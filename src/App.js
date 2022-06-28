@@ -4,7 +4,6 @@ import "normalize.css";
 import 'animate.css';
 import MainChartPage from "./pages/MainChart/MainChartPage";
 import EmployeesPage from "./pages/Employees/EmployeesPage";
-
 import {Preloader} from "./components/preloader/Preloader";
 import {BackdropModal, ErrorApiModal, FailPermissionModal} from "./components/modal/Modal";
 import {Toaster} from "react-hot-toast";
@@ -35,10 +34,7 @@ function App() {
                     <RequireAuth>
                         <StaffRatePage/>
                     </RequireAuth>}/>
-                <Route path="/welcome" element={
-                    <RequireAuth>
-                        <WelcomePage/>
-                    </RequireAuth>}/>
+                <Route path="/welcome" element={<WelcomePage/>}/>
                 <Route path="/login" element={<LoginPage/>}/>
                 <Route path="/login/password" element={<LoginPasswordPage/>}/>
             </Routes>
